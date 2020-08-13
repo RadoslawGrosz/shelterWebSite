@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header.js';
-import Section from './Section'
+import Main from './Main'
 import { StyledApp } from './styles/StyledApp.js';
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     <div className="Wrapper">
       <StyledApp />
       <Header />
-      <Section />
+      <Main />
     </div>
   );
 }

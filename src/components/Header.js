@@ -9,7 +9,6 @@ const Header = () => {
 
     return ( 
     <StyledHeader className="Header" >
-        <div className="Header__cover"> </div>
         <nav className="Header__nav"> 
             <a className="Header__nav__link">Jak adoptować</a>
             <a className="Header__nav__link">Kontakt</a>
