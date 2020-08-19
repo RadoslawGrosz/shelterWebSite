@@ -1,6 +1,4 @@
-import React from "react";
-import StyledSection from "./styles/StyledSection";
+import React from 'react';
+import StyledSection from './styles/StyledSection';
 
-const Section = () => {
-  return <StyledSection></StyledSection>;
-};
+const Section = () => <StyledSection />;
