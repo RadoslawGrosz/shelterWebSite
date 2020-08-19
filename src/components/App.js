@@ -1,17 +1,15 @@
-import React from 'react';
-import Header from './Header.js';
-import Main from './Main'
-import { StyledApp } from './styles/StyledApp.js';
+import React from "react";
+import Header from "./Header.js";
+import Main from "./Main";
+import { GlobalStyles, StyledWrapper } from "./styles/StyledApp.js";
 
 function App() {
-
-
   return (
-    <div className="Wrapper">
-      <StyledApp />
+    <StyledWrapper className="Wrapper">
       <Header />
       <Main />
-    </div>
+      <GlobalStyles />
+    </StyledWrapper>
   );
 }
 

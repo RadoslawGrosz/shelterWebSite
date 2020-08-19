@@ -1,7 +1,6 @@
-import style from 'styled-components';
+import styled from "styled-components";
 
-
-export const StyledMain = style.main`
+export default styled.main`
 
     & {
         display: flex;
@@ -9,10 +8,11 @@ export const StyledMain = style.main`
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
+        width: 100vw;
         margin-top: 100vh;
         z-index: 1;
-        background-color: #BCAC6C;
-        box-shadow: 0px 5px 40px;
+        background-color: #fff;
+        /* box-shadow: 0px 5px 40px; */
         @media (orientation: landscape) {
             flex-direction: row;
         }
@@ -20,16 +20,16 @@ export const StyledMain = style.main`
             &__title {
                 width: 100%;
                 text-align: center;
-                margin-top: 5vh;
+                margin: 5vh 0 5vh;
+                padding: 0 5vw 0;
                 text-transform: uppercase;
-                font-size: 30px;
+                font-size: 2.2rem;
             }
             &__Info-container {
                 margin: 5vh 0 5vh 0;
                 padding: 5%;
                 width: 60vw;
                 height: 60vw;
-                border: 4px solid black;
                 background-color: white;
                 font-family: Rowdies;
                 @media (orientation: landscape) {
@@ -39,11 +39,14 @@ export const StyledMain = style.main`
                 &__title {
                     text-transform: uppercase;
                     text-align: center;
+                    padding: 3vh; 
+                    border-bottom: 2px solid grey;
                 }
                 &__text {
                     margin-top: 5%;
-                    text-align: justify;
+                    text-align: center;
+                    font-size: 2rem;
                 }
             }
         }
-`
+`;

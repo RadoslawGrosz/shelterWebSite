@@ -1,21 +1,15 @@
-import React from 'react';
-import headerDog800x800 from '../img/headerDog800x800.png';
-import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { StyledHeader } from './styles/StyledHeader';
-
+import React from "react";
+import StyledHeader from "./styles/StyledHeader";
 
 const Header = () => {
-
-    return ( 
-    <StyledHeader className="Header" >
-        <nav className="Header__nav"> 
-            <a className="Header__nav__link">Jak adoptować</a>
-            <a className="Header__nav__link">Kontakt</a>
-        </nav>
+  return (
+    <StyledHeader className="Header">
+      <nav className="Header__nav">
+        <button className="Header__nav__link">Jak adoptować</button>
+        <button className="Header__nav__link">Kontakt</button>
+      </nav>
     </StyledHeader>
-    );
-}
- 
-export default Header;
+  );
+};
 
+export default Header;
