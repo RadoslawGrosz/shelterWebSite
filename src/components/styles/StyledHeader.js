@@ -1,12 +1,8 @@
 import styled from 'styled-components';
 import backgroundDog from '../../img/backgroundDog.jpg';
-
-const xsmall = 'min-width: 360px';
-const small = 'min-width: 460px';
-const medium = 'min-width: 640px';
-const mediumLarge = 'min-width: 860px';
-const large = 'min-width: 1024px';
-const xLarge = 'min-width: 1440px';
+import {
+  xsmall, small, medium, mediumLarge, large, xLarge,
+} from '../../const';
 
 export default styled.header`
   & {
