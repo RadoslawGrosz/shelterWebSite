@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export default styled.main`
-
     & {
         display: flex;
         flex-wrap: wrap;
@@ -46,7 +45,10 @@ export default styled.main`
                     margin-top: 5%;
                     text-align: center;
                     font-size: 2rem;
+                    opacity: 0;
+                    transform: translateY(50px);
                 }
             }
         }
+    }
 `;

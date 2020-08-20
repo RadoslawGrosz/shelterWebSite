@@ -39,22 +39,25 @@ export default styled.header`
           text-transform: uppercase;
           letter-spacing: 1px;
           transition: 0.3s;
-          font-size: 2.5rem;
+          font-size: 2rem;
           cursor: pointer;
           z-index: 1;
 
           &:nth-child(1) {
             margin-right: auto;
+            opacity: 0;
+            transform: translateX(-50px);
           }
           &:nth-child(2) {
             margin-left: auto;
+            opacity: 0;
+            transform: translateX(50px);
           }
-
           &:hover {
             letter-spacing: 3px;
           }
           @media (${xsmall}) {
-            font-size: 3rem;
+            font-size: 2.5rem;
           }
 
           @media (${small}) {
@@ -79,7 +82,7 @@ export default styled.header`
             }
 
             @media (${large}) {
-              font-size: 5.5rem;
+              font-size: 7rem;
             }
           }
         }
