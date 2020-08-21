@@ -65,7 +65,7 @@ export default styled.header`
           }
 
           @media (${large}) {
-            font-size: 7rem;
+            font-size: 6rem;
           }
 
           @media (orientation: landscape) {
@@ -78,7 +78,7 @@ export default styled.header`
             }
 
             @media (${large}) {
-              font-size: 7rem;
+              font-size: 6rem;
             }
           }
         }
