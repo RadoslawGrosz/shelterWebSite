@@ -1,7 +1,13 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import StyledMain from './styles/StyledMain';
+import {
+  StyledMain,
+  StyledH1,
+  StyledArticle,
+  StyledH2,
+  StyledP,
+} from './styles/StyledMain';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,32 +19,32 @@ const Main = () => {
 
     textElements.forEach((el) => {
       gsap.to(el, {
+        autoAlpha: 1,
+        y: '0',
+        duration: 3,
         scrollTrigger: {
           trigger: el,
           start: 'top bottom',
         },
-        autoAlpha: 1,
-        y: '0',
-        duration: 3,
       });
     });
   });
 
   return (
-    <StyledMain ref={mainRef} className="Main">
-      <h1 className="Main__title">Adopcja w trzech krokach</h1>
-      <article className="Main__Info-container">
-        <h2 className="Main__Info-container__title">Krok 1</h2>
-        <p className="Main__Info-container__text">skontaktuj sie z nami</p>
-      </article>
-      <article className="Main__Info-container">
-        <h2 className="Main__Info-container__title">Krok 2</h2>
-        <p className="Main__Info-container__text">Podpisz dokumenty</p>
-      </article>
-      <article className="Main__Info-container">
-        <h2 className="Main__Info-container__title">Krok 3</h2>
-        <p className="Main__Info-container__text">Zabierz psa do domu</p>
-      </article>
+    <StyledMain ref={mainRef}>
+      <StyledH1>Adopcja w trzech krokach</StyledH1>
+      <StyledArticle>
+        <StyledH2>Krok 1</StyledH2>
+        <StyledP>skontaktuj sie z nami</StyledP>
+      </StyledArticle>
+      <StyledArticle>
+        <StyledH2>Krok 2</StyledH2>
+        <StyledP>Podpisz dokumenty</StyledP>
+      </StyledArticle>
+      <StyledArticle>
+        <StyledH2>Krok 3</StyledH2>
+        <StyledP>Zabierz psa do domu</StyledP>
+      </StyledArticle>
     </StyledMain>
   );
 };
