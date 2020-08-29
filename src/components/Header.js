@@ -16,10 +16,15 @@ const Header = () => {
     }).to(buttonContact, { autoAlpha: 1, x: '0', duration: 0.8 });
   });
 
+  const handleScroll = () => {
+    const destinationY = window.innerHeight;
+    window.scrollTo(0, destinationY);
+  };
+
   return (
     <StyledHeader>
       <StyledNav ref={nav}>
-        <StyledButton>Jak adoptować</StyledButton>
+        <StyledButton onClick={handleScroll}>Jak adoptować</StyledButton>
         <StyledButton>Kontakt</StyledButton>
       </StyledNav>
     </StyledHeader>

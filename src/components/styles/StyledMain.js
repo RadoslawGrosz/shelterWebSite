@@ -9,10 +9,12 @@ export const StyledMain = styled.main`
 
   width: 100vw;
   margin-top: 100vh;
+  padding-bottom: 6vh;
   z-index: 1;
 
-  background-color: #fff;
+  background-color: #020100;
   box-shadow: 0px 5px 40px;
+  color: #FDFFFC;
 
   @media (orientation: landscape) {
     flex-direction: row;
@@ -36,10 +38,10 @@ export const StyledH1 = styled.h1`
 export const StyledArticle = styled.article`
   width: 60vw;
   height: 60vw;
-  margin: 0 0 5vh 0;
+  margin: 0 0 3vh 0;
   padding: 5%;
 
-  background-color: white;
+  /* background-color: #020100; */
   font-family: Rowdies;
 
   @media (orientation: landscape) {

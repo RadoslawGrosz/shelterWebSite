@@ -12,6 +12,7 @@ export const GlobalStyles = createGlobalStyle`
     html{
         font-family: Roboto, Arial, Helvetica, sans-serif;
         font-size: 10px;
+        scroll-behavior: smooth;
     }
 `;
 
