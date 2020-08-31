@@ -13,7 +13,7 @@ export const StyledMain = styled.main`
   z-index: 1;
 
   background-color: #020100;
-  box-shadow: 0px 5px 40px;
+  box-shadow: 0px 5px 20px;
   color: #FDFFFC;
 
   @media (orientation: landscape) {
@@ -40,8 +40,7 @@ export const StyledArticle = styled.article`
   height: 60vw;
   margin: 0 0 3vh 0;
   padding: 5%;
-
-  /* background-color: #020100; */
+  
   font-family: Rowdies;
 
   @media (orientation: landscape) {

@@ -16,16 +16,20 @@ const Header = () => {
     }).to(buttonContact, { autoAlpha: 1, x: '0', duration: 0.8 });
   });
 
-  const handleScroll = () => {
+  const handleScrollToMain = () => {
     const destinationY = window.innerHeight;
     window.scrollTo(0, destinationY);
+  };
+
+  const handleScrollToFooter = () => {
+    window.scrollTo(0, document.querySelector('footer').offsetTop);
   };
 
   return (
     <StyledHeader>
       <StyledNav ref={nav}>
-        <StyledButton onClick={handleScroll}>Jak adoptować</StyledButton>
-        <StyledButton>Kontakt</StyledButton>
+        <StyledButton onClick={handleScrollToMain}>Jak adoptować</StyledButton>
+        <StyledButton onClick={handleScrollToFooter}>Kontakt</StyledButton>
       </StyledNav>
     </StyledHeader>
   );
