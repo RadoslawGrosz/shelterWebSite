@@ -6,6 +6,12 @@ import Section from './Section';
 import Footer from './Footer';
 import theme from '../theme/Theme';
 import { GlobalStyles, StyledWrapper } from './styles/StyledApp';
+import firebase from '../server/firebase';
+
+firebase.firestore().collection('times').add({
+  title: 'test',
+  subtitle: 'test2',
+});
 
 function App() {
   return (

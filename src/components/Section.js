@@ -3,6 +3,7 @@ import { StyledSection, StyledDiv } from './styles/StyledSection';
 
 const Section = () => {
   const [image, setImage] = useState(null);
+  const [dogsToAdopt, setDogsToAdopt] = useState([]);
 
   const getDogImg = async () => {
     try {
