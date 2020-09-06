@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import backgroundDog from '../../img/backgroundDog.jpg';
+import backgroundDog from '../../../img/backgroundDog.jpg';
 
 export const StyledHeader = styled.header`
   position: fixed;
