@@ -1,39 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { StyledSection, StyledDiv } from './styles/StyledSection';
+import firebase from '../../server/firebase';
+import DogsList from './DogsList';
+import { StyledH1, StyledSection } from './styles/StyledSection';
 
 const Section = () => {
-  const [image, setImage] = useState(null);
-  const [dogsToAdopt, setDogsToAdopt] = useState([]);
-
-  const getDogImg = async () => {
-    try {
-      const response = await fetch('https://dog.ceo/api/breeds/image/random');
-      const data = await response.json();
-
-      return data;
-    } catch (err) {
-      return console.log(err);
-    }
-  };
+  const [dogsInfo, setDogsInfo] = useState([]);
 
   useEffect(() => {
-    getDogImg().then((data) => {
-      setImage(data.message);
-    });
-  }, []);
+    const db = firebase.firestore();
+    const docRef = db.collection('Dogs').doc('dogInfo');
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      getDogImg().then((data) => {
-        setImage(data.message);
+    docRef
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          setDogsInfo((prev) => [...prev, ...doc.data().dogs]);
+        } else {
+          console.log('No such document!');
+        }
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error);
       });
-    }, 5000);
-    return () => clearInterval(interval);
-  });
+  }, []);
 
   return (
     <StyledSection>
-      <StyledDiv bgc={image} />
+      <StyledH1>Psy do adopcji</StyledH1>
+      {dogsInfo && <DogsList dogsInfo={dogsInfo} />}
     </StyledSection>
   );
 };

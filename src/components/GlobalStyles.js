@@ -1,6 +1,6 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
-export const GlobalStyles = createGlobalStyle`
+export default createGlobalStyle`
     *{
         margin: 0;
         padding: 0;
@@ -14,13 +14,4 @@ export const GlobalStyles = createGlobalStyle`
         font-size: 10px;
         scroll-behavior: smooth;
     }
-`;
-
-export const StyledWrapper = styled.div`
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-content: center;
-  overflow: hidden;
 `;

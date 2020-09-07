@@ -5,7 +5,7 @@ import Main from './Main';
 import Section from './Section';
 import Footer from './Footer';
 import theme from '../../theme/Theme';
-import { GlobalStyles, StyledWrapper } from './styles/StyledApp';
+import StyledWrapper from './styles/StyledHome';
 import firebase from '../../server/firebase';
 
 // firebase.firestore().collection('times').add({
@@ -13,7 +13,7 @@ import firebase from '../../server/firebase';
 //   subtitle: 'test2',
 // });
 
-function App() {
+function Home() {
   return (
     <ThemeProvider theme={theme}>
       <StyledWrapper>
@@ -21,10 +21,9 @@ function App() {
         <Main />
         <Section />
         <Footer />
-        <GlobalStyles />
       </StyledWrapper>
     </ThemeProvider>
   );
 }
 
-export default App;
+export default Home;
