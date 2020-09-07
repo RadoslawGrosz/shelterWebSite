@@ -62,8 +62,8 @@ export const StyledButton = styled.button`
   @media (orientation: landscape) {
     border-bottom-width: 0.5vh;
     font-size: 5.5vh;
-    @media (${({ theme }) => theme.xl}) {
-      font-size: 6rem;
-    }
+  }
+  @media (${({ theme }) => theme.l}) {
+    font-size: 4rem;
   }
 `;

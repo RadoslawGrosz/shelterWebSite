@@ -32,6 +32,9 @@ export const StyledH1 = styled.h1`
   @media (orientation: landscape) {
     font-size: 5.2vh;
   }
+  @media (${({ theme }) => theme.l}) {
+    font-size: 4rem;
+  }
 `;
 
 // Container for h2 and p
@@ -60,6 +63,9 @@ export const StyledH2 = styled.h2`
   @media (orientation: landscape) {
     font-size: 5vh;
   }
+  @media (${({ theme }) => theme.l}) {
+    font-size: 3.5rem;
+  }
 `;
 
 export const StyledP = styled.p`
@@ -73,5 +79,8 @@ export const StyledP = styled.p`
 
   @media (orientation: landscape) {
     font-size: 4vh;
+  }
+  @media (${({ theme }) => theme.l}) {
+    font-size: 3rem;
   }
 `;

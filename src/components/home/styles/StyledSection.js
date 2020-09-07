@@ -13,11 +13,12 @@ export const StyledSection = styled.section`
 export const StyledH1 = styled.h1`
 	flex-basis: 100%;
 	font-size: 5vw;
-	color: white;
+	background-color: #FF8600;
 	text-align: center;
+	/* color: white; */
 	text-transform: uppercase;
 	line-height: 10vh;
-	background-color: #FF36A0;
+	/* background-color: #FF36A0; */
 	@media (orientation: landscape) {
 		font-size: 5vh;
 	}
