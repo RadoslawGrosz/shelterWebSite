@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import firebase from '../../server/firebase';
 import DogsList from './DogsList';
-import { StyledH1, StyledSection } from './styles/StyledSection';
+import { StyledH1, StyledSection, Spinner } from './styles/StyledSection';
 
 const Section = () => {
   const [dogsInfo, setDogsInfo] = useState([]);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   useEffect(() => {
     const db = firebase.firestore();
@@ -19,6 +20,7 @@ const Section = () => {
           console.log('No such document!');
         }
       })
+      .then(() => setIsDataLoaded(true))
       .catch((error) => {
         console.log('Error getting document:', error);
       });
@@ -27,7 +29,11 @@ const Section = () => {
   return (
     <StyledSection>
       <StyledH1>Psy do adopcji</StyledH1>
-      {dogsInfo && <DogsList dogsInfo={dogsInfo} />}
+      {isDataLoaded ? (
+        <DogsList dogsInfo={dogsInfo} />
+      ) : (
+        <Spinner />
+      )}
     </StyledSection>
   );
 };

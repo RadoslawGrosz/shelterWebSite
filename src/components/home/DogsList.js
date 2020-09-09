@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   StyledDiv,
-  StyledImg,
+  ImageContainer,
   StyledArticle,
   StyledH2,
   StyledP,
@@ -11,10 +11,7 @@ const DogsList = ({ dogsInfo }) => {
   return (
     dogsInfo.map(({ images, name, description }) => (
       <StyledDiv>
-        <StyledImg
-          src={images[0].source}
-          alt={images[0].imageName}
-        />
+        <ImageContainer src={images[0].source} />
         <StyledArticle>
           <StyledH2>{name}</StyledH2>
           <StyledP>{description}</StyledP>
