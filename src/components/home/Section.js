@@ -4,36 +4,37 @@ import DogsList from './DogsList';
 import { StyledH1, StyledSection, Spinner } from './styles/StyledSection';
 
 const Section = () => {
-  const [dogsInfo, setDogsInfo] = useState([]);
-  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [data, setData] = useState([]);
+  const [lastData, setLastData] = useState(null);
+  const [isAllDataLoaded, setIsAllDataLoaded] = useState(false);
+
+  const getData = () => {
+    if (isAllDataLoaded) return;
+    const db = firebase.firestore();
+    let next = null;
+    if (lastData) {
+      next = db.collection('Dogs').startAfter(lastData).limit(1);
+    } else {
+      next = db.collection('Dogs').limit(1);
+    }
+
+    next.get().then((documentSnapshots) => {
+      if (documentSnapshots.empty) setIsAllDataLoaded(true);
+      documentSnapshots.forEach((doc) => {
+        setData((prev) => [...prev, doc.data()]);
+      });
+      setLastData(documentSnapshots.docs[documentSnapshots.docs.length - 1]);
+    });
+  };
 
   useEffect(() => {
-    const db = firebase.firestore();
-    const docRef = db.collection('Dogs').doc('dogInfo');
-
-    docRef
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          setDogsInfo((prev) => [...prev, ...doc.data().dogs]);
-        } else {
-          console.log('No such document!');
-        }
-      })
-      .then(() => setIsDataLoaded(true))
-      .catch((error) => {
-        console.log('Error getting document:', error);
-      });
+    getData();
   }, []);
 
   return (
     <StyledSection>
-      <StyledH1>Psy do adopcji</StyledH1>
-      {isDataLoaded ? (
-        <DogsList dogsInfo={dogsInfo} />
-      ) : (
-        <Spinner />
-      )}
+      <StyledH1 onClick={getData}>Psy do adopcji</StyledH1>
+      <DogsList data={data} isAllDataLoaded={isAllDataLoaded} />
     </StyledSection>
   );
 };

@@ -17,7 +17,7 @@ export const StyledSection = styled.section`
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: flex-start;
-	min-height: 60vh;
+	min-height: 40vh;
   z-index: 1;
 	background-color: #020100;
 `;
@@ -116,6 +116,7 @@ export const Spinner = styled.div`
 	width: 20%;
 	padding-bottom: 20%;
 	background-color: white;
+	margin: 10vw 0 10vw 0;
 	animation: ${rotateSpinner} 1.2s infinite ease-in-out;
 	@media (orientation: landscape) {
 		width: 10%;

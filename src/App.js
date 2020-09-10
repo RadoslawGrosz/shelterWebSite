@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from './home/Home';
-import Admin from './admin/admin';
+import Home from './components/home/Home';
+import Admin from './components/admin/admin';
 import GlobalStyles from './GlobalStyles';
 
-function Root() {
+function App() {
   return (
     <Router>
       <Switch>
@@ -16,4 +16,4 @@ function Root() {
   );
 }
 
-export default Root;
+export default App;
