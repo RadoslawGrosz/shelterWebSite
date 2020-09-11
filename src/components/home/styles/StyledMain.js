@@ -12,7 +12,8 @@ export const StyledMain = styled.main`
   padding-bottom: 6vh;
   z-index: 1;
 
-  background-color: #020100;
+  /* background-color: #020100; */
+  background-color: #120136;
   box-shadow: 0px 5px 20px;
   color: #FDFFFC;
 

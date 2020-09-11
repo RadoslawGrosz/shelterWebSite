@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   StyledDiv,
   ImageContainer,
@@ -17,6 +18,18 @@ const DogsList = ({ images, name, description }) => {
       </StyledArticle>
     </StyledDiv>
   );
+};
+
+DogsList.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.object),
+  name: PropTypes.string,
+  description: PropTypes.string,
+};
+
+DogsList.defaultProps = {
+  images: [{}],
+  name: '',
+  description: '',
 };
 
 export default DogsList;

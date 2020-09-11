@@ -1,37 +1,19 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import firebase from '../../server/firebase';
 import DogsList from './DogsList';
-import { StyledH1, StyledSection, Spinner, SpinnerContainer } from './styles/StyledSection';
+import {
+  StyledH1,
+  StyledSection,
+  Spinner,
+  SpinnerContainer,
+} from './styles/StyledSection';
 
-const Section = () => {
+const Section = ({ wrapperRef }) => {
   const [data, setData] = useState([]);
   const [lastDocumentSnapshot, setLastDocumentSnapshot] = useState(null);
   const [isAllDataLoaded, setIsAllDataLoaded] = useState(false);
   const [isDataRequest, setIsDataRequest] = useState(true);
-  const sectionRef = useRef(null);
-
-  // const getData = () => {
-  //   if (isAllDataLoaded) return;
-  //   const db = firebase.firestore();
-  //   let colRef = null;
-  //   if (lastDocumentSnapshot) {
-  //     colRef = db.collection('Dogs').startAfter(lastDocumentSnapshot).limit(1);
-  //   } else {
-  //     colRef = db.collection('Dogs').limit(1);
-  //   }
-
-  //   colRef.get().then((documentSnapshots) => {
-  //     if (documentSnapshots.empty) setIsAllDataLoaded(true);
-  //     documentSnapshots.forEach((doc) => {
-  //       setData((prev) => [...prev, doc.data()]);
-  //     });
-  //     if (lastDocumentSnapshot === documentSnapshots.docs[documentSnapshots.docs.length - 1]) {
-  //       setIsAllDataLoaded(true);
-  //       return;
-  //     }
-  //     setLastDocumentSnapshot(documentSnapshots.docs[documentSnapshots.docs.length - 1]);
-  //   });
-  // };
 
   useEffect(() => {
     const getData = () => {
@@ -39,18 +21,25 @@ const Section = () => {
       const db = firebase.firestore();
       let colRef = null;
       if (lastDocumentSnapshot) {
-        colRef = db.collection('Dogs').startAfter(lastDocumentSnapshot).limit(2);
+        colRef = db
+          .collection('Dogs')
+          .startAfter(lastDocumentSnapshot)
+          .limit(1);
       } else {
-        colRef = db.collection('Dogs').limit(2);
+        colRef = db.collection('Dogs').limit(1);
       }
 
-      colRef.get().then((documentSnapshots) => {
-        documentSnapshots.forEach((doc) => {
-          setData((prev) => [...prev, doc.data()]);
-        });
-        setLastDocumentSnapshot(documentSnapshots.docs[documentSnapshots.docs.length - 1]);
-        return documentSnapshots.docs[documentSnapshots.docs.length - 1];
-      })
+      colRef
+        .get()
+        .then((documentSnapshots) => {
+          documentSnapshots.forEach((doc) => {
+            setData((prev) => [...prev, doc.data()]);
+          });
+          setLastDocumentSnapshot(
+            documentSnapshots.docs[documentSnapshots.docs.length - 1],
+          );
+          return documentSnapshots.docs[documentSnapshots.docs.length - 1];
+        })
         .then((lastDocument) => {
           const next = db.collection('Dogs').startAfter(lastDocument).limit(1);
           next.get().then((nextDocumentSnapshots) => {
@@ -63,12 +52,15 @@ const Section = () => {
   }, [isDataRequest]);
 
   const handleScroll = () => {
-    if (!sectionRef.current) return;
-    const elements = sectionRef.current.children;
-    const lastEl = elements[elements.length - 1];
+    const {
+      current: { children },
+    } = wrapperRef;
+    const footer = children[children.length - 1];
 
-    if (window.scrollY + window.innerHeight >= lastEl.offsetTop
-     && window.scrollY + window.innerHeight <= lastEl.offsetTop + lastEl.offsetHeight) {
+    if (
+      window.scrollY + window.innerHeight >=
+      footer.offsetTop + footer.offsetHeight
+    ) {
       setIsDataRequest(true);
     }
   };
@@ -79,9 +71,13 @@ const Section = () => {
   });
 
   return (
-    <StyledSection ref={sectionRef}>
+    <StyledSection>
       <StyledH1>Psy do adopcji</StyledH1>
-      {isAllDataLoaded ? null : <SpinnerContainer><Spinner /></SpinnerContainer>}
+      {!isDataRequest || isAllDataLoaded ? null : (
+        <SpinnerContainer>
+          <Spinner />
+        </SpinnerContainer>
+      )}
       {data.map(({ images, name, description }) => (
         <DogsList
           key={name}
@@ -92,6 +88,17 @@ const Section = () => {
       ))}
     </StyledSection>
   );
+};
+
+Section.propTypes = {
+  wrapperRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.object }),
+  ]),
+};
+
+Section.defaultProps = {
+  wrapperRef: null,
 };
 
 export default Section;

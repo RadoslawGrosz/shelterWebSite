@@ -25,7 +25,8 @@ export const StyledSection = styled.section`
 export const StyledH1 = styled.h1`
 	flex-basis: 100%;
 	font-size: 5vw;
-	background-color: #FF8600;
+	/* background-color: #FF8600; */
+	background-color: #fcbf1e;
 	text-align: center;
 	/* color: white; */
 	text-transform: uppercase;
@@ -54,12 +55,13 @@ export const StyledDiv = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	flex-basis: 100%;
-	max-width: 1400px;
+	max-width: 1600px;
 	overflow: hidden;
 	margin-top: 3vh;
-	background-color: #00DCFF;
+	/* background-color: #00DCFF; */
+	background-color: #40bad5;
 	&:nth-child(odd) {
-		background-color: #F1D302;
+		background-color: #fcbf1e;
 		& ${StyledArticle} {
 			@media (orientation: landscape) {
 				order: -1;
