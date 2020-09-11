@@ -1,27 +1,21 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   StyledDiv,
   ImageContainer,
   StyledArticle,
   StyledH2,
   StyledP,
-  Spinner,
 } from './styles/StyledSection';
 
-const DogsList = ({ data, isAllDataLoaded }) => {
+const DogsList = ({ images, name, description }) => {
   return (
-    <>
-      {data.map(({ images, name, description }) => (
-        <StyledDiv>
-          <ImageContainer src={images[0].source} />
-          <StyledArticle>
-            <StyledH2>{name}</StyledH2>
-            <StyledP>{description}</StyledP>
-          </StyledArticle>
-        </StyledDiv>
-      ))}
-      {!isAllDataLoaded ? <Spinner /> : null}
-    </>
+    <StyledDiv>
+      <ImageContainer src={images[0].source} />
+      <StyledArticle>
+        <StyledH2>{name}</StyledH2>
+        <StyledP>{description}</StyledP>
+      </StyledArticle>
+    </StyledDiv>
   );
 };
 

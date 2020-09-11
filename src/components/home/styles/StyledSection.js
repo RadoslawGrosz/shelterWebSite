@@ -123,3 +123,14 @@ export const Spinner = styled.div`
 		padding-bottom: 10%;
 	}
 `;
+
+export const SpinnerContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-basis: 100%;
+	max-width: 1400px;
+	overflow: hidden;
+	margin-top: 3vh;
+	order: 2;
+`;
