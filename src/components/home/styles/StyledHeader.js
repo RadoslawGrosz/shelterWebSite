@@ -17,8 +17,9 @@ export const StyledNav = styled.nav`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 30vh;
   justify-content: space-between;
+  height: 30vh;
+  
   @media (orientation: landscape) {
     flex-direction: row;
     align-items: flex-start;
@@ -33,6 +34,7 @@ export const StyledButton = styled.button`
 
   background-color: transparent;
   color: black;
+  opacity: 0;
 
   text-decoration: none;
   text-transform: uppercase;
@@ -45,12 +47,10 @@ export const StyledButton = styled.button`
 
   &:nth-child(1) {
     margin-right: auto;
-    opacity: 0;
     transform: translateX(-50px);
   }
   &:nth-child(2) {
     margin-left: auto;
-    opacity: 0;
     transform: translateX(50px);
   }
   &:hover {

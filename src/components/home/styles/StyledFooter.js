@@ -2,14 +2,15 @@ import styled from 'styled-components';
 
 export const StyledFooter = styled.footer`
   display: flex;
-  z-index: 1;
   padding-left: 10%;
+  z-index: 1;
   background-color: #020100;
 `;
 
 export const StyledLink = styled.a`
   display: flex;
   align-items: center;
+  
   font-size: 6vw;
   line-height: 12vw;
   

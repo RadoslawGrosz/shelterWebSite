@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import PropTypes from 'prop-types';
 import { StyledHeader, StyledNav, StyledButton } from './styles/StyledHeader';
 
-const Header = () => {
+const Header = ({ setIsMenuVisible }) => {
   const nav = useRef(null);
 
   useEffect(() => {
@@ -21,18 +22,22 @@ const Header = () => {
     window.scrollTo(0, destinationY);
   };
 
-  const handleScrollToFooter = () => {
-    window.scrollTo(0, document.querySelector('footer').offsetTop);
-  };
-
   return (
     <StyledHeader>
       <StyledNav ref={nav}>
         <StyledButton onClick={handleScrollToMain}>Jak adoptować</StyledButton>
-        <StyledButton onClick={handleScrollToFooter}>Kontakt</StyledButton>
+        <StyledButton onClick={() => setIsMenuVisible(true)}>Menu</StyledButton>
       </StyledNav>
     </StyledHeader>
   );
+};
+
+Header.propTypes = {
+  setIsMenuVisible: PropTypes.func,
+};
+
+Header.defaultProps = {
+  setIsMenuVisible: () => null,
 };
 
 export default Header;

@@ -5,7 +5,7 @@ import { StyledFooter, StyledLink } from './styles/StyledFooter';
 
 const Footer = () => {
   return (
-    <StyledFooter>
+    <StyledFooter id="footer">
       <StyledLink>
         <FontAwesomeIcon icon={faFacebook} />
         <p>Facebook</p>
