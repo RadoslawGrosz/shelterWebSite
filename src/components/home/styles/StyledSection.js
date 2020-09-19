@@ -20,7 +20,13 @@ export const StyledSection = styled.section`
 
 	min-height: 40vh;
   z-index: 1;
-	background-color: #020100;
+
+	/* background-color: #020100; */
+	background-color: #fff;
+
+	@media (orientation: landscape) {
+		padding: 10vh 0 10vh;
+	}
 `;
 
 export const StyledH1 = styled.h1`
@@ -30,12 +36,17 @@ export const StyledH1 = styled.h1`
 	line-height: 10vh;
 	text-align: center;
 	text-transform: uppercase;
-	
-	background-color: #fcbf1e;
+
+	/* background-color: #fcbf1e; */
+	background-color: #fff;
 
 	@media (orientation: landscape) {
 		font-size: 5vh;
 	}
+
+	@media (${({ theme }) => theme.l}) {
+    font-size: 3rem;
+  }
 `;
 
 export const StyledArticle = styled.article`
@@ -45,12 +56,15 @@ export const StyledArticle = styled.article`
 	align-items: flex-start;
 	flex-basis: 100%;
 
-	padding: 0 3vw 3vw 3vw;
-	overflow: hidden;
+	padding: 1vw 3vw 3vw 3vw;
+	/* overflow: hidden; */
 
 	@media (orientation: landscape) {
 		flex-basis: 50%;
-		height: 80vh;
+		min-height: 80vh;
+		@media (${({ theme }) => theme.l}) {
+  		min-height: 50vh;
+  	}
 	}
 `;
 
@@ -63,10 +77,13 @@ export const StyledDiv = styled.div`
 	margin-top: 3vh;
 	overflow: hidden;
 	
-	background-color: #40bad5;
+	color: white;
+	/* background-color: #40bad5; */
+	background-color: #f05f40;
 
 	&:nth-child(odd) {
-		background-color: #fcbf1e;
+		/* background-color: #fcbf1e; */
+		background-color: #4296F0;
 		& ${StyledArticle} {
 			@media (orientation: landscape) {
 				order: -1;
@@ -76,8 +93,6 @@ export const StyledDiv = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-	display: flex;
-	justify-content: center;
 	flex-basis: 100%;
 	height: 40vh;
 
@@ -87,7 +102,7 @@ export const ImageContainer = styled.div`
 
 	@media (orientation: landscape) {
 		flex-basis: 50%;
-		height: 80vh;
+		height: auto;
 	}
 `;
 
@@ -103,7 +118,7 @@ export const StyledH2 = styled.h2`
 		line-height: 10vh;
 	}
 	@media (${({ theme }) => theme.m}) {
-  	font-size: 3rem;
+  	font-size: 2.5rem;
   }
 `;
 
@@ -116,8 +131,8 @@ export const StyledP = styled.p`
 		padding: 0 1vw 0 1vw;
 		font-size: 4vh;
 	}
-	@media (${({ theme }) => theme.m}) {
-    	font-size: 2.5rem;
+	@media (${({ theme }) => theme.l}) {
+    	font-size: 2rem;
   }
 `;
 
