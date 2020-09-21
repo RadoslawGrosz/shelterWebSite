@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const useScrollEvent = (triggerRef, isTriggered) => {
+const useTriggerFetchData = (triggerRef, isTriggered) => {
   const handleScroll = () => {
     const { current } = triggerRef;
     const footer = current.children.namedItem('footer');
@@ -18,4 +18,4 @@ const useScrollEvent = (triggerRef, isTriggered) => {
   });
 };
 
-export default useScrollEvent;
+export default useTriggerFetchData;

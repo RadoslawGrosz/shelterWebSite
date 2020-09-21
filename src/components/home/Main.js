@@ -11,6 +11,7 @@ import {
   StyledArticle,
   StyledH2,
   StyledP,
+  StyledIconContainer,
 } from './styles/StyledMain';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -35,7 +36,7 @@ const Main = () => {
   });
 
   return (
-    <StyledMain ref={mainRef}>
+    <StyledMain ref={mainRef} id="main">
       <StyledH1>Adopcja w trzech krokach</StyledH1>
       <ArticlesWrapper>
         <StyledArticle>
@@ -44,19 +45,19 @@ const Main = () => {
           </StyledH2>
           <StyledP>
             skontaktuj sie z nami
-            <p>
-              <FontAwesomeIcon icon={faFacebook} />
-            </p>
           </StyledP>
+          <StyledIconContainer>
+            <FontAwesomeIcon icon={faFacebook} />
+          </StyledIconContainer>
         </StyledArticle>
         <StyledArticle>
           <StyledH2>Krok 2</StyledH2>
           <StyledP>
             Podpisz dokumenty
-            <p>
-              <FontAwesomeIcon icon={faFileSignature} />
-            </p>
           </StyledP>
+          <StyledIconContainer>
+            <FontAwesomeIcon icon={faFileSignature} />
+          </StyledIconContainer>
         </StyledArticle>
         <StyledArticle>
           <StyledH2>
@@ -64,10 +65,10 @@ const Main = () => {
           </StyledH2>
           <StyledP>
             Zabierz psa do domu
-            <p>
-              <FontAwesomeIcon icon={faPaw} />
-            </p>
           </StyledP>
+          <StyledIconContainer>
+            <FontAwesomeIcon icon={faPaw} />
+          </StyledIconContainer>
         </StyledArticle>
       </ArticlesWrapper>
     </StyledMain>

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const StyledMain = styled.main`
   display: flex;
   flex-wrap: wrap;
-  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
 
@@ -13,7 +12,6 @@ export const StyledMain = styled.main`
   padding-bottom: 10vh;
   z-index: 1;
 
-  /* background-color: #120136; */
   background-color: #f05f40;
   box-shadow: 0px 5px 20px;
   color: #FDFFFC;
@@ -88,6 +86,8 @@ export const StyledH2 = styled.h2`
 `;
 
 export const StyledP = styled.p`
+  flex-basis: 100%;
+
   margin-top: 5%;
 
   text-align: center;
@@ -103,9 +103,16 @@ export const StyledP = styled.p`
   @media (${({ theme }) => theme.l}) {
     font-size: 2rem;
   }
+`;
 
-  & p {
-    margin-top: 10%;
-    font-size: 1.5em;
+export const StyledIconContainer = styled(StyledP)`
+  margin-top: 10%;
+  font-size: 7vw;
+
+  @media (orientation: landscape) {
+    font-size: 7vh;
+  }
+  @media (${({ theme }) => theme.l}) {
+    font-size: 4rem;
   }
 `;

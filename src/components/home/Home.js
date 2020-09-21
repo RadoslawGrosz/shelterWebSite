@@ -19,12 +19,12 @@ function Home() {
   return (
     <ThemeProvider theme={theme}>
       <StyledWrapper ref={wrapperRef} onClick={handleHideMenu}>
-        <Header setIsMenuVisible={setIsMenuVisible} />
+        <Menu />
+        <Header setIsMenuVisible={setIsMenuVisible} wrapperRef={wrapperRef} />
         <Main />
         <Section wrapperRef={wrapperRef} />
         <Footer />
       </StyledWrapper>
-      <Menu isMenuVisible={isMenuVisible} />
     </ThemeProvider>
   );
 }

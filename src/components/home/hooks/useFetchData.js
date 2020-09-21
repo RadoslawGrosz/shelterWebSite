@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import firebase from '../../../server/firebase';
 
-const useDataLoad = (setData) => {
+const useFetchData = (setData) => {
   const [lastDocumentSnapshot, setLastDocumentSnapshot] = useState(null);
   const [isAllDataLoaded, setIsAllDataLoaded] = useState(false);
   const [isDataRequest, setIsDataRequest] = useState(false);
@@ -46,4 +46,4 @@ const useDataLoad = (setData) => {
   return [isDataRequest, setIsDataRequest, isAllDataLoaded];
 };
 
-export default useDataLoad;
+export default useFetchData;

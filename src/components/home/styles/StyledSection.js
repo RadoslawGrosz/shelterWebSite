@@ -21,7 +21,6 @@ export const StyledSection = styled.section`
 	min-height: 40vh;
   z-index: 1;
 
-	/* background-color: #020100; */
 	background-color: #fff;
 
 	@media (orientation: landscape) {
@@ -37,7 +36,6 @@ export const StyledH1 = styled.h1`
 	text-align: center;
 	text-transform: uppercase;
 
-	/* background-color: #fcbf1e; */
 	background-color: #fff;
 
 	@media (orientation: landscape) {
@@ -57,7 +55,6 @@ export const StyledArticle = styled.article`
 	flex-basis: 100%;
 
 	padding: 1vw 3vw 3vw 3vw;
-	/* overflow: hidden; */
 
 	@media (orientation: landscape) {
 		flex-basis: 50%;
@@ -78,11 +75,9 @@ export const StyledDiv = styled.div`
 	overflow: hidden;
 	
 	color: white;
-	/* background-color: #40bad5; */
 	background-color: #f05f40;
 
 	&:nth-child(odd) {
-		/* background-color: #fcbf1e; */
 		background-color: #4296F0;
 		& ${StyledArticle} {
 			@media (orientation: landscape) {
@@ -141,7 +136,7 @@ export const Spinner = styled.div`
 	padding-bottom: 10%;
 	margin: 10vw 0 10vw 0;
 
-	background-color: white;
+	background-color: #f05f40;
 
 	animation: ${rotateSpinner} 1.2s infinite ease-in-out;
 `;

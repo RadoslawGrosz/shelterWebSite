@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import useDataLoad from './hooks/useDataLoad';
-import useScrollEvent from './hooks/useScrollEvent';
+import useFetchData from './hooks/useFetchData';
+import useTriggerFetchData from './hooks/useTriggerFetchData';
 import DogsList from './DogsList';
 import {
   StyledH1,
@@ -12,8 +12,8 @@ import {
 
 const Section = ({ wrapperRef }) => {
   const [data, setData] = useState([]);
-  const [isDataRequest, setIsDataRequest, isAllDataLoaded] = useDataLoad(setData);
-  useScrollEvent(wrapperRef, setIsDataRequest);
+  const [isDataRequest, setIsDataRequest, isAllDataLoaded] = useFetchData(setData);
+  useTriggerFetchData(wrapperRef, setIsDataRequest);
 
   return (
     <StyledSection>
