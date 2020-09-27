@@ -23,16 +23,15 @@ export const StyledH1 = styled.h1`
   padding: 0 5vw 0;
 
   text-transform: uppercase;
-  font-size: 5.2vw;
-  letter-spacing: .3vh;
+  font-size: 2.5vmax;
+  letter-spacing: .3vmin;
 
-  @media (orientation: landscape) {
-    font-size: 5.2vh;
-    margin-bottom: 0;
-    letter-spacing: .3vw;
+  @media (${({ theme }) => theme.m}) and (orientation: portrait) {
+    font-size: 2.2rem;
   }
+
   @media (${({ theme }) => theme.l}) {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 `;
 
@@ -73,13 +72,13 @@ export const StyledH2 = styled.h2`
 
   text-transform: uppercase;
   text-align: center;
-  font-size: 5vw;
-  letter-spacing: .2vh;
+  font-size: 2vmax;
+  letter-spacing: .2vmin;
 
-  @media (orientation: landscape) {
-    font-size: 5vh;
-    letter-spacing: .2vw;
+  @media (${({ theme }) => theme.m}) and (orientation: portrait) {
+    font-size: 2.5rem;
   }
+
   @media (${({ theme }) => theme.l}) {
     font-size: 2rem;
   }
@@ -91,28 +90,36 @@ export const StyledP = styled.p`
   margin-top: 5%;
 
   text-align: center;
-  font-size: 4vw;
+  font-size: 2vmax;
   letter-spacing: .2vh;
 
   opacity: 0;
   transform: translateY(50px);
 
-  @media (orientation: landscape) {
-    font-size: 4vh;
+  @media (${({ theme }) => theme.m}) and (orientation: portrait) {
+    font-size: 2.2rem;
   }
+
   @media (${({ theme }) => theme.l}) {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 `;
 
 export const StyledIconContainer = styled(StyledP)`
   margin-top: 10%;
-  font-size: 7vw;
+  font-size: 3.5vmax;
 
-  @media (orientation: landscape) {
-    font-size: 7vh;
+  transition: .5s;
+
+  @media (${({ theme }) => theme.m}) and (orientation: portrait) {
+    font-size: 3rem;
   }
+
   @media (${({ theme }) => theme.l}) {
-    font-size: 4rem;
+    font-size: 3rem;
+  }
+
+  &:hover {
+    color: ${({ blue }) => (blue ? '#3b5998' : 'white')};
   }
 `;

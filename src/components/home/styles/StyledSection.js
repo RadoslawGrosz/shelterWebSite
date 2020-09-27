@@ -31,16 +31,12 @@ export const StyledSection = styled.section`
 export const StyledH1 = styled.h1`
 	flex-basis: 100%;
 
-	font-size: 5vw;
+	font-size: 5vmin;
 	line-height: 10vh;
 	text-align: center;
 	text-transform: uppercase;
 
 	background-color: #fff;
-
-	@media (orientation: landscape) {
-		font-size: 5vh;
-	}
 
 	@media (${({ theme }) => theme.l}) {
     font-size: 3rem;
@@ -59,13 +55,15 @@ export const StyledArticle = styled.article`
 	@media (orientation: landscape) {
 		flex-basis: 50%;
 		min-height: 80vh;
-		@media (${({ theme }) => theme.l}) {
-  		min-height: 50vh;
-  	}
 	}
+
+	@media (${({ theme }) => theme.l}) and (orientation: landscape) {
+  	min-height: 50vh;
+  }
 `;
 
-export const StyledDiv = styled.div`
+export const Wrapper = styled.main`
+	position: relative;
 	display: flex;
 	flex-wrap: wrap;
 	flex-basis: 100%;
@@ -75,10 +73,10 @@ export const StyledDiv = styled.div`
 	overflow: hidden;
 	
 	color: white;
-	background-color: #f05f40;
+	background-color: #4296F0;
 
-	&:nth-child(odd) {
-		background-color: #4296F0;
+	&:nth-of-type(even) {
+		background-color: #f05f40;
 		& ${StyledArticle} {
 			@media (orientation: landscape) {
 				order: -1;
@@ -87,13 +85,11 @@ export const StyledDiv = styled.div`
 	}
 `;
 
-export const ImageContainer = styled.div`
+export const ImageWrapper = styled.div`
+	display: flex;
+	overflow: hidden;
 	flex-basis: 100%;
 	height: 40vh;
-
-	overflow: hidden;
-	background: ${(props) => `url(${props.src}) no-repeat center center`};
-	background-size: cover;
 
 	@media (orientation: landscape) {
 		flex-basis: 50%;
@@ -101,31 +97,79 @@ export const ImageContainer = styled.div`
 	}
 `;
 
+export const ImageHover = styled.div`
+	position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+
+	padding: 15%;
+
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+
+	opacity: 0;
+  transition: .5s;
+
+	& h2 {
+		font-size: 3vmin;
+		text-align: center;
+	}
+`;
+
+export const ImageContainer = styled.div`
+	position: relative;
+	flex-basis: 100%;
+	height: 40vh;
+
+	overflow: hidden;
+	background: ${(props) => `url(${props.src}) no-repeat center center`};
+	background-size: cover;
+
+	cursor: pointer;
+	transition: .5s;
+
+	@media (orientation: landscape) {
+		height: auto;
+	}
+
+	@media (hover: hover) {
+		&:hover ${ImageHover}{
+			opacity: 1;
+		}
+
+		&:hover {
+			transform: scale(1.2);
+		}
+	}
+`;
+
 export const StyledH2 = styled.h2`
 	flex-basis: 100%;
 
-	font-size: 5vw;
-	line-height: 12vw;
+	font-size: 4vmin;
+	line-height: 12vmin;
 	text-align: center;
 
-	@media (orientation: landscape) {
-		font-size: 5vh;
-		line-height: 10vh;
-	}
 	@media (${({ theme }) => theme.m}) {
   	font-size: 2.5rem;
   }
 `;
 
 export const StyledP = styled.p`
-	font-size: 4vw;
+	font-size: 3vmin;
 	text-align: justify;
 	letter-spacing: .2vh;
 
+	@media (${({ theme }) => theme.m}) and (orientation: portrait){
+    font-size: 2rem;
+  }
+
 	@media (orientation: landscape) {
 		padding: 0 1vw 0 1vw;
-		font-size: 4vh;
 	}
+
 	@media (${({ theme }) => theme.l}) {
     	font-size: 2rem;
   }
@@ -134,7 +178,7 @@ export const StyledP = styled.p`
 export const Spinner = styled.div`
 	width: 10%;
 	padding-bottom: 10%;
-	margin: 10vw 0 10vw 0;
+	margin: 10vmin 0 10vmin 0;
 
 	background-color: #f05f40;
 

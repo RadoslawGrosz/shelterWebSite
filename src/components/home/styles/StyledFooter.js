@@ -11,8 +11,8 @@ export const StyledLink = styled.a`
   display: flex;
   align-items: center;
   
-  font-size: 6vw;
-  line-height: 12vw;
+  font-size: 5vmin;
+  line-height: 12vmin;
   
   color: white;
   & p {
@@ -21,11 +21,7 @@ export const StyledLink = styled.a`
 
   &:hover {
     cursor: pointer;
-  }
-
-  @media (orientation: landscape) {
-    font-size: 6vh;
-    line-height: 12vh;
+    color: #FEFEFE;
   }
 
   @media (${({ theme }) => theme.l}) {

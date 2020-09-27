@@ -16,6 +16,11 @@ const useTriggerFetchData = (triggerRef, isTriggered) => {
     const listener = window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', listener);
   });
+
+  useEffect(() => {
+    const listener = window.addEventListener('load', handleScroll);
+    return () => window.removeEventListener('load', listener);
+  });
 };
 
 export default useTriggerFetchData;

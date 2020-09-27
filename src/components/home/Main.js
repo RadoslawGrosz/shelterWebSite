@@ -35,41 +35,47 @@ const Main = () => {
     });
   });
 
+  const articleElements = [
+    {
+      title: 'Krok 1',
+      text: 'skontaktuj sie z nami',
+      logo: faFacebook,
+    },
+    {
+      title: 'Krok 2',
+      text: 'Podpisz dokumenty',
+      logo: faFileSignature,
+    },
+    {
+      title: 'Krok 3',
+      text: 'Zabierz psa do domu',
+      logo: faPaw,
+    },
+  ];
+
+  const articleList = [];
+
+  articleElements.forEach(({ title, text, logo }) => {
+    articleList.push(
+      <StyledArticle>
+        <StyledH2>
+          {title}
+        </StyledH2>
+        <StyledP>
+          {text}
+        </StyledP>
+        <StyledIconContainer blue>
+          <FontAwesomeIcon icon={logo} />
+        </StyledIconContainer>
+      </StyledArticle>,
+    );
+  });
+
   return (
     <StyledMain ref={mainRef} id="main">
       <StyledH1>Adopcja w trzech krokach</StyledH1>
       <ArticlesWrapper>
-        <StyledArticle>
-          <StyledH2>
-            Krok 1
-          </StyledH2>
-          <StyledP>
-            skontaktuj sie z nami
-          </StyledP>
-          <StyledIconContainer>
-            <FontAwesomeIcon icon={faFacebook} />
-          </StyledIconContainer>
-        </StyledArticle>
-        <StyledArticle>
-          <StyledH2>Krok 2</StyledH2>
-          <StyledP>
-            Podpisz dokumenty
-          </StyledP>
-          <StyledIconContainer>
-            <FontAwesomeIcon icon={faFileSignature} />
-          </StyledIconContainer>
-        </StyledArticle>
-        <StyledArticle>
-          <StyledH2>
-            Krok 3
-          </StyledH2>
-          <StyledP>
-            Zabierz psa do domu
-          </StyledP>
-          <StyledIconContainer>
-            <FontAwesomeIcon icon={faPaw} />
-          </StyledIconContainer>
-        </StyledArticle>
+        {articleList}
       </ArticlesWrapper>
     </StyledMain>
   );
