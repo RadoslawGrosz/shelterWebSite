@@ -11,13 +11,13 @@ import {
 } from './styles/StyledSection';
 import { StyledArticleHover } from '../admin/styles/StyledAdmin';
 
-const DogsList = ({ images, name, description, admin, showRemoveAlert }) => {
+const DogsList = ({ index, images, name, description, admin, showRemoveAlert, setIsGalleryOpen, handleGallery }) => {
   return (
     <Wrapper>
       <ImageWrapper>
         <ImageContainer src={images[0].source}>
           {!admin && (
-            <ImageHover>
+            <ImageHover onClick={() => handleGallery(index)}>
               <h2>{name}</h2>
             </ImageHover>
           )}
@@ -42,6 +42,7 @@ DogsList.propTypes = {
   description: PropTypes.string,
   admin: PropTypes.bool,
   showRemoveAlert: PropTypes.func,
+  setIsGalleryOpen: PropTypes.func,
 };
 
 DogsList.defaultProps = {
@@ -50,6 +51,7 @@ DogsList.defaultProps = {
   description: '',
   admin: false,
   showRemoveAlert: () => {},
+  setIsGalleryOpen: () => {},
 };
 
 export default DogsList;

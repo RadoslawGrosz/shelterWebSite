@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import Header from './Header';
 import Menu from './Menu';
 import Main from './Main';

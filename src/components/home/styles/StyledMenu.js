@@ -96,7 +96,7 @@ export const StyledA = styled.a`
   }
 `;
 
-export const LogoContainer = styled.a`
+export const LogoContainer = styled.b`
   margin-right: 2vmin;
   color: #4296F0;
 `;
