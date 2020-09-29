@@ -24,7 +24,7 @@ export const StyledSection = styled.section`
 	background-color: #fff;
 
 	@media (orientation: landscape) {
-		padding: 10vh 0 10vh;
+		padding: 0 0 10vh;
 	}
 `;
 

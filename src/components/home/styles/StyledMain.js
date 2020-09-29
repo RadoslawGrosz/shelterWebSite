@@ -119,7 +119,9 @@ export const StyledIconContainer = styled(StyledP)`
     font-size: 3rem;
   }
 
-  &:hover {
-    color: ${({ blue }) => (blue ? '#3b5998' : 'white')};
+  @media (hover: hover) {
+    &:hover {
+      color: ${({ blue }) => (blue ? '#3b5998' : 'white')};
+    }
   }
 `;

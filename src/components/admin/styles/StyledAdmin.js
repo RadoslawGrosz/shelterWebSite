@@ -18,7 +18,7 @@ export const StyledWrapper = styled.div`
 
 export const StyledArticleHover = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 
   position: absolute;
@@ -36,13 +36,21 @@ export const StyledArticleHover = styled.div`
   &:hover{
     opacity: 1;
   }
+`;
 
-  & h1 {
-    font-size: 10vw;
-    cursor: pointer;
+export const ButttonDel = styled.h2`
+  font-size: 10vmax;
+  cursor: pointer;
 
-    &:hover {
-      color: red;
-    }
+  &:hover {
+    color: red;
+  }
+`;
+export const ButttonEdit = styled.h2`
+  font-size: 10vmax;
+  cursor: pointer;
+
+  &:hover {
+    color: green;
   }
 `;

@@ -24,14 +24,14 @@ const Menu = () => {
     const [logo, buttonDogs, buttonAdopt, buttonContact] = navRef.current.children;
 
     const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
-    tl.to(buttonDogs, {
-      autoAlpha: 1,
-      x: '0',
-      duration: 0.8,
-    })
+    tl
+      .to(logo, { autoAlpha: 1, duration: 0.8 })
+      .to(buttonDogs, {
+        autoAlpha: 1,
+        duration: 0.8,
+      })
       .to(buttonAdopt, { autoAlpha: 1, duration: 0.8 })
-      .to(buttonContact, { autoAlpha: 1, duration: 0.8 })
-      .to(logo, { autoAlpha: 1, duration: 0.8 });
+      .to(buttonContact, { autoAlpha: 1, duration: 0.8 });
   });
 
   const handleOrientationChange = () => {
@@ -51,12 +51,30 @@ const Menu = () => {
     return () => window.removeEventListener('resize', listener);
   });
 
+  const handleScroll = (name) => {
+    const navBarHeight = navRef.current.offsetHeight;
+
+    switch (name) {
+      case 'Psy do adpocji':
+        window.scrollTo(0, document.querySelector('#section').offsetTop - navBarHeight);
+        break;
+      case 'Jak adoptować':
+        window.scrollTo(0, window.innerHeight - navBarHeight);
+        break;
+      case 'Kontakt':
+        window.scrollTo(0, document.body.scrollHeight);
+        break;
+      default:
+        break;
+    }
+  };
+
   const NavigationButtons = [];
 
   ['Psy do adpocji', 'Jak adoptować', 'Kontakt'].forEach((name) => {
     NavigationButtons.push(
       <StyledLi key={name}>
-        <StyledA>{name}</StyledA>
+        <StyledA onClick={() => handleScroll(name)}>{name}</StyledA>
       </StyledLi>,
     );
   });
@@ -65,7 +83,7 @@ const Menu = () => {
     <StyledNav>
       <StyledUl ref={navRef}>
         <StyledLi>
-          <StyledA>
+          <StyledA onClick={() => window.scrollTo(0, 0)}>
             <LogoContainer>
               <FontAwesomeIcon icon={faPaw} />
             </LogoContainer>

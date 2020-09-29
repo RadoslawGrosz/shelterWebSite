@@ -18,6 +18,11 @@ const useTriggerMenuOnScroll = (menu) => {
     return () => window.removeEventListener('scroll', listener);
   });
 
+  useEffect(() => {
+    const listener = window.addEventListener('load', changeMenu);
+    return () => window.removeEventListener('load', listener);
+  });
+
   return [isMenuTriggered];
 };
 

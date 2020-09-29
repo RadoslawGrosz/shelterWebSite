@@ -15,7 +15,7 @@ const Section = ({ wrapperRef }) => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [currentGallery, setCurrentGallery] = useState(null);
   const [data, setData] = useState([]);
-  const [images, setImages] = useState([]);
+  const [imageList, setImageList] = useState([]);
   const [isDataRequest, setIsDataRequest, isAllDataLoaded] = useFetchData(setData);
   useTriggerFetchData(wrapperRef, setIsDataRequest);
 
@@ -28,13 +28,13 @@ const Section = ({ wrapperRef }) => {
     const createImageList = () => {
       const imagesList = [];
       data[currentGallery].images.forEach(({ source }) => imagesList.push(source));
-      setImages(imagesList);
+      setImageList(imagesList);
     };
     if (data[currentGallery]) createImageList();
   }, [data, currentGallery]);
 
   return (
-    <StyledSection>
+    <StyledSection id="section">
       <StyledH1>Psy do adopcji</StyledH1>
       {!isDataRequest || isAllDataLoaded ? null : (
         <SpinnerContainer>
@@ -53,7 +53,7 @@ const Section = ({ wrapperRef }) => {
       ))}
       {isGalleryOpen && (
         <ImageGallery
-          images={images}
+          imageList={imageList}
           setIsGalleryOpen={setIsGalleryOpen}
         />
       )}

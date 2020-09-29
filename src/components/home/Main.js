@@ -57,7 +57,7 @@ const Main = () => {
 
   articleElements.forEach(({ title, text, logo }) => {
     articleList.push(
-      <StyledArticle>
+      <StyledArticle key={title}>
         <StyledH2>
           {title}
         </StyledH2>

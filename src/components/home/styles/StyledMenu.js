@@ -26,7 +26,6 @@ export const StyledUl = styled.ul`
 `;
 
 export const StyledLi = styled.li`
-  transition: 0.3s;
   opacity: 0;
   padding: 2%;
   cursor: pointer;
@@ -39,10 +38,6 @@ export const StyledLi = styled.li`
   }
   &:nth-child(1){
     cursor: default;
-
-    &:hover {
-      color: #4296F0;
-    }
   }
   @media (orientation: landscape) {
     padding: 0;
@@ -62,15 +57,11 @@ export const StyledLi = styled.li`
       color: #f05f40;
     }
   }
-
-  &:hover {
-    color: #f05f40;
-  }
 `;
 
 export const StyledA = styled.a`
   display: inline-block;
-  width: auto;
+  /* width: auto; */
   padding: 5px;
   margin-bottom: 3.5vh;
 
@@ -81,18 +72,26 @@ export const StyledA = styled.a`
   font-weight: bold;
   text-align: center;
 
+  transition: 0.3s;
+
   @media (orientation: landscape) {
     margin: 0;
     padding: 0 1.5vmax 0 1.5vmax;
   }
 
   @media (${({ theme }) => theme.l}) and (orientation: landscape){
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     line-height: 4rem;
   }
 
   @media (${({ theme }) => theme.m}) and (orientation: portrait){
     font-size: 2.5rem;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      color: #f05f40;
+    }
   }
 `;
 

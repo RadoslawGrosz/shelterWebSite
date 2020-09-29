@@ -3,25 +3,24 @@ import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 import PropTypes from 'prop-types';
 
-// const images = [
-//   '//placekitten.com/1500/500',
-//   '//placekitten.com/4000/3000',
-//   '//placekitten.com/800/1200',
-//   '//placekitten.com/1500/1500',
-// ];
-
-const ImageGallery = ({ setIsGalleryOpen, images }) => {
+const ImageGallery = ({ setIsGalleryOpen, imageList }) => {
   const [photoIndex, setPhotoIndex] = useState(0);
 
   return (
     <div>
       <Lightbox
-        mainSrc={images[photoIndex]}
-        nextSrc={images[(photoIndex + 1) % images.length]}
-        prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+        mainSrc={imageList[photoIndex]}
+        nextSrc={imageList[(photoIndex + 1) % imageList.length]}
+        prevSrc={
+          imageList[(photoIndex + imageList.length - 1) % imageList.length]
+        }
         onCloseRequest={() => setIsGalleryOpen(false)}
-        onMovePrevRequest={() => setPhotoIndex((photoIndex + images.length - 1) % images.length)}
-        onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % images.length)}
+        onMovePrevRequest={() => {
+          setPhotoIndex((photoIndex + imageList.length - 1) % imageList.length);
+        }}
+        onMoveNextRequest={() => {
+          setPhotoIndex((photoIndex + 1) % imageList.length);
+        }}
       />
     </div>
   );
@@ -29,10 +28,12 @@ const ImageGallery = ({ setIsGalleryOpen, images }) => {
 
 ImageGallery.propTypes = {
   setIsGalleryOpen: PropTypes.func,
+  imageList: PropTypes.arrayOf(PropTypes.string),
 };
 
 ImageGallery.defaultProps = {
   setIsGalleryOpen: () => {},
+  imageList: [''],
 };
 
 export default ImageGallery;

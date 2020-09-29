@@ -19,12 +19,13 @@ export const StyledLink = styled.a`
     margin-left: 1vw;
   }
 
-  &:hover {
-    cursor: pointer;
-    color: #FEFEFE;
+  @media (hover: hover) {
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   @media (${({ theme }) => theme.l}) {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 `;

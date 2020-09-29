@@ -88,28 +88,6 @@ const Admin = () => {
           removeArticle={removeArticle}
         />
       )}
-
-      {/* <WrapperHover
-        isAlertVisible={isAlertVisible}
-        onClick={hideAlert}
-      >
-        <div>
-          <h2>Czy na pewno chcesz usunąć?</h2>
-          <p>Usunięte zostano wszystkie informacje na temat.</p>
-          <button onClick={removeArticle}>Tak</button>
-          <button onClick={hideAlert}>Nie</button>
-        </div>
-      </WrapperHover> */}
-
-      {/* <div>Strona admina</div>
-      <form onSubmit={handleFileUpload}>
-        <input type="file" onChange={handleFileSelect} />
-        <input type="submit" />
-      </form>
-      <form onSubmit={handleFileDelete}>
-        <input type="text" value={image && image.name} onChange={handleImageNameChange} />
-        <input type="submit" />
-      </form> */}
       {!isDataRequest || isAllDataLoaded ? null : (
         <SpinnerContainer>
           <Spinner />
