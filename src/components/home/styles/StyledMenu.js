@@ -17,6 +17,7 @@ export const StyledUl = styled.ul`
   flex-wrap: wrap;
   justify-content: flex-end;
   width: 100%;
+  padding: .5vmin;
 
   list-style: none;
   
@@ -35,9 +36,6 @@ export const StyledLi = styled.li`
   }
   &:nth-child(even) {
     text-align: right;
-  }
-  &:nth-child(1){
-    cursor: default;
   }
   @media (orientation: landscape) {
     padding: 0;
