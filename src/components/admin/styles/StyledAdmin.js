@@ -38,19 +38,52 @@ export const StyledArticleHover = styled.div`
   }
 `;
 
-export const ButttonDel = styled.h2`
-  font-size: 10vmax;
+export const Button = styled.h2`
+  font-size: 8vmax;
   cursor: pointer;
+  text-transform: uppercase;
+`;
 
+export const ButttonDel = styled(Button)`
   &:hover {
     color: red;
   }
 `;
-export const ButttonEdit = styled.h2`
-  font-size: 10vmax;
-  cursor: pointer;
 
+export const ButttonEdit = styled(Button)`
   &:hover {
     color: green;
+  }
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-basis: 100%;
+  align-self: flex-end;
+
+  margin-top: 5vmin;
+`;
+
+export const ButtonAdd = styled.p`
+  width: 15vmin;
+  height: 15vmin;
+  border-radius: 50%;
+  
+  font-size: 12vmin;
+  line-height: 15vmin;
+  text-align: center;
+
+  background-color: black;
+  color: red;
+  cursor: pointer;
+
+  transition: 0.3s;
+
+  &:hover {
+    background-color: red;
+    color: #000;
   }
 `;

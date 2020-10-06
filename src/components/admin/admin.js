@@ -1,19 +1,20 @@
 import React, { useState, useRef } from 'react';
-import { storage } from '../../server/firebase';
+import firebase, { storage } from '../../server/firebase';
 import useFetchData from '../home/hooks/useFetchData';
-import firebase from '../../server/firebase';
 import useTriggerFetchData from '../home/hooks/useTriggerFetchData';
 import DogsList from '../home/DogsList';
 import PopupConfirm from './PopupConfirm';
+import AddingForm from './AddingForm';
 import {
   Spinner,
   SpinnerContainer,
 } from '../home/styles/StyledSection';
-import { StyledWrapper, WrapperHover } from './styles/StyledAdmin';
+import { StyledWrapper, ButtonWrapper, ButtonAdd } from './styles/StyledAdmin';
 
 const Admin = () => {
-  const [image, setImage] = useState('');
-  const [isAlertVisible, setIsAlertVisible] = useState(false);
+  const [file, setFile] = useState('');
+  const [isDelAlertVisible, setIsDelAlertVisible] = useState(false);
+  const [isAddingFormVisible, setIsAddingFormVisible] = useState(false);
   const [articleToDelete, setArticleToDelete] = useState(null);
 
   const wrapperRef = useRef(null);
@@ -22,12 +23,13 @@ const Admin = () => {
   useTriggerFetchData(wrapperRef, setIsDataRequest);
 
   const handleFileSelect = (e) => {
-    if (e.target.files[0]) setImage(e.target.files[0]);
+    if (e.target.files[0]) setFile(e.target.files[0]);
   };
 
   const handleFileUpload = (e) => {
+    let fileUrl = '';
     e.preventDefault();
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    const uploadTask = storage.ref(`images/${file.name}`).put(file);
     uploadTask.on(
       'state_changed',
       (snapshot) => {},
@@ -37,18 +39,19 @@ const Admin = () => {
       () => {
         storage
           .ref('images')
-          .child(image.name)
+          .child(file.name)
           .getDownloadURL()
           .then((url) => {
-            console.log(url);
+            fileUrl = url;
           });
       },
     );
+    return fileUrl;
   };
 
   const handleFileDelete = (e) => {
     e.preventDefault();
-    const desertRef = storage.ref().child(`images/${image.name}`);
+    const desertRef = storage.ref().child(`images/${file.name}`);
 
     desertRef.delete().then(() => {
       console.log('file deleted!');
@@ -63,29 +66,62 @@ const Admin = () => {
 
   const showRemoveAlert = (e, name) => {
     setArticleToDelete(name);
-    setIsAlertVisible(true);
+    setIsDelAlertVisible(true);
   };
 
-  const hideAlert = () => {
-    setIsAlertVisible(false);
+  const hideAlert = (e) => {
+    if (e.target !== e.currentTarget) return;
+    setIsDelAlertVisible(false);
   };
 
   const removeArticle = () => {
     const db = firebase.firestore();
 
-    // db.collection("cities").doc(articleToDelete).delete().then(function() {
-    //   console.log("Document successfully deleted!");
-    // }).catch(function(error) {
-    //     console.error("Error removing document: ", error);
-    // });
+    db.collection('Dogs').doc(articleToDelete).delete()
+      .then(() => (
+        console.log('Document successfully deleted!')
+      )
+        .catch((error) => (
+          console.error('Error removing document: ', error)
+        )));
+
+    window.location.reload();
+  };
+
+  const addArticle = () => {
+    setIsAddingFormVisible(true);
+    // const db = firebase.firestore();
+    // const data = {
+    //   name: 'imieTest3',
+    //   description: 'lorem ipsum',
+    //   images: [
+    //     {
+    //       imageName: 'image.jpg',
+    //       source: 'firebase/image.jpg',
+    //     },
+    //   ],
+    // };
+
+    // db.collection('Dogs').doc('imieTest5').set(data)
+    //   .then(() => (
+    //     console.log('Document successfully written!')
+    //   )
+    //     .catch((error) => (
+    //       console.error('Error writing document: ', error)
+    //     )));
   };
 
   return (
     <StyledWrapper ref={wrapperRef}>
-      {isAlertVisible && (
+      {isDelAlertVisible && (
         <PopupConfirm
           hideAlert={hideAlert}
           removeArticle={removeArticle}
+        />
+      )}
+      {isAddingFormVisible && (
+        <AddingForm
+          setIsAddingFormVisible={setIsAddingFormVisible}
         />
       )}
       {!isDataRequest || isAllDataLoaded ? null : (
@@ -103,6 +139,11 @@ const Admin = () => {
           showRemoveAlert={showRemoveAlert}
         />
       ))}
+      <ButtonWrapper>
+        <ButtonAdd onClick={addArticle}>
+          +
+        </ButtonAdd>
+      </ButtonWrapper>
       <footer id="footer" />
     </StyledWrapper>
   );

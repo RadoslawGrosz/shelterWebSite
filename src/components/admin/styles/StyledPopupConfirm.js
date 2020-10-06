@@ -11,8 +11,8 @@ export const WrapperHover = styled.div`
   left: 0;
   right: 0;
 
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 2; 
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1; 
 `;
 
 export const Alert = styled.div`

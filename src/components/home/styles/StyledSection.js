@@ -21,25 +21,26 @@ export const StyledSection = styled.section`
 	min-height: 40vh;
   z-index: 1;
 
-	background-color: #fff;
+	background-color: rgba(0, 0, 0, 0.6);
 
 	@media (orientation: landscape) {
-		padding: 0 0 10vh;
+		/* padding: 0 0 10vh; */
 	}
 `;
 
 export const StyledH1 = styled.h1`
 	flex-basis: 100%;
 
-	font-size: 5vmin;
-	line-height: 10vh;
+	font-size: 7vmin;
+	line-height: 18vh;
 	text-align: center;
 	text-transform: uppercase;
+	color: white;
 
-	background-color: #fff;
+	/* background-color: #fff; */
 
 	@media (${({ theme }) => theme.l}) {
-    font-size: 3rem;
+    font-size: 4.5rem;
   }
 `;
 
@@ -69,7 +70,7 @@ export const Wrapper = styled.main`
 	flex-basis: 100%;
 
 	max-width: 1600px;
-	margin-top: 3vh;
+	margin-bottom: 3vh;
 	overflow: hidden;
 	
 	color: white;
@@ -107,7 +108,7 @@ export const ImageHover = styled.div`
 	padding: 15%;
 
   color: white;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.4);
 
 	opacity: 0;
   transition: .5s;
@@ -153,7 +154,7 @@ export const StyledH2 = styled.h2`
 	text-align: center;
 
 	@media (${({ theme }) => theme.m}) {
-  	font-size: 2.5rem;
+  	font-size: 2.2rem;
   }
 `;
 
@@ -171,7 +172,7 @@ export const StyledP = styled.p`
 	}
 
 	@media (${({ theme }) => theme.l}) {
-    	font-size: 2rem;
+    	font-size: 1.6rem;
   }
 `;
 
