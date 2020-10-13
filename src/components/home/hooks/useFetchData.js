@@ -12,17 +12,18 @@ const useFetchData = (setData) => {
       if (isAllDataLoaded) return;
       const db = firebase.firestore();
       let colRef = null;
-      if (lastDocumentSnapshot) {
-        colRef = db
-          .collection('Dogs')
-          .startAfter(lastDocumentSnapshot)
-          .limit(fetchDocLimit);
-      } else {
+      if (!lastDocumentSnapshot) {
         colRef = db.collection('Dogs').limit(fetchDocLimit);
+      } else {
+        colRef = db.collection('Dogs').startAfter(lastDocumentSnapshot).limit(fetchDocLimit);
       }
 
       try {
         const documentSnapshots = await colRef.get();
+        if (!documentSnapshots[0]) {
+          setIsAllDataLoaded(true);
+          return;
+        }
         documentSnapshots.forEach((doc) => {
           setData((prev) => [...prev, doc.data()]);
         });
@@ -31,7 +32,6 @@ const useFetchData = (setData) => {
         );
         const lastDocument = documentSnapshots.docs[documentSnapshots.docs.length - 1];
         const next = db.collection('Dogs').startAfter(lastDocument).limit(fetchDocLimit);
-
         const nextDocumentSnapshots = await next.get();
         if (nextDocumentSnapshots.empty) setIsAllDataLoaded(true);
         setIsDataRequest(false);
@@ -41,7 +41,7 @@ const useFetchData = (setData) => {
     };
 
     if (isDataRequest) getData();
-  }, [isDataRequest, lastDocumentSnapshot, isAllDataLoaded, setData]);
+  }, [isDataRequest]);
 
   return [isDataRequest, setIsDataRequest, isAllDataLoaded];
 };

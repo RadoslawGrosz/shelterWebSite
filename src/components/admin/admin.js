@@ -12,7 +12,6 @@ import {
 import { StyledWrapper, ButtonWrapper, ButtonAdd } from './styles/StyledAdmin';
 
 const Admin = () => {
-  const [file, setFile] = useState('');
   const [isDelAlertVisible, setIsDelAlertVisible] = useState(false);
   const [isAddingFormVisible, setIsAddingFormVisible] = useState(false);
   const [articleToDelete, setArticleToDelete] = useState(null);
@@ -21,48 +20,6 @@ const Admin = () => {
   const [data, setData] = useState([]);
   const [isDataRequest, setIsDataRequest, isAllDataLoaded] = useFetchData(setData);
   useTriggerFetchData(wrapperRef, setIsDataRequest);
-
-  const handleFileSelect = (e) => {
-    if (e.target.files[0]) setFile(e.target.files[0]);
-  };
-
-  const handleFileUpload = (e) => {
-    let fileUrl = '';
-    e.preventDefault();
-    const uploadTask = storage.ref(`images/${file.name}`).put(file);
-    uploadTask.on(
-      'state_changed',
-      (snapshot) => {},
-      (error) => {
-        console.log(error);
-      },
-      () => {
-        storage
-          .ref('images')
-          .child(file.name)
-          .getDownloadURL()
-          .then((url) => {
-            fileUrl = url;
-          });
-      },
-    );
-    return fileUrl;
-  };
-
-  const handleFileDelete = (e) => {
-    e.preventDefault();
-    const desertRef = storage.ref().child(`images/${file.name}`);
-
-    desertRef.delete().then(() => {
-      console.log('file deleted!');
-    }).catch((error) => {
-      console.log('wystąpił błąd!');
-    });
-  };
-
-  const handleImageNameChange = () => {
-
-  };
 
   const showRemoveAlert = (e, name) => {
     setArticleToDelete(name);
@@ -74,41 +31,28 @@ const Admin = () => {
     setIsDelAlertVisible(false);
   };
 
-  const removeArticle = () => {
+  const removeArticle = async () => {
     const db = firebase.firestore();
+    const docRef = db.collection('Dogs').doc(articleToDelete);
 
-    db.collection('Dogs').doc(articleToDelete).delete()
-      .then(() => (
-        console.log('Document successfully deleted!')
-      )
-        .catch((error) => (
-          console.error('Error removing document: ', error)
-        )));
+    try {
+      const doc = await docRef.get();
+      const data = await doc.data();
+      data.images.forEach(async ({ name }) => {
+        const fileRef = storage.ref(`images/${articleToDelete}/${name}`);
+        await fileRef.delete();
+        console.log(`file ${name} deleted`);
+      });
+    } catch (err) {
+      console.log(err);
+    }
 
-    window.location.reload();
-  };
-
-  const addArticle = () => {
-    setIsAddingFormVisible(true);
-    // const db = firebase.firestore();
-    // const data = {
-    //   name: 'imieTest3',
-    //   description: 'lorem ipsum',
-    //   images: [
-    //     {
-    //       imageName: 'image.jpg',
-    //       source: 'firebase/image.jpg',
-    //     },
-    //   ],
-    // };
-
-    // db.collection('Dogs').doc('imieTest5').set(data)
-    //   .then(() => (
-    //     console.log('Document successfully written!')
-    //   )
-    //     .catch((error) => (
-    //       console.error('Error writing document: ', error)
-    //     )));
+    try {
+      await db.collection('Dogs').doc(articleToDelete).delete();
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -119,7 +63,7 @@ const Admin = () => {
           removeArticle={removeArticle}
         />
       )}
-      {true && (
+      {isAddingFormVisible && (
         <AddingForm
           setIsAddingFormVisible={setIsAddingFormVisible}
         />
@@ -140,7 +84,7 @@ const Admin = () => {
         />
       ))}
       <ButtonWrapper>
-        <ButtonAdd onClick={addArticle}>
+        <ButtonAdd onClick={() => setIsAddingFormVisible(true)}>
           +
         </ButtonAdd>
       </ButtonWrapper>
