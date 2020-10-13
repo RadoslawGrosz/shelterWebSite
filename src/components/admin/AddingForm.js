@@ -37,7 +37,7 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
   const handleFileUpload = async (file) => {
     // e.preventDefault();
     const blob = await fetch(file.url).then((r) => r.blob());
-    const uploadTask = storage.ref(`${dogName}/${file.name}`).put(blob);
+    const uploadTask = storage.ref(`images/${dogName}/${file.name}`).put(blob);
     uploadTask.on(
       'state_changed',
       (snapshot) => {},
@@ -46,7 +46,7 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
       },
       () => {
         storage
-          .ref('temp')
+          .ref(`images/${dogName}`)
           .child(file.name)
           .getDownloadURL()
           .then((url) => {
@@ -80,7 +80,7 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
   };
 
   useEffect(() => {
-    handleAddToDatabase();
+    if (images[0]) handleAddToDatabase();
   }, [images]);
 
   // useEffect(() => {

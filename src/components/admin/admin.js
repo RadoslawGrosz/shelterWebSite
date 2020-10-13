@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import firebase, { storage } from '../../server/firebase';
 import useFetchData from '../home/hooks/useFetchData';
 import useTriggerFetchData from '../home/hooks/useTriggerFetchData';
-import DogsList from '../home/DogsList';
+import ArticleList from '../home/ArticleList';
 import PopupConfirm from './PopupConfirm';
 import AddingForm from './AddingForm';
 import {
@@ -130,7 +130,7 @@ const Admin = () => {
         </SpinnerContainer>
       )}
       {data.map(({ images, name, description }) => (
-        <DogsList
+        <ArticleList
           key={name}
           images={images}
           name={name}

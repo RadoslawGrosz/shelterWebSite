@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import useFetchData from './hooks/useFetchData';
 import useTriggerFetchData from './hooks/useTriggerFetchData';
-import DogsList from './DogsList';
+import ArticleList from './ArticleList';
 import ImageGallery from './ImageGallery';
 import {
   StyledH1,
@@ -27,7 +27,7 @@ const Section = ({ wrapperRef }) => {
   useEffect(() => {
     const createImageList = () => {
       const imagesList = [];
-      data[currentGallery].images.forEach(({ source }) => imagesList.push(source));
+      data[currentGallery].images.forEach(({ url }) => imagesList.push(url));
       setImageList(imagesList);
     };
     if (data[currentGallery]) createImageList();
@@ -42,7 +42,7 @@ const Section = ({ wrapperRef }) => {
         </SpinnerContainer>
       )}
       {data.map(({ images, name, description }, index) => (
-        <DogsList
+        <ArticleList
           key={name}
           index={index}
           images={images}
