@@ -44,7 +44,6 @@ export const StyledLabel = styled.label`
 
 export const StyledInput = styled.input`
   flex-basis: 55%;
-  text-transform: uppercase;
   font-size: 4vmin;
   letter-spacing: 0.2vmin;
   text-align: center;

@@ -59,7 +59,6 @@ export const StyledLi = styled.li`
 
 export const StyledA = styled.a`
   display: inline-block;
-  /* width: auto; */
   padding: 5px;
   margin-bottom: 3.5vh;
 

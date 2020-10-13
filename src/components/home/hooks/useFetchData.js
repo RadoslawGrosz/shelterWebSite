@@ -19,21 +19,21 @@ const useFetchData = (setData) => {
       }
 
       try {
-        const documentSnapshots = await colRef.get();
-        if (!documentSnapshots[0]) {
+        const querySnapshot = await colRef.get();
+        if (querySnapshot.empty) {
           setIsAllDataLoaded(true);
           return;
         }
-        documentSnapshots.forEach((doc) => {
+        querySnapshot.forEach((doc) => {
           setData((prev) => [...prev, doc.data()]);
         });
         setLastDocumentSnapshot(
-          documentSnapshots.docs[documentSnapshots.docs.length - 1],
+          querySnapshot.docs[querySnapshot.docs.length - 1],
         );
-        const lastDocument = documentSnapshots.docs[documentSnapshots.docs.length - 1];
+        const lastDocument = querySnapshot.docs[querySnapshot.docs.length - 1];
         const next = db.collection('Dogs').startAfter(lastDocument).limit(fetchDocLimit);
-        const nextDocumentSnapshots = await next.get();
-        if (nextDocumentSnapshots.empty) setIsAllDataLoaded(true);
+        const nextQuerySnapshot = await next.get();
+        if (nextQuerySnapshot.empty) setIsAllDataLoaded(true);
         setIsDataRequest(false);
       } catch (err) {
         throw new Error(err);

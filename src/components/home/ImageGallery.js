@@ -10,7 +10,7 @@ const ImageGallery = ({ setIsGalleryOpen, imageList }) => {
   return (
     <div>
       <Lightbox
-        mainSrc={imageList ? imageList[photoIndex] : placeHolderImg}
+        mainSrc={imageList[0] ? imageList[photoIndex] : placeHolderImg}
         nextSrc={imageList[(photoIndex + 1) % imageList.length]}
         prevSrc={
           imageList[(photoIndex + imageList.length - 1) % imageList.length]

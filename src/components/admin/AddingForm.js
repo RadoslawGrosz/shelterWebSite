@@ -35,7 +35,6 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
   };
 
   const handleFileUpload = async (file) => {
-    // e.preventDefault();
     const blob = await fetch(file.url).then((r) => r.blob());
     const uploadTask = storage.ref(`images/${dogName}/${file.name}`).put(blob);
     uploadTask.on(
@@ -57,20 +56,19 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
     );
   };
 
-  const handleAddToDatabase = () => {
+  const handleAddToDatabase = async () => {
     const db = firebase.firestore();
     const data = {
       name: dogName,
       description,
       images,
     };
-    db.collection('Dogs').doc(dogName).set(data)
-      .then(() => {
-        console.log("Document successfully written!");
-      })
-      .catch((error) => {
-        console.error("Error writing document: ", error);
-      });
+
+    try {
+      await db.collection('Dogs').doc(dogName).set(data);
+    } catch (err) {
+      throw new Error(err);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -82,33 +80,6 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
   useEffect(() => {
     if (images[0]) handleAddToDatabase();
   }, [images]);
-
-  // useEffect(() => {
-  //   const handleFileUpload = async (file) => {
-  //     // e.preventDefault();
-  //     // const [file] = tempImages;
-  //     const blob = await fetch(file.url).then((r) => r.blob());
-  //     const uploadTask = storage.ref(`temp/${file.name}`).put(blob);
-  //     uploadTask.on(
-  //       'state_changed',
-  //       (snapshot) => {},
-  //       (error) => {
-  //         console.log(error);
-  //       },
-  //       () => {
-  //         storage
-  //           .ref('temp')
-  //           .child(file.name)
-  //           .getDownloadURL()
-  //           .then((url) => {
-  //             const { name } = file;
-  //             setTempImages((prev) => [...prev, { url, name }]);
-  //           });
-  //       },
-  //     );
-  //   };
-  //   tempImages.forEach((file) => handleFileUpload(file));
-  // }, [tempImages]);
 
   return (
     <WrapperHover onClick={handleShutForm}>
@@ -131,7 +102,7 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
           <StyledLabel>Dodaj zdjęcia</StyledLabel>
           <StyledFileInput type="file" onChange={handleImageSelect} />
           {tempImages.map((image) => (
-            <ImageContainer src={image.url}>
+            <ImageContainer src={image.url} key={image.name}>
               <CloseButton />
             </ImageContainer>
           ))}

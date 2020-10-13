@@ -191,10 +191,15 @@ export const SpinnerContainer = styled.div`
 	justify-content: center;
 	align-items: center;
 	flex-basis: 100%;
+	height: 50vh;
 
 	max-width: 1200px;
 	margin-top: 3vh;
 
 	overflow: hidden;
 	order: 2;
+
+	@media (orientation: landscape) {
+		height: 80vh;
+	}
 `;
