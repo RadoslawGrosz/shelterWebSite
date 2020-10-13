@@ -3,101 +3,140 @@ import firebase, { storage } from '../../server/firebase';
 import { WrapperHover } from './styles/StyledPopupConfirm';
 import {
   StyledForm,
+  InfoSection,
+  ImageSection,
   StyledLabel,
   StyledInput,
+  StyledSubmit,
+  StyledFileInput,
   StyledTextarea,
+  ImageContainer,
+  CloseButton,
 } from './styles/StyledAddingForm';
 
 const AddingForm = ({ setIsAddingFormVisible }) => {
-  const [name, setName] = useState('');
+  const [dogName, setDogName] = useState('');
   const [description, setDescription] = useState('');
   const [images, setImages] = useState([]);
-  const [file, setFile] = useState(null);
   const [tempImages, setTempImages] = useState([]);
-  // const [data, setData] = useState([]);
 
   const handleShutForm = (e) => {
     if (e.target !== e.currentTarget) return;
+    e.preventDefault();
     setIsAddingFormVisible(false);
-  };
-
-  const handleSubmit = () => {
-    const db = firebase.firestore();
-    const data = {
-      name,
-      description,
-      images,
-    };
   };
 
   const handleImageSelect = (e) => {
     if (e.target.files[0]) {
-      setFile(e.target.files[0]);
-      const temp = [e.target.files[0]];
-      setImages(temp);
+      const url = URL.createObjectURL(e.target.files[0]);
+      const { name } = e.target.files[0];
+      setTempImages((prev) => [...prev, { url, name }]);
     }
-    // if (e.target.files[0]) {
-    //   try {
-    //     await setFile(e.target.files[0]);
-    //     await console.log(file);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // }
-    // e.target.files.forEach((file) => console.log(file));
-    // for (const file in e.target.files) {
-    //   console.log(file);
-    //   // use yield
-    // }
-    // console.log(e.target.files[0]);
   };
 
-  // useEffect(() => {
-  //   setImages((prev) => [...prev, file]);
-  // }, [file]);
+  const handleFileUpload = async (file) => {
+    // e.preventDefault();
+    const blob = await fetch(file.url).then((r) => r.blob());
+    const uploadTask = storage.ref(`${dogName}/${file.name}`).put(blob);
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {},
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref('temp')
+          .child(file.name)
+          .getDownloadURL()
+          .then((url) => {
+            const { name } = file;
+            setImages((prev) => [...prev, { url, name }]);
+          });
+      },
+    );
+  };
+
+  const handleAddToDatabase = () => {
+    const db = firebase.firestore();
+    const data = {
+      name: dogName,
+      description,
+      images,
+    };
+    db.collection('Dogs').doc(dogName).set(data)
+      .then(() => {
+        console.log("Document successfully written!");
+      })
+      .catch((error) => {
+        console.error("Error writing document: ", error);
+      });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    tempImages.forEach((file) => handleFileUpload(file));
+    handleAddToDatabase();
+  };
 
   useEffect(() => {
-    const handleFileUpload = (e) => {
-      // e.preventDefault();
-      const uploadTask = storage.ref(`temp/${file.name}`).put(file);
-      uploadTask.on(
-        'state_changed',
-        (snapshot) => {},
-        (error) => {
-          console.log(error);
-        },
-        () => {
-          storage
-            .ref('temp')
-            .child(file.name)
-            .getDownloadURL()
-            .then((url) => {
-              const { name: fileName } = file;
-              setTempImages((prev) => [...prev, { url, fileName }]);
-            });
-        },
-      );
-    };
-    if (file) handleFileUpload();
-  }, [file]);
+    handleAddToDatabase();
+  }, [images]);
+
+  // useEffect(() => {
+  //   const handleFileUpload = async (file) => {
+  //     // e.preventDefault();
+  //     // const [file] = tempImages;
+  //     const blob = await fetch(file.url).then((r) => r.blob());
+  //     const uploadTask = storage.ref(`temp/${file.name}`).put(blob);
+  //     uploadTask.on(
+  //       'state_changed',
+  //       (snapshot) => {},
+  //       (error) => {
+  //         console.log(error);
+  //       },
+  //       () => {
+  //         storage
+  //           .ref('temp')
+  //           .child(file.name)
+  //           .getDownloadURL()
+  //           .then((url) => {
+  //             const { name } = file;
+  //             setTempImages((prev) => [...prev, { url, name }]);
+  //           });
+  //       },
+  //     );
+  //   };
+  //   tempImages.forEach((file) => handleFileUpload(file));
+  // }, [tempImages]);
 
   return (
     <WrapperHover onClick={handleShutForm}>
       <StyledForm onSubmit={handleSubmit}>
-        <StyledLabel>Podaj imie psa</StyledLabel>
-        <StyledInput
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <StyledLabel>opisz psa</StyledLabel>
-        <StyledTextarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <StyledLabel>Dodaj zdjęcie</StyledLabel>
-        <StyledInput type="file" onChange={handleImageSelect} />
-        <StyledInput type="submit" />
+        <CloseButton onClick={handleShutForm} />
+        <InfoSection>
+          <StyledLabel>Podaj imie psa</StyledLabel>
+          <StyledInput
+            type="text"
+            value={dogName}
+            onChange={(e) => setDogName(e.target.value)}
+          />
+          <StyledLabel>opisz psa</StyledLabel>
+          <StyledTextarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </InfoSection>
+        <ImageSection>
+          <StyledLabel>Dodaj zdjęcia</StyledLabel>
+          <StyledFileInput type="file" onChange={handleImageSelect} />
+          {tempImages.map((image) => (
+            <ImageContainer src={image.url}>
+              <CloseButton />
+            </ImageContainer>
+          ))}
+          <StyledSubmit type="submit" />
+        </ImageSection>
       </StyledForm>
     </WrapperHover>
   );

@@ -10,7 +10,7 @@ export const WrapperHover = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-
+  /* overflow-y: auto; */
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 1; 
 `;

@@ -119,7 +119,7 @@ const Admin = () => {
           removeArticle={removeArticle}
         />
       )}
-      {isAddingFormVisible && (
+      {true && (
         <AddingForm
           setIsAddingFormVisible={setIsAddingFormVisible}
         />

@@ -41,7 +41,7 @@ const useFetchData = (setData) => {
     };
 
     if (isDataRequest) getData();
-  }, [isDataRequest]);
+  }, [isDataRequest, lastDocumentSnapshot, isAllDataLoaded, setData]);
 
   return [isDataRequest, setIsDataRequest, isAllDataLoaded];
 };
