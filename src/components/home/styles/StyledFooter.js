@@ -5,7 +5,6 @@ export const StyledFooter = styled.footer`
   padding-left: 10%;
   z-index: 1;
   background-color: #020100;
-  flex-grow: 1;
 `;
 
 export const StyledLink = styled.a`

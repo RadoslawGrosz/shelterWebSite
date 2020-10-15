@@ -70,16 +70,27 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const ButtonAdd = styled.p`
-  width: 15vmin;
-  height: 7vmin;
-  border-radius: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* width: 15vmin; */
+  width: 90%;
+  max-width: 300px;
+  height: 15vmin;
+  max-height: 80px;
+  /* height: 7vmin; */
   
-  font-size: 3vmin;
+  
+  font-size: 8vmin;
   line-height: 7vmin;
   text-align: center;
   text-transform: uppercase;
+  letter-spacing: 0.2vmin;
+  font-weight: bold;
 
   background-color: white;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
   cursor: pointer;
 
   transition: 0.3s;
@@ -91,5 +102,10 @@ export const ButtonAdd = styled.p`
 
   &::after {
     content: "Dodaj";
+  }
+
+  @media (${({ theme }) => theme.m}) {
+    font-size: 4rem;
+    border-radius: 5%;
   }
 `;

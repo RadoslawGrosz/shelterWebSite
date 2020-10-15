@@ -18,6 +18,7 @@ export const StyledSection = styled.section`
 	justify-content: center;
 	align-items: flex-start;
 	width: 100%;
+	flex-grow: 1;
 
 	min-height: 40vh;
   z-index: 1;
@@ -151,6 +152,7 @@ export const StyledH2 = styled.h2`
 	font-size: 4vmin;
 	line-height: 12vmin;
 	text-align: center;
+	letter-spacing: .2vh;
 
 	@media (${({ theme }) => theme.m}) {
   	font-size: 2.2rem;

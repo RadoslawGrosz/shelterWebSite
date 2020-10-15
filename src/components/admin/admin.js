@@ -1,4 +1,6 @@
 import React, { useState, useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import firebase, { storage } from '../../server/firebase';
 import PopupConfirm from './PopupConfirm';
 import AddingForm from './AddingForm';
@@ -6,7 +8,7 @@ import Section from '../home/Section';
 import Footer from '../home/Footer';
 import { ButtonWrapper, ButtonAdd } from './styles/StyledAdmin';
 import StyledWrapper from '../home/styles/StyledHome';
-import { CloseButton } from './styles/StyledAddingForm';
+import { EditDelButtonWrapper, StyledButton } from './styles/StyledAddingForm';
 
 const Admin = () => {
   const [isDelAlertVisible, setIsDelAlertVisible] = useState(false);
@@ -49,7 +51,16 @@ const Admin = () => {
     }
   };
 
-  const ButtonPanel = <CloseButton onClick={showRemoveAlert} />;
+  const ButtonPanel = (
+    <EditDelButtonWrapper>
+      <StyledButton onClick={showRemoveAlert}>
+        <FontAwesomeIcon icon={faEdit} />
+      </StyledButton>
+      <StyledButton onClick={showRemoveAlert}>
+        <FontAwesomeIcon icon={faTrash} />
+      </StyledButton>
+    </EditDelButtonWrapper>
+  );
 
   return (
     <StyledWrapper ref={wrapperRef}>

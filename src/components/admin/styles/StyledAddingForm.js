@@ -79,24 +79,53 @@ export const ImageContainer = styled.div`
   border: 0.1vmin solid black;
 `;
 
-export const CloseButton = styled.button`
-  position: absolute;
+export const EditDelButtonWrapper = styled.div`
+  display: flex;
 
+  position: absolute;
+  right: 2vmin;
+  top: 2vmin;
+`;
+
+export const StyledButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 12vmin;
+  max-width: 50px;
+  height: 12vmin;
+  max-height: 50px;
+  /* line-height: 5vmin; */
+  padding: none;
+  margin: .5vmin;
+
+  border-radius: 20%;
+  border: 0.1vmin solid black;
+  background-color: #fff;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+
+  font-size: 5vmin;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+
+  @media (${({ theme }) => theme.m}) {
+    font-size: 3rem;
+  }
+`;
+
+export const CloseButton = styled(StyledButton)`
+  position: absolute;
   right: 2vmin;
   top: 2vmin;
 
-  width: 8vmin;
-  line-height: 8vmin;
-  padding: none;
-
-  border-radius: 50%;
-  border: 0.1vmin solid black;
-  background-color: #fff;
-
-  font-size: 4vmin;
-  text-align: center;
-
   &::after {
-    content: "X";
+    content: "x";
   }
 `;
