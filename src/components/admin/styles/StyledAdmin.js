@@ -61,29 +61,35 @@ export const ButtonWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  flex-basis: 100%;
+  width: 100%;
   align-self: flex-end;
 
-  margin-top: 5vmin;
+  padding: 2vmin 0;
+
+  background-color: rgba(0, 0, 0, 0.6);
 `;
 
 export const ButtonAdd = styled.p`
   width: 15vmin;
-  height: 15vmin;
-  border-radius: 50%;
+  height: 7vmin;
+  border-radius: 10%;
   
-  font-size: 12vmin;
-  line-height: 15vmin;
+  font-size: 3vmin;
+  line-height: 7vmin;
   text-align: center;
+  text-transform: uppercase;
 
-  background-color: black;
-  color: red;
+  background-color: white;
   cursor: pointer;
 
   transition: 0.3s;
 
   &:hover {
-    background-color: red;
-    color: #000;
+    background-color: #03a1fc;
+    color: #fff;
+  }
+
+  &::after {
+    content: "Dodaj";
   }
 `;

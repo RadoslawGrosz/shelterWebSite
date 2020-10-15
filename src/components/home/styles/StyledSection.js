@@ -17,15 +17,12 @@ export const StyledSection = styled.section`
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: flex-start;
+	width: 100%;
 
 	min-height: 40vh;
   z-index: 1;
 
 	background-color: rgba(0, 0, 0, 0.6);
-
-	@media (orientation: landscape) {
-		/* padding: 0 0 10vh; */
-	}
 `;
 
 export const StyledH1 = styled.h1`
@@ -45,6 +42,8 @@ export const StyledH1 = styled.h1`
 `;
 
 export const StyledArticle = styled.article`
+	position: relative;
+
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;

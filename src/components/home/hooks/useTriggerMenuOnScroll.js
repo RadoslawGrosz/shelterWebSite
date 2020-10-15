@@ -4,6 +4,7 @@ const useTriggerMenuOnScroll = (menu) => {
   const [isMenuTriggered, setIsMenuTriggered] = useState(false);
 
   const changeMenu = () => {
+    if (!menu.current) return;
     const MenuHeight = menu.current.offsetHeight;
 
     if (window.scrollY >= window.innerHeight - MenuHeight) {

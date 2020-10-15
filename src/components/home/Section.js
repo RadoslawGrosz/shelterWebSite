@@ -11,13 +11,14 @@ import {
   SpinnerContainer,
 } from './styles/StyledSection';
 
-const Section = ({ wrapperRef }) => {
+const Section = ({ wrapperRef, ButtonPanel }) => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [currentGallery, setCurrentGallery] = useState(null);
   const [data, setData] = useState([]);
   const [imageList, setImageList] = useState([]);
   const [isDataRequest, setIsDataRequest, isAllDataLoaded] = useFetchData(setData);
   useTriggerFetchData(wrapperRef, setIsDataRequest);
+  // console.log(ButtonPanel);
 
   const handleGallery = (index) => {
     setCurrentGallery(index);
@@ -49,7 +50,10 @@ const Section = ({ wrapperRef }) => {
           name={name}
           description={description}
           handleGallery={handleGallery}
-        />
+          ButtonPanel={ButtonPanel}
+        >
+          {ButtonPanel}
+        </ArticleList>
       ))}
       {isGalleryOpen && (
         <ImageGallery
@@ -70,6 +74,7 @@ Section.propTypes = {
 
 Section.defaultProps = {
   wrapperRef: null,
+  ButtonPanel: <></>,
 };
 
 export default Section;

@@ -1,15 +1,12 @@
 import React, { useState, useRef } from 'react';
 import firebase, { storage } from '../../server/firebase';
-import useFetchData from '../home/hooks/useFetchData';
-import useTriggerFetchData from '../home/hooks/useTriggerFetchData';
-import ArticleList from '../home/ArticleList';
 import PopupConfirm from './PopupConfirm';
 import AddingForm from './AddingForm';
-import {
-  Spinner,
-  SpinnerContainer,
-} from '../home/styles/StyledSection';
-import { StyledWrapper, ButtonWrapper, ButtonAdd } from './styles/StyledAdmin';
+import Section from '../home/Section';
+import Footer from '../home/Footer';
+import { ButtonWrapper, ButtonAdd } from './styles/StyledAdmin';
+import StyledWrapper from '../home/styles/StyledHome';
+import { CloseButton } from './styles/StyledAddingForm';
 
 const Admin = () => {
   const [isDelAlertVisible, setIsDelAlertVisible] = useState(false);
@@ -17,9 +14,6 @@ const Admin = () => {
   const [articleToDelete, setArticleToDelete] = useState(null);
 
   const wrapperRef = useRef(null);
-  const [data, setData] = useState([]);
-  const [isDataRequest, setIsDataRequest, isAllDataLoaded] = useFetchData(setData);
-  useTriggerFetchData(wrapperRef, setIsDataRequest);
 
   const showRemoveAlert = (e, name) => {
     setArticleToDelete(name);
@@ -55,8 +49,18 @@ const Admin = () => {
     }
   };
 
+  const ButtonPanel = <CloseButton onClick={showRemoveAlert} />;
+
   return (
     <StyledWrapper ref={wrapperRef}>
+      <Section
+        wrapperRef={wrapperRef}
+        ButtonPanel={ButtonPanel}
+      />
+      <ButtonWrapper>
+        <ButtonAdd onClick={() => setIsAddingFormVisible(true)} />
+      </ButtonWrapper>
+      <Footer />
       {isDelAlertVisible && (
         <PopupConfirm
           hideAlert={hideAlert}
@@ -68,27 +72,6 @@ const Admin = () => {
           setIsAddingFormVisible={setIsAddingFormVisible}
         />
       )}
-      {!isDataRequest || isAllDataLoaded ? null : (
-        <SpinnerContainer>
-          <Spinner />
-        </SpinnerContainer>
-      )}
-      {data.map(({ images, name, description }) => (
-        <ArticleList
-          key={name}
-          images={images}
-          name={name}
-          description={description}
-          admin={true}
-          showRemoveAlert={showRemoveAlert}
-        />
-      ))}
-      <ButtonWrapper>
-        <ButtonAdd onClick={() => setIsAddingFormVisible(true)}>
-          +
-        </ButtonAdd>
-      </ButtonWrapper>
-      <footer id="footer" />
     </StyledWrapper>
   );
 };
