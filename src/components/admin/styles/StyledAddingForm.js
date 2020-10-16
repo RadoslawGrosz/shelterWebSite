@@ -77,9 +77,13 @@ export const ImageContainer = styled.div`
   background: ${(props) => `url(${props.src}) no-repeat center center`};
   background-size: cover;
   border: 0.1vmin solid black;
+
+  &:nth-of-type(1) {
+    border: 0.5vmin solid #cc23b0;
+  }
 `;
 
-export const EditDelButtonWrapper = styled.div`
+export const DelButtonWrapper = styled.div`
   display: flex;
 
   position: absolute;
@@ -87,7 +91,7 @@ export const EditDelButtonWrapper = styled.div`
   top: 2vmin;
 `;
 
-export const StyledButton = styled.button`
+export const DelButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -96,7 +100,6 @@ export const StyledButton = styled.button`
   max-width: 50px;
   height: 12vmin;
   max-height: 50px;
-  /* line-height: 5vmin; */
   padding: none;
   margin: .5vmin;
 
@@ -120,7 +123,7 @@ export const StyledButton = styled.button`
   }
 `;
 
-export const CloseButton = styled(StyledButton)`
+export const CloseButton = styled(DelButton)`
   position: absolute;
   right: 2vmin;
   top: 2vmin;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import firebase, { storage } from '../../server/firebase';
 import { WrapperHover } from './styles/StyledPopupConfirm';
 import {
@@ -17,8 +18,8 @@ import {
 const AddingForm = ({ setIsAddingFormVisible }) => {
   const [dogName, setDogName] = useState('');
   const [description, setDescription] = useState('');
-  const [images, setImages] = useState([]);
-  const [tempImages, setTempImages] = useState([]);
+  const [images, setImages] = useState([]); // Images to upload on server
+  const [tempImages, setTempImages] = useState([]); // Images to show on screen
 
   const handleShutForm = (e) => {
     if (e.target !== e.currentTarget) return;
@@ -28,20 +29,22 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
 
   const handleImageSelect = (e) => {
     if (e.target.files[0]) {
-      const url = URL.createObjectURL(e.target.files[0]);
+      const url = URL.createObjectURL('e.target.files[0]');
+      console.log(url);
       const { name } = e.target.files[0];
       setTempImages((prev) => [...prev, { url, name }]);
     }
   };
 
+  // Upload file to firebase storage and add info about this file to state
   const handleFileUpload = async (file) => {
-    const blob = await fetch(file.url).then((r) => r.blob());
+    const blob = await fetch('file.url').then((r) => r.blob());
     const uploadTask = storage.ref(`images/${dogName}/${file.name}`).put(blob);
     uploadTask.on(
       'state_changed',
-      (snapshot) => {},
-      (error) => {
-        console.log(error);
+      () => {},
+      (err) => {
+        throw new Error(err);
       },
       () => {
         storage
@@ -77,6 +80,7 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
     handleAddToDatabase();
   };
 
+  // When new image is uploaded, add info about this image to database
   useEffect(() => {
     if (images[0]) handleAddToDatabase();
   }, [images]);
@@ -111,6 +115,14 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
       </StyledForm>
     </WrapperHover>
   );
+};
+
+AddingForm.propTypes = {
+  setIsAddingFormVisible: PropTypes.func,
+};
+
+AddingForm.defaultProps = {
+  setIsAddingFormVisible: () => {},
 };
 
 export default AddingForm;

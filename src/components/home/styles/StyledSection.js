@@ -31,11 +31,10 @@ export const StyledH1 = styled.h1`
 
 	font-size: 7vmin;
 	line-height: 18vh;
+	letter-spacing: 0.8vmin;
 	text-align: center;
 	text-transform: uppercase;
 	color: white;
-
-	/* background-color: #fff; */
 
 	@media (${({ theme }) => theme.l}) {
     font-size: 4.5rem;

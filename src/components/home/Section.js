@@ -18,7 +18,6 @@ const Section = ({ wrapperRef, ButtonPanel }) => {
   const [imageList, setImageList] = useState([]);
   const [isDataRequest, setIsDataRequest, isAllDataLoaded] = useFetchData(setData);
   useTriggerFetchData(wrapperRef, setIsDataRequest);
-  // console.log(ButtonPanel);
 
   const handleGallery = (index) => {
     setCurrentGallery(index);
@@ -51,9 +50,7 @@ const Section = ({ wrapperRef, ButtonPanel }) => {
           description={description}
           handleGallery={handleGallery}
           ButtonPanel={ButtonPanel}
-        >
-          {ButtonPanel}
-        </ArticleList>
+        />
       ))}
       {isGalleryOpen && (
         <ImageGallery
@@ -70,11 +67,12 @@ Section.propTypes = {
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.object }),
   ]),
+  ButtonPanel: PropTypes.func,
 };
 
 Section.defaultProps = {
   wrapperRef: null,
-  ButtonPanel: <></>,
+  ButtonPanel: () => {},
 };
 
 export default Section;

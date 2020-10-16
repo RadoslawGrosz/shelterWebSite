@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import firebase, { storage } from '../../server/firebase';
 import PopupConfirm from './PopupConfirm';
 import AddingForm from './AddingForm';
@@ -8,7 +8,7 @@ import Section from '../home/Section';
 import Footer from '../home/Footer';
 import { ButtonWrapper, ButtonAdd } from './styles/StyledAdmin';
 import StyledWrapper from '../home/styles/StyledHome';
-import { EditDelButtonWrapper, StyledButton } from './styles/StyledAddingForm';
+import { DelButtonWrapper, DelButton } from './styles/StyledAddingForm';
 
 const Admin = () => {
   const [isDelAlertVisible, setIsDelAlertVisible] = useState(false);
@@ -37,29 +37,25 @@ const Admin = () => {
       data.images.forEach(async ({ name }) => {
         const fileRef = storage.ref(`images/${articleToDelete}/${name}`);
         await fileRef.delete();
-        console.log(`file ${name} deleted`);
       });
     } catch (err) {
-      console.log(err);
+      throw new Error(err);
     }
 
     try {
       await db.collection('Dogs').doc(articleToDelete).delete();
       window.location.reload();
     } catch (err) {
-      console.log(err);
+      throw new Error(err);
     }
   };
 
-  const ButtonPanel = (
-    <EditDelButtonWrapper>
-      <StyledButton onClick={showRemoveAlert}>
-        <FontAwesomeIcon icon={faEdit} />
-      </StyledButton>
-      <StyledButton onClick={showRemoveAlert}>
+  const ButtonPanel = (name) => (
+    <DelButtonWrapper>
+      <DelButton onClick={(e) => showRemoveAlert(e, name)}>
         <FontAwesomeIcon icon={faTrash} />
-      </StyledButton>
-    </EditDelButtonWrapper>
+      </DelButton>
+    </DelButtonWrapper>
   );
 
   return (
@@ -76,6 +72,7 @@ const Admin = () => {
         <PopupConfirm
           hideAlert={hideAlert}
           removeArticle={removeArticle}
+          dogName={articleToDelete}
         />
       )}
       {isAddingFormVisible && (

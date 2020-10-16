@@ -16,7 +16,7 @@ const ArticleList = ({
   name,
   description,
   handleGallery,
-  children,
+  ButtonPanel,
 }) => (
   <Wrapper>
     <ImageWrapper>
@@ -27,7 +27,7 @@ const ArticleList = ({
       </ImageContainer>
     </ImageWrapper>
     <StyledArticle>
-      {children}
+      {ButtonPanel(name)}
       <StyledH2>{name}</StyledH2>
       <StyledP>{description}</StyledP>
     </StyledArticle>
@@ -40,6 +40,7 @@ ArticleList.propTypes = {
   name: PropTypes.string,
   description: PropTypes.string,
   handleGallery: PropTypes.func,
+  ButtonPanel: PropTypes.func,
 };
 
 ArticleList.defaultProps = {
@@ -48,6 +49,7 @@ ArticleList.defaultProps = {
   name: '',
   description: '',
   handleGallery: () => {},
+  ButtonPanel: () => {},
 };
 
 export default ArticleList;
