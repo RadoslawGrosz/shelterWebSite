@@ -29,8 +29,7 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
 
   const handleImageSelect = (e) => {
     if (e.target.files[0]) {
-      const url = URL.createObjectURL('e.target.files[0]');
-      console.log(url);
+      const url = URL.createObjectURL(e.target.files[0]);
       const { name } = e.target.files[0];
       setTempImages((prev) => [...prev, { url, name }]);
     }
@@ -38,7 +37,7 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
 
   // Upload file to firebase storage and add info about this file to state
   const handleFileUpload = async (file) => {
-    const blob = await fetch('file.url').then((r) => r.blob());
+    const blob = await fetch(file.url).then((r) => r.blob());
     const uploadTask = storage.ref(`images/${dogName}/${file.name}`).put(blob);
     uploadTask.on(
       'state_changed',

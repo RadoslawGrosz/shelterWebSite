@@ -15,8 +15,9 @@ const PopupConfirm = ({ hideAlert, removeArticle, dogName }) => {
         <StyledH2>Czy na pewno chcesz usunąć?</StyledH2>
         <StyledP>
           Usunięte zostano wszystkie informacje na temat psa
+          {' '}
           {dogName}
-          .
+          !
         </StyledP>
         <StyledButton onClick={removeArticle} confirm>
           Tak
