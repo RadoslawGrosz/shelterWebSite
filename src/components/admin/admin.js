@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import firebase, { storage } from '../../server/firebase';
 import PopupConfirm from './PopupConfirm';
 import AddingForm from './AddingForm';
@@ -8,7 +8,7 @@ import Section from '../home/Section';
 import Footer from '../home/Footer';
 import { ButtonWrapper, ButtonAdd } from './styles/StyledAdmin';
 import StyledWrapper from '../home/styles/StyledHome';
-import { DelButtonWrapper, DelButton } from './styles/StyledAddingForm';
+import { LogoutButton, DelButton } from './styles/StyledAddingForm';
 
 const Admin = () => {
   const [isDelAlertVisible, setIsDelAlertVisible] = useState(false);
@@ -51,15 +51,16 @@ const Admin = () => {
   };
 
   const ButtonPanel = (name) => (
-    <DelButtonWrapper>
-      <DelButton onClick={(e) => showRemoveAlert(e, name)}>
-        <FontAwesomeIcon icon={faTrash} />
-      </DelButton>
-    </DelButtonWrapper>
+    <DelButton onClick={(e) => showRemoveAlert(e, name)}>
+      <FontAwesomeIcon icon={faTrash} />
+    </DelButton>
   );
 
   return (
     <StyledWrapper ref={wrapperRef}>
+      <LogoutButton onClick={() => firebase.auth().signOut()}>
+        <FontAwesomeIcon icon={faSignOutAlt} />
+      </LogoutButton>
       <Section
         wrapperRef={wrapperRef}
         ButtonPanel={ButtonPanel}

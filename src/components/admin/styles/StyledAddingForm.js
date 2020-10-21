@@ -83,18 +83,14 @@ export const ImageContainer = styled.div`
   }
 `;
 
-export const DelButtonWrapper = styled.div`
-  display: flex;
-
-  position: absolute;
-  right: 2vmin;
-  top: 2vmin;
-`;
-
 export const DelButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  position: absolute;
+  right: 2vmin;
+  top: 2vmin;
 
   width: 12vmin;
   max-width: 50px;
@@ -121,6 +117,14 @@ export const DelButton = styled.button`
   @media (${({ theme }) => theme.m}) {
     font-size: 3rem;
   }
+`;
+
+export const LogoutButton = styled(DelButton)`
+  position: fixed;
+  z-index: 2;
+
+  left: 2vmin;
+  right: auto;
 `;
 
 export const CloseButton = styled(DelButton)`

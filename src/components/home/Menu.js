@@ -71,7 +71,7 @@ const Menu = () => {
 
   const NavigationButtons = [];
 
-  ['Psy do adpocji', 'Jak adoptować', 'Kontakt'].forEach((name) => {
+  ['Psy do adpocji', 'Jak adoptować'].forEach((name) => {
     NavigationButtons.push(
       <StyledLi key={name}>
         <StyledA onClick={() => handleScroll(name)}>{name}</StyledA>

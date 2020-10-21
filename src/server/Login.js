@@ -2,6 +2,7 @@ import React, { useCallback, useContext } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
 import Firebase from './firebase';
 import { AuthContext } from './Auth';
+import LoginForm from '../components/admin/LoginForm';
 
 const Login = ({ history }) => {
   const handleLogin = useCallback(
@@ -27,20 +28,7 @@ const Login = ({ history }) => {
   }
 
   return (
-    <div>
-      <h1>Log in</h1>
-      <form onSubmit={handleLogin}>
-        <label>
-          email
-          <input name="email" type="email" placeholder="Email" />
-        </label>
-        <label>
-          password
-          <input name="password" type="password" placeholder="Password" />
-        </label>
-        <button type="submit">Log in</button>
-      </form>
-    </div>
+    <LoginForm handleLogin={handleLogin} />
   );
 };
 

@@ -17,7 +17,7 @@ export const StyledSection = styled.section`
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: flex-start;
-	width: 100%;
+	width: 100vw;
 	flex-grow: 1;
 
 	min-height: 40vh;

@@ -68,15 +68,15 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
 
     try {
       await db.collection('Dogs').doc(dogName).set(data);
+      if (images.length === tempImages.length) setIsAddingFormVisible(false);
     } catch (err) {
       throw new Error(err);
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     tempImages.forEach((file) => handleFileUpload(file));
-    handleAddToDatabase();
   };
 
   // When new image is uploaded, add info about this image to database

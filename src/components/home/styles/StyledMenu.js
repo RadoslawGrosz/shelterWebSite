@@ -52,7 +52,6 @@ export const StyledLi = styled.li`
 
     &:nth-last-child(1){
       text-align: right;
-      color: #f05f40;
     }
   }
 `;
