@@ -3,75 +3,95 @@ import styled from 'styled-components';
 export const StyledForm = styled.form`
   position: relative;
   display: flex;
-  flex-wrap: wrap;  
-  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;  
+
   min-height: 70vh;
   max-height: 90vh;
+  width: 100vw;
   max-width: 1400px;
+  padding: 2vmin 0 5vmin;
+
   background-color: #e0c08c;
   overflow-y: auto;
+  z-index: 4;
 `;
 
 const StyledSection = styled.section`
   display: flex;
   flex-wrap: wrap;
-  flex-basis: 100%;
   justify-content: center;
   align-items: center;
-  padding: 5vmin;
 
-  @media (orientation: landscape) {
-    flex-basis: 50%;
-  }
+  width: 100%;
+  padding: 5vmin;
 `;
 
 export const InfoSection = styled(StyledSection)`
-
+  flex-direction: column;
+  max-height: 80vh;
 `;
 
 export const ImageSection = styled(StyledSection)`
+  position: relative;
+
+  justify-content: space-around;
   align-items: space-around;
+
   padding: 3vmin;
+  padding-bottom: 12vmin;
 `;
 
 export const StyledLabel = styled.label`
   flex-basis: 100%;
+
   font-size: 4vmin;
+  letter-spacing: 0.2vmin;
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 0.2vmin;
 `;
 
 export const StyledInput = styled.input`
-  flex-basis: 55%;
+  width: 50%;
+  margin-bottom: 3vmin;
+
   font-size: 4vmin;
+  line-height: 6vmin;
   letter-spacing: 0.2vmin;
   text-align: center;
 `;
 
 export const StyledSubmit = styled(StyledInput)`
-  letter-spacing: 0.2vmin;
+  position: absolute;
+
+  bottom: 1vmin;
+  margin-bottom: 0;
   padding: 1.5%;
   border: 0.2vmin solid black;
+
+  letter-spacing: 0.2vmin;
 `;
 
 export const StyledFileInput = styled(StyledInput)`
+  width: 100%;
   flex-basis: auto;
   text-align: center;
 `;
 
 export const StyledTextarea = styled.textarea`
-  flex-basis: 100%;
+  width: 85%;
   height: 50vmin;
+  padding: 2vmin;
+
   font-size: 4vmin;
   letter-spacing: 0.2vmin;
-  padding: 2vmin;
 `;
 
 export const ImageContainer = styled.div`
   position: relative;
-  flex-basis: 100%;
-  height: 40vmin;
+
+  width: 45vmin;
+  height: 45vmin;
   margin: 1vh 0;
 
   background: ${(props) => `url(${props.src}) no-repeat center center`};
@@ -84,13 +104,13 @@ export const ImageContainer = styled.div`
 `;
 
 export const DelButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   position: absolute;
   right: 2vmin;
   top: 2vmin;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   width: 12vmin;
   max-width: 50px;
@@ -98,9 +118,9 @@ export const DelButton = styled.button`
   max-height: 50px;
   padding: none;
   margin: .5vmin;
+  border: 0.1vmin solid black;
 
   border-radius: 20%;
-  border: 0.1vmin solid black;
   background-color: #fff;
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 

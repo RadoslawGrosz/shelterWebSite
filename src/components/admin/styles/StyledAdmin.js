@@ -61,7 +61,7 @@ export const ButtonWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 100%;
+  width: 100vw;
   align-self: flex-end;
 
   padding: 2vmin 0;

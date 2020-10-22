@@ -27,8 +27,17 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
     setIsAddingFormVisible(false);
   };
 
+  const handleDelTempImage = (index) => {
+    setTempImages((prev) => {
+      return prev.filter((image, i) => i !== index);
+    });
+  };
+
   const handleImageSelect = (e) => {
     if (e.target.files[0]) {
+      if (tempImages.find(({ name }) => name === e.target.files[0].name)) {
+        return alert('Zdjęcie o tej samej nazwie jest już dodane');
+      }
       const url = URL.createObjectURL(e.target.files[0]);
       const { name } = e.target.files[0];
       setTempImages((prev) => [...prev, { url, name }]);
@@ -89,13 +98,13 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
       <StyledForm onSubmit={handleSubmit}>
         <CloseButton onClick={handleShutForm} />
         <InfoSection>
-          <StyledLabel>Podaj imie psa</StyledLabel>
+          {/* <StyledLabel>Podaj imie psa</StyledLabel> */}
           <StyledInput
             type="text"
             value={dogName}
             onChange={(e) => setDogName(e.target.value)}
           />
-          <StyledLabel>opisz psa</StyledLabel>
+          {/* <StyledLabel>opisz psa</StyledLabel> */}
           <StyledTextarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -104,9 +113,9 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
         <ImageSection>
           <StyledLabel>Dodaj zdjęcia</StyledLabel>
           <StyledFileInput type="file" onChange={handleImageSelect} />
-          {tempImages.map((image) => (
+          {tempImages.map((image, i) => (
             <ImageContainer src={image.url} key={image.name}>
-              <CloseButton />
+              <CloseButton onClick={() => handleDelTempImage(i)} />
             </ImageContainer>
           ))}
           <StyledSubmit type="submit" />

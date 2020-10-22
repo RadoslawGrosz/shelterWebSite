@@ -76,7 +76,7 @@ const Admin = () => {
           dogName={articleToDelete}
         />
       )}
-      {isAddingFormVisible && (
+      {true && (
         <AddingForm
           setIsAddingFormVisible={setIsAddingFormVisible}
         />
