@@ -89,8 +89,8 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
           .child(file.name)
           .getDownloadURL()
           .then((url) => {
-            const { id, name } = file;
-            setImages((prev) => [...prev, { id, url, name }]);
+            const { isMain, name } = file;
+            setImages((prev) => [...prev, { isMain, url, name }]);
           });
       },
     );
