@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCloudUploadAlt, faTrash, faTimes } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCloudUploadAlt,
+  faTrash,
+  faTimes,
+} from '@fortawesome/free-solid-svg-icons';
 import firebase, { storage } from '../../server/firebase';
 import { WrapperHover } from './styles/StyledPopupConfirm';
 import {
@@ -27,6 +31,7 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
   const [images, setImages] = useState([]); // Images to upload on server
   const [tempImages, setTempImages] = useState([]); // Images to show on screen
   const [isUploading, setIsUploading] = useState(false);
+  const [mainPictureName, setMainPictureName] = useState(null);
 
   const handleCloseForm = (e) => {
     if (e.target !== e.currentTarget) return;
@@ -42,7 +47,13 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
   const handleDelTempImage = (index) => {
     setTempImages((prev) => {
       const tempArray = prev.filter((image, i) => i !== index);
-      return tempArray.map((image, i) => ({ ...image, id: i }));
+      if (prev[index].isMain && prev.length >= 2) {
+        tempArray[0].isMain = true;
+        setMainPictureName(tempArray[0].name);
+      } else if (prev.length <= 1) {
+        setMainPictureName(null);
+      }
+      return tempArray;
     });
   };
 
@@ -51,10 +62,14 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
       if (tempImages.find(({ name }) => name === e.target.files[0].name)) {
         return alert('Zdjęcie o tej samej nazwie jest już dodane');
       }
-      const id = tempImages.length;
       const url = URL.createObjectURL(e.target.files[0]);
       const { name } = e.target.files[0];
-      setTempImages((prev) => [...prev, { id, url, name }]);
+      let isMain = false;
+      if (!tempImages.length) {
+        isMain = true;
+        setMainPictureName(name);
+      }
+      setTempImages((prev) => [...prev, { isMain, url, name }]);
     }
   };
 
@@ -95,7 +110,7 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
       await db.collection('Dogs').doc(dogName).set(data);
       if (images.length === tempImages.length) {
         setIsUploading(false);
-        // setIsAddingFormVisible(false);
+        setIsAddingFormVisible(false);
       }
     } catch (err) {
       throw new Error(err);
@@ -112,6 +127,20 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
   useEffect(() => {
     if (images[0]) handleAddToDatabase();
   }, [images]);
+
+  const handleSetAsMain = (e, name) => {
+    if (e.target !== e.currentTarget) return;
+    setMainPictureName(name);
+  };
+
+  useEffect(() => {
+    if (!mainPictureName) return;
+    setTempImages((prev) => {
+      const temp = prev.map((image) => ({ ...image, isMain: false }));
+      temp[prev.findIndex((image) => image.name === mainPictureName)].isMain = true;
+      return temp;
+    });
+  }, [mainPictureName]);
 
   return (
     <WrapperHover onClick={handleCloseForm}>
@@ -154,7 +183,12 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
             />
             <ImageWrapper>
               {tempImages.map((image, i) => (
-                <ImageContainer src={image.url} key={image.name}>
+                <ImageContainer
+                  src={image.url}
+                  key={image.name}
+                  onClick={(e) => handleSetAsMain(e, image.name)}
+                  isMain={image.isMain}
+                >
                   <CloseButton onClick={() => handleDelTempImage(i)}>
                     <FontAwesomeIcon icon={faTrash} />
                   </CloseButton>

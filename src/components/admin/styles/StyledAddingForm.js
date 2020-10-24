@@ -186,9 +186,7 @@ export const ImageContainer = styled.div`
   background-size: cover;
   border: 0.1vmin solid black;
 
-  &:nth-of-type(1) {
-    border: 0.5vmin solid #cc23b0;
-  }
+  border: ${({ isMain }) => (isMain ? '0.5vmin solid #cc23b0' : 'border: 0.1vmin solid black')};
 
   @media (${({ theme }) => theme.m}) {
     width: 20rem;

@@ -22,8 +22,8 @@ const ArticleList = ({
     <ImageWrapper>
       <ImageContainer
         src={
-          images[0]
-            ? images[0].url
+          images[images.findIndex((image) => image.id === 0)]
+            ? images[images.findIndex((image) => image.id === 0)].url
             : 'https://limanowa.in/app/default/assets/addons/default/anomaly/client-theme/resources/img/5f1e62b3ffc6aa692da8dc8cfb8a8ea2.jpg?v=1536035116'
         }
       >
