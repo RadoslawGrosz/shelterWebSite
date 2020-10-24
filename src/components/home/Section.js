@@ -26,9 +26,11 @@ const Section = ({ wrapperRef, ButtonPanel }) => {
 
   useEffect(() => {
     const createImageList = () => {
-      const imagesList = [];
-      data[currentGallery].images.forEach(({ url }) => imagesList.push(url));
-      setImageList(imagesList);
+      const mainImg = data[currentGallery].images.find((image) => image.isMain);
+      const tempList = data[currentGallery].images.filter(({ url }) => url !== mainImg.url);
+      tempList.unshift(mainImg);
+      // data[currentGallery].images.forEach(({ url }) => imagesList.push(url));
+      setImageList(tempList);
     };
     if (data[currentGallery]) createImageList();
   }, [data, currentGallery]);
@@ -54,7 +56,7 @@ const Section = ({ wrapperRef, ButtonPanel }) => {
       ))}
       {isGalleryOpen && (
         <ImageGallery
-          imageList={imageList}
+          imageList={imageList.map(({ url }) => url)}
           setIsGalleryOpen={setIsGalleryOpen}
         />
       )}
