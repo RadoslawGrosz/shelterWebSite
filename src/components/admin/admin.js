@@ -6,9 +6,9 @@ import PopupConfirm from './PopupConfirm';
 import AddingForm from './AddingForm';
 import Section from '../home/Section';
 import Footer from '../home/Footer';
-import { ButtonWrapper, ButtonAdd } from './styles/StyledAdmin';
+import { ButtonWrapper, ButtonAdd, LogoutButton } from './styles/StyledAdmin';
 import StyledWrapper from '../home/styles/StyledHome';
-import { LogoutButton, DelButton } from './styles/StyledAddingForm';
+import { DelButton } from './styles/StyledAddingForm';
 
 const Admin = () => {
   const [isDelAlertVisible, setIsDelAlertVisible] = useState(false);
@@ -76,7 +76,7 @@ const Admin = () => {
           dogName={articleToDelete}
         />
       )}
-      {true && (
+      {isAddingFormVisible && (
         <AddingForm
           setIsAddingFormVisible={setIsAddingFormVisible}
         />

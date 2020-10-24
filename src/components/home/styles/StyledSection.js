@@ -48,12 +48,12 @@ export const StyledArticle = styled.article`
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: flex-start;
-	flex-basis: 100%;
+	width: 100%;
 
 	padding: 1vw 3vw 3vw 3vw;
 
 	@media (orientation: landscape) {
-		flex-basis: 50%;
+		width: 50%;
 		min-height: 80vh;
 	}
 
@@ -162,6 +162,7 @@ export const StyledP = styled.p`
 	font-size: 3vmin;
 	text-align: justify;
 	letter-spacing: .2vh;
+	word-wrap: break-word;
 
 	@media (${({ theme }) => theme.m}) and (orientation: portrait){
     font-size: 2rem;

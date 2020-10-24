@@ -1,4 +1,27 @@
 import styled from 'styled-components';
+import { WrapperHover } from './StyledPopupConfirm';
+import { StyledH2 } from '../../home/styles/StyledSection';
+
+export const FormWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;  
+
+  min-height: 60vh;
+  max-height: 90vh;
+  width: 100vw;
+  max-width: 800px;
+  /* padding: 4vmin 0; */
+
+  background-color: #e0c08c;
+  /* overflow-y: auto; */
+  z-index: 4;
+
+  @media (${({ theme }) => theme.m}) {
+    /* padding: 3rem 0; */
+  }
+`;
 
 export const StyledForm = styled.form`
   position: relative;
@@ -6,15 +29,19 @@ export const StyledForm = styled.form`
   flex-wrap: wrap;
   align-items: center;  
 
-  min-height: 70vh;
+  min-height: 60vh;
   max-height: 90vh;
   width: 100vw;
-  max-width: 1400px;
-  padding: 2vmin 0 5vmin;
+  max-width: 800px;
+  padding: 2vmin 0;
 
   background-color: #e0c08c;
   overflow-y: auto;
   z-index: 4;
+
+  @media (${({ theme }) => theme.m}) {
+    padding: 3rem 0;
+  }
 `;
 
 const StyledSection = styled.section`
@@ -24,67 +51,128 @@ const StyledSection = styled.section`
   align-items: center;
 
   width: 100%;
-  padding: 5vmin;
 `;
 
 export const InfoSection = styled(StyledSection)`
   flex-direction: column;
-  max-height: 80vh;
 `;
 
 export const ImageSection = styled(StyledSection)`
-  position: relative;
-
-  justify-content: space-around;
-  align-items: space-around;
-
   padding: 3vmin;
-  padding-bottom: 12vmin;
 `;
 
 export const StyledLabel = styled.label`
-  flex-basis: 100%;
+  padding: 3vmin 2vmin;
 
   font-size: 4vmin;
   letter-spacing: 0.2vmin;
   text-align: center;
   text-transform: uppercase;
+
+  background-color: #fff;
+
+  @media (${({ theme }) => theme.m}) {
+    font-size: 2rem;
+    padding: 1rem 2rem;
+  }
+`;
+
+export const FileUploadButton = styled(StyledLabel)`
+  border: .5vmin solid black;
+  cursor: pointer;
+  transition: .3s;
+
+  & strong {
+    margin-left: 2vmin;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: #000;
+      color: #fff;
+    }
+  }
 `;
 
 export const StyledInput = styled.input`
-  width: 50%;
+  width: 50vmin;
   margin-bottom: 3vmin;
 
   font-size: 4vmin;
   line-height: 6vmin;
   letter-spacing: 0.2vmin;
   text-align: center;
+
+  @media (${({ theme }) => theme.m}) {
+    font-size: 2rem;
+  }
 `;
 
 export const StyledSubmit = styled(StyledInput)`
-  position: absolute;
-
+  width: auto;
   bottom: 1vmin;
   margin-bottom: 0;
-  padding: 1.5%;
-  border: 0.2vmin solid black;
+  margin-top: 8vmin; 
+  padding: 2vmin 10vmin;
+  border: .5vmin solid black;
+  align-self: flex-end;
 
+  color: white;
+  background-color: black;
+
+  font-size: 5vmin;
   letter-spacing: 0.2vmin;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: .3s;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: white;
+      color: black;
+    }
+  }
+
+  @media (${({ theme }) => theme.m}) {
+    font-size: 2rem;
+    padding: 1rem 5rem;
+  }
+
+  @media (${({ theme }) => theme.l}) {
+    font-size: 2rem;
+    line-height: 5rem;
+    padding: 0 2rem;
+  }
 `;
 
 export const StyledFileInput = styled(StyledInput)`
-  width: 100%;
-  flex-basis: auto;
-  text-align: center;
+  display: none;
 `;
 
 export const StyledTextarea = styled.textarea`
-  width: 85%;
+  width: 85vmin;
   height: 50vmin;
   padding: 2vmin;
 
-  font-size: 4vmin;
+  font-size: 3.5vmin;
   letter-spacing: 0.2vmin;
+  word-wrap: break-word;
+
+  @media (${({ theme }) => theme.m}) {
+    font-size: 1.5rem;
+    width: 50rem;
+    height: 30rem;
+  }
+`;
+
+export const ImageWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: space-around;
+  flex-wrap: wrap;
+
+  width: 100%;
+  padding: 2vmin 0;
 `;
 
 export const ImageContainer = styled.div`
@@ -100,6 +188,11 @@ export const ImageContainer = styled.div`
 
   &:nth-of-type(1) {
     border: 0.5vmin solid #cc23b0;
+  }
+
+  @media (${({ theme }) => theme.m}) {
+    width: 20rem;
+    height: 20rem;
   }
 `;
 
@@ -139,20 +232,29 @@ export const DelButton = styled.button`
   }
 `;
 
-export const LogoutButton = styled(DelButton)`
-  position: fixed;
-  z-index: 2;
+export const CloseButton = styled(DelButton)`
+  width: 8vmin;
+  height: 8vmin;
 
-  left: 2vmin;
-  right: auto;
+  z-index: 6;
+
+  @media (${({ theme }) => theme.m}) {
+    width: 3.2rem;
+    height: 3.2rem;
+
+    top: 1rem;
+    right: 1rem;
+
+    font-size: 2rem;
+  }
 `;
 
-export const CloseButton = styled(DelButton)`
+export const UploadingMessage = styled(WrapperHover)`
   position: absolute;
-  right: 2vmin;
-  top: 2vmin;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 7;
+`;
 
-  &::after {
-    content: "x";
-  }
+export const Info = styled(StyledH2)`
+  color: white;
 `;

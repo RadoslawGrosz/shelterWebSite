@@ -12,7 +12,7 @@ export const WrapperHover = styled.div`
   right: 0;
 
   background-color: rgba(0, 0, 0, 0.6);
-  z-index: 1; 
+  z-index: 3; 
 `;
 
 export const Alert = styled.div`

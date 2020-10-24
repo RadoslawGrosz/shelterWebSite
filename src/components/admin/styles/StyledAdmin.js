@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { DelButton } from './StyledAddingForm';
 
 export const StyledWrapper = styled.div`
   display: flex;
@@ -9,7 +10,7 @@ export const StyledWrapper = styled.div`
 	min-height: 40vh;
 
 	background-color: #fff;
-  z-index: 1;
+  z-index: 4;
 
 	@media (orientation: landscape) {
 		padding: 10vh 0 10vh;
@@ -70,6 +71,9 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const ButtonAdd = styled.p`
+  position: fixed;
+  bottom: 5vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -92,6 +96,7 @@ export const ButtonAdd = styled.p`
   background-color: white;
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
   cursor: pointer;
+  z-index: 2;
 
   transition: 0.3s;
 
@@ -108,4 +113,12 @@ export const ButtonAdd = styled.p`
     font-size: 4rem;
     border-radius: 5%;
   }
+`;
+
+export const LogoutButton = styled(DelButton)`
+  position: fixed;
+  z-index: 2;
+
+  left: 2vmin;
+  right: auto;
 `;

@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCloudUploadAlt, faTrash, faTimes } from '@fortawesome/free-solid-svg-icons';
 import firebase, { storage } from '../../server/firebase';
 import { WrapperHover } from './styles/StyledPopupConfirm';
 import {
   StyledForm,
   InfoSection,
   ImageSection,
-  StyledLabel,
   StyledInput,
   StyledSubmit,
   StyledFileInput,
   StyledTextarea,
   ImageContainer,
   CloseButton,
+  FileUploadButton,
+  ImageWrapper,
+  FormWrapper,
+  UploadingMessage,
+  Info,
 } from './styles/StyledAddingForm';
 
 const AddingForm = ({ setIsAddingFormVisible }) => {
@@ -20,16 +26,23 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
   const [description, setDescription] = useState('');
   const [images, setImages] = useState([]); // Images to upload on server
   const [tempImages, setTempImages] = useState([]); // Images to show on screen
+  const [isUploading, setIsUploading] = useState(false);
 
-  const handleShutForm = (e) => {
+  const handleCloseForm = (e) => {
     if (e.target !== e.currentTarget) return;
+    // e.preventDefault();
+    setIsAddingFormVisible(false);
+  };
+
+  const handleCloseFormButton = (e) => {
     e.preventDefault();
     setIsAddingFormVisible(false);
   };
 
   const handleDelTempImage = (index) => {
     setTempImages((prev) => {
-      return prev.filter((image, i) => i !== index);
+      const tempArray = prev.filter((image, i) => i !== index);
+      return tempArray.map((image, i) => ({ ...image, id: i }));
     });
   };
 
@@ -38,9 +51,10 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
       if (tempImages.find(({ name }) => name === e.target.files[0].name)) {
         return alert('Zdjęcie o tej samej nazwie jest już dodane');
       }
+      const id = tempImages.length;
       const url = URL.createObjectURL(e.target.files[0]);
       const { name } = e.target.files[0];
-      setTempImages((prev) => [...prev, { url, name }]);
+      setTempImages((prev) => [...prev, { id, url, name }]);
     }
   };
 
@@ -60,14 +74,16 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
           .child(file.name)
           .getDownloadURL()
           .then((url) => {
-            const { name } = file;
-            setImages((prev) => [...prev, { url, name }]);
+            const { id, name } = file;
+            setImages((prev) => [...prev, { id, url, name }]);
           });
       },
     );
   };
 
   const handleAddToDatabase = async () => {
+    setIsUploading(true);
+
     const db = firebase.firestore();
     const data = {
       name: dogName,
@@ -77,14 +93,18 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
 
     try {
       await db.collection('Dogs').doc(dogName).set(data);
-      if (images.length === tempImages.length) setIsAddingFormVisible(false);
+      if (images.length === tempImages.length) {
+        setIsUploading(false);
+        // setIsAddingFormVisible(false);
+      }
     } catch (err) {
       throw new Error(err);
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    if (!tempImages.length) return alert('nie wybrano żadnego zdjęcia');
     tempImages.forEach((file) => handleFileUpload(file));
   };
 
@@ -94,33 +114,57 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
   }, [images]);
 
   return (
-    <WrapperHover onClick={handleShutForm}>
-      <StyledForm onSubmit={handleSubmit}>
-        <CloseButton onClick={handleShutForm} />
-        <InfoSection>
-          {/* <StyledLabel>Podaj imie psa</StyledLabel> */}
-          <StyledInput
-            type="text"
-            value={dogName}
-            onChange={(e) => setDogName(e.target.value)}
-          />
-          {/* <StyledLabel>opisz psa</StyledLabel> */}
-          <StyledTextarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </InfoSection>
-        <ImageSection>
-          <StyledLabel>Dodaj zdjęcia</StyledLabel>
-          <StyledFileInput type="file" onChange={handleImageSelect} />
-          {tempImages.map((image, i) => (
-            <ImageContainer src={image.url} key={image.name}>
-              <CloseButton onClick={() => handleDelTempImage(i)} />
-            </ImageContainer>
-          ))}
-          <StyledSubmit type="submit" />
-        </ImageSection>
-      </StyledForm>
+    <WrapperHover onClick={handleCloseForm}>
+      <FormWrapper>
+        {isUploading && (
+          <UploadingMessage>
+            <Info>Trwa wysyłanie czekaj...</Info>
+          </UploadingMessage>
+        )}
+        <CloseButton onClick={handleCloseFormButton}>
+          <FontAwesomeIcon icon={faTimes} />
+        </CloseButton>
+        <StyledForm onSubmit={handleSubmit}>
+          <InfoSection>
+            <StyledInput
+              type="text"
+              value={dogName}
+              placeholder="imie"
+              onChange={(e) => setDogName(e.target.value)}
+              maxLength="20"
+              required
+            />
+            <StyledTextarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="dodaj opis..."
+              maxLength="500"
+              required
+            />
+          </InfoSection>
+          <ImageSection>
+            <FileUploadButton htmlFor="file-upload">
+              <FontAwesomeIcon icon={faCloudUploadAlt} />
+              <strong>Dodaj zdjęcia</strong>
+            </FileUploadButton>
+            <StyledFileInput
+              id="file-upload"
+              type="file"
+              onChange={handleImageSelect}
+            />
+            <ImageWrapper>
+              {tempImages.map((image, i) => (
+                <ImageContainer src={image.url} key={image.name}>
+                  <CloseButton onClick={() => handleDelTempImage(i)}>
+                    <FontAwesomeIcon icon={faTrash} />
+                  </CloseButton>
+                </ImageContainer>
+              ))}
+            </ImageWrapper>
+            <StyledSubmit type="submit" />
+          </ImageSection>
+        </StyledForm>
+      </FormWrapper>
     </WrapperHover>
   );
 };
