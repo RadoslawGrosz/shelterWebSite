@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable consistent-return */
+/* eslint-disable no-alert */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -32,10 +35,10 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
   const [tempImages, setTempImages] = useState([]); // Images to show on screen
   const [isUploading, setIsUploading] = useState(false);
   const [mainPictureName, setMainPictureName] = useState(null);
+  const [documentId, setDocumentId] = useState(null);
 
   const handleCloseForm = (e) => {
     if (e.target !== e.currentTarget) return;
-    // e.preventDefault();
     setIsAddingFormVisible(false);
   };
 
@@ -76,7 +79,7 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
   // Upload file to firebase storage and add info about this file to state
   const handleFileUpload = async (file) => {
     const blob = await fetch(file.url).then((r) => r.blob());
-    const uploadTask = storage.ref(`images/${dogName}/${file.name}`).put(blob);
+    const uploadTask = storage.ref(`images/${documentId}/${file.name}`).put(blob);
     uploadTask.on(
       'state_changed',
       () => {},
@@ -85,7 +88,7 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
       },
       () => {
         storage
-          .ref(`images/${dogName}`)
+          .ref(`images/${documentId}`)
           .child(file.name)
           .getDownloadURL()
           .then((url) => {
@@ -107,7 +110,12 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
     };
 
     try {
-      await db.collection('Dogs').doc(dogName).set(data);
+      if (documentId) {
+        await db.collection('Dogs').doc(documentId).set(data);
+      } else {
+        const doc = await db.collection('Dogs').add(data);
+        setDocumentId(doc.id);
+      }
       if (images.length === tempImages.length) {
         setIsUploading(false);
         setIsAddingFormVisible(false);
@@ -119,6 +127,7 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    handleAddToDatabase();
     if (!tempImages.length) return alert('nie wybrano żadnego zdjęcia');
     tempImages.forEach((file) => handleFileUpload(file));
   };

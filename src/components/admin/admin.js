@@ -17,8 +17,8 @@ const Admin = () => {
 
   const wrapperRef = useRef(null);
 
-  const showRemoveAlert = (e, name) => {
-    setArticleToDelete(name);
+  const showRemoveAlert = (id) => {
+    setArticleToDelete(id);
     setIsDelAlertVisible(true);
   };
 
@@ -35,7 +35,7 @@ const Admin = () => {
       const doc = await docRef.get();
       const data = await doc.data();
       data.images.forEach(async ({ name }) => {
-        const fileRef = storage.ref(`images/${articleToDelete}/${name}`);
+        const fileRef = await storage.ref(`images/${articleToDelete}/${name}`);
         await fileRef.delete();
       });
     } catch (err) {
@@ -44,14 +44,14 @@ const Admin = () => {
 
     try {
       await db.collection('Dogs').doc(articleToDelete).delete();
-      window.location.reload();
+      // window.location.reload();
     } catch (err) {
       throw new Error(err);
     }
   };
 
-  const ButtonPanel = (name) => (
-    <DelButton onClick={(e) => showRemoveAlert(e, name)}>
+  const ButtonPanel = (id) => (
+    <DelButton onClick={() => showRemoveAlert(id)}>
       <FontAwesomeIcon icon={faTrash} />
     </DelButton>
   );

@@ -11,6 +11,7 @@ import {
 } from './styles/StyledSection';
 
 const ArticleList = ({
+  id,
   index,
   images,
   name,
@@ -33,7 +34,7 @@ const ArticleList = ({
       </ImageContainer>
     </ImageWrapper>
     <StyledArticle>
-      {ButtonPanel(name)}
+      {ButtonPanel(id)}
       <StyledH2>{name}</StyledH2>
       <StyledP>{description}</StyledP>
     </StyledArticle>
@@ -41,6 +42,7 @@ const ArticleList = ({
 );
 
 ArticleList.propTypes = {
+  id: PropTypes.string,
   index: PropTypes.number,
   images: PropTypes.arrayOf(PropTypes.object),
   name: PropTypes.string,
@@ -50,6 +52,7 @@ ArticleList.propTypes = {
 };
 
 ArticleList.defaultProps = {
+  id: '',
   index: -1,
   images: [{}],
   name: '',

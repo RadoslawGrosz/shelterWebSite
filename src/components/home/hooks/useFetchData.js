@@ -24,8 +24,10 @@ const useFetchData = (setData) => {
           setIsAllDataLoaded(true);
           return;
         }
-        querySnapshot.forEach((doc) => {
-          setData((prev) => [...prev, doc.data()]);
+        querySnapshot.forEach(async (doc) => {
+          const data = await doc.data();
+          data.id = doc.id;
+          setData((prev) => [...prev, data]);
         });
         setLastDocumentSnapshot(
           querySnapshot.docs[querySnapshot.docs.length - 1],

@@ -43,9 +43,10 @@ const Section = ({ wrapperRef, ButtonPanel }) => {
           <Spinner />
         </SpinnerContainer>
       )}
-      {data.map(({ images, name, description }, index) => (
+      {data.map(({ id, images, name, description }, index) => (
         <ArticleList
-          key={name}
+          key={id}
+          id={id}
           index={index}
           images={images}
           name={name}
