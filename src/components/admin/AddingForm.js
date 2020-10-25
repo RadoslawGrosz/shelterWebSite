@@ -35,7 +35,7 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
   const [tempImages, setTempImages] = useState([]); // Images to show on screen
   const [isUploading, setIsUploading] = useState(false);
   const [mainPictureName, setMainPictureName] = useState(null);
-  const [documentId, setDocumentId] = useState(null);
+  const [documentId, setDocumentId] = useState('');
 
   const handleCloseForm = (e) => {
     if (e.target !== e.currentTarget) return;
@@ -127,10 +127,14 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleAddToDatabase();
     if (!tempImages.length) return alert('nie wybrano żadnego zdjęcia');
-    tempImages.forEach((file) => handleFileUpload(file));
+    handleAddToDatabase();
   };
+
+  // when document id is known we can send images to the proper folder is firebase storage
+  useEffect(() => {
+    if (documentId) tempImages.forEach((file) => handleFileUpload(file));
+  }, [documentId]);
 
   // When new image is uploaded, add info about this image to database
   useEffect(() => {

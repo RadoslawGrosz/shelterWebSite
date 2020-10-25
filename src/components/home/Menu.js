@@ -21,7 +21,7 @@ const Menu = () => {
   useChangeMenuOnTrigger(navRef, isMenuTriggered, isLandscape);
 
   useEffect(() => {
-    const [logo, buttonDogs, buttonAdopt, buttonContact] = navRef.current.children;
+    const [logo, buttonDogs, buttonAdopt] = navRef.current.children;
 
     const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
     tl
@@ -31,7 +31,6 @@ const Menu = () => {
         duration: 0.8,
       })
       .to(buttonAdopt, { autoAlpha: 1, duration: 0.8 })
-      .to(buttonContact, { autoAlpha: 1, duration: 0.8 });
   });
 
   const handleOrientationChange = () => {

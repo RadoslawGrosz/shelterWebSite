@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import backgroundDog from '../../../img/backgroundDog.jpg';
-import backgroundDogSmall from '../../../img/backgroundDogSmall.png';
 import backgroundPortrait from '../../../img/backgroundPortrait.jpg';
 
 export default styled.header`

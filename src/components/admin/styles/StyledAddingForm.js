@@ -213,6 +213,7 @@ export const DelButton = styled.button`
 
   border-radius: 20%;
   background-color: #fff;
+  background-color: ${({ isVisible }) => (isVisible === true ? 'black' : 'white')};
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 
   font-size: 5vmin;

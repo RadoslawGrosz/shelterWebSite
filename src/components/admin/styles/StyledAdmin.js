@@ -58,8 +58,11 @@ export const ButttonEdit = styled(Button)`
 `;
 
 export const ButtonWrapper = styled.div`
+  position: fixed;
+  bottom: 2vh;
+
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 
   width: 100vw;
@@ -67,24 +70,18 @@ export const ButtonWrapper = styled.div`
 
   padding: 2vmin 0;
 
-  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 2;
 `;
 
 export const ButtonAdd = styled.p`
-  position: fixed;
-  bottom: 5vh;
-
   display: flex;
   justify-content: center;
   align-items: center;
 
-  /* width: 15vmin; */
   width: 90%;
   max-width: 300px;
   height: 15vmin;
   max-height: 80px;
-  /* height: 7vmin; */
-  
   
   font-size: 8vmin;
   line-height: 7vmin;
@@ -101,16 +98,12 @@ export const ButtonAdd = styled.p`
   transition: 0.3s;
 
   &:hover {
-    background-color: #03a1fc;
+    background-color: ${({ bgcHover }) => bgcHover};
     color: #fff;
   }
 
-  &::after {
-    content: "Dodaj";
-  }
-
   @media (${({ theme }) => theme.m}) {
-    font-size: 4rem;
+    font-size: 3rem;
     border-radius: 5%;
   }
 `;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   WrapperHover,
@@ -8,15 +8,49 @@ import {
   StyledButton,
 } from './styles/StyledPopupConfirm';
 
-const PopupConfirm = ({ hideAlert, removeArticle, dogName }) => {
+const PopupConfirm = ({ hideAlert, removeArticle, count }) => {
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleConfirm = () => {
+    setIsDeleting(true);
+    removeArticle();
+  };
+
+  const message = () => {
+    if (count) {
+      return (
+        <>
+          Usunięte zostaną
+          {' '}
+          {count}
+          {' '}
+          psy z bazy danych!
+        </>
+      );
+    }
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
+    return (
+      <>
+        Usunięto, strona zostanie odświeżona...
+      </>
+    );
+  };
+
   return (
     <WrapperHover onClick={hideAlert}>
       <Alert>
         <StyledH2>Czy na pewno chcesz usunąć?</StyledH2>
         <StyledP>
-          Usunięte zostano wszystkie informacje na temat wybranego psa!
+          {message()}
         </StyledP>
-        <StyledButton onClick={removeArticle} confirm>
+        {(count && isDeleting) && (
+          <StyledP>
+            Usuwam...
+          </StyledP>
+        )}
+        <StyledButton onClick={handleConfirm} confirm>
           Tak
         </StyledButton>
         <StyledButton onClick={hideAlert}>Nie</StyledButton>
@@ -28,13 +62,13 @@ const PopupConfirm = ({ hideAlert, removeArticle, dogName }) => {
 PopupConfirm.propTypes = {
   hideAlert: PropTypes.func,
   removeArticle: PropTypes.func,
-  dogName: PropTypes.string,
+  count: PropTypes.number,
 };
 
 PopupConfirm.defaultProps = {
   hideAlert: () => {},
   removeArticle: () => {},
-  dogName: null,
+  count: 0,
 };
 
 export default PopupConfirm;
