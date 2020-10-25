@@ -59,5 +59,5 @@ export const StyledButton = styled.button`
   text-transform: uppercase;
   cursor: pointer;
 
-  background-color: ${({confirm}) => confirm ? 'greenyellow' : 'red'};
+  background-color: ${({ confirm }) => (confirm ? 'greenyellow' : 'red')};
 `;

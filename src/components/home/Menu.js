@@ -24,13 +24,12 @@ const Menu = () => {
     const [logo, buttonDogs, buttonAdopt] = navRef.current.children;
 
     const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
-    tl
-      .to(logo, { autoAlpha: 1, duration: 0.8 })
+    tl.to(logo, { autoAlpha: 1, duration: 0.8 })
       .to(buttonDogs, {
         autoAlpha: 1,
         duration: 0.8,
       })
-      .to(buttonAdopt, { autoAlpha: 1, duration: 0.8 })
+      .to(buttonAdopt, { autoAlpha: 1, duration: 0.8 });
   });
 
   const handleOrientationChange = () => {
@@ -55,7 +54,10 @@ const Menu = () => {
 
     switch (name) {
       case 'Psy do adpocji':
-        window.scrollTo(0, document.querySelector('#section').offsetTop - navBarHeight);
+        window.scrollTo(
+          0,
+          document.querySelector('#section').offsetTop - navBarHeight,
+        );
         break;
       case 'Jak adoptować':
         window.scrollTo(0, window.innerHeight - navBarHeight);

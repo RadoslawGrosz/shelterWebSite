@@ -16,7 +16,9 @@ const Section = ({ wrapperRef, ButtonPanel }) => {
   const [currentGallery, setCurrentGallery] = useState(null);
   const [data, setData] = useState([]);
   const [imageList, setImageList] = useState([]);
-  const [isDataRequest, setIsDataRequest, isAllDataLoaded] = useFetchData(setData);
+  const [isDataRequest, setIsDataRequest, isAllDataLoaded] = useFetchData(
+    setData,
+  );
   useTriggerFetchData(wrapperRef, setIsDataRequest);
 
   const handleGallery = (index) => {
@@ -27,9 +29,10 @@ const Section = ({ wrapperRef, ButtonPanel }) => {
   useEffect(() => {
     const createImageList = () => {
       const mainImg = data[currentGallery].images.find((image) => image.isMain);
-      const tempList = data[currentGallery].images.filter(({ url }) => url !== mainImg.url);
+      const tempList = data[currentGallery].images.filter(
+        ({ url }) => url !== mainImg.url,
+      );
       tempList.unshift(mainImg);
-      // data[currentGallery].images.forEach(({ url }) => imagesList.push(url));
       setImageList(tempList);
     };
     if (data[currentGallery]) createImageList();
@@ -43,7 +46,9 @@ const Section = ({ wrapperRef, ButtonPanel }) => {
           <Spinner />
         </SpinnerContainer>
       )}
-      {data.map(({ id, images, name, description }, index) => (
+      {data.map(({
+        id, images, name, description,
+      }, index) => (
         <ArticleList
           key={id}
           id={id}
