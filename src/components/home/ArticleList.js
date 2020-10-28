@@ -24,10 +24,16 @@ const ArticleList = ({
       <ImageContainer
         src={
           images[images.findIndex((image) => image.isMain)]
-            ? images[images.findIndex((image) => image.isMain)].url
+            ? images[images.findIndex((image) => image.isMain)]
             : 'https://limanowa.in/app/default/assets/addons/default/anomaly/client-theme/resources/img/5f1e62b3ffc6aa692da8dc8cfb8a8ea2.jpg?v=1536035116'
         }
       >
+        {/* <source
+          srcSet={images[images.findIndex((image) => image.isMain)]
+            && images[images.findIndex((image) => image.isMain)].big}
+          media="(min-width: 800px)"
+        />
+        <img src="/media/cc0-images/painted-hand-298-332.jpg" alt="" /> */}
         <ImageHover onClick={() => handleGallery(index)}>
           <StyledH2>{name}</StyledH2>
         </ImageHover>

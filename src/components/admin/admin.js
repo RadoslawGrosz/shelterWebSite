@@ -28,21 +28,29 @@ const Admin = () => {
   const removeArticle = () => {
     const remove = async (article) => {
       const db = firebase.firestore();
-      const docRef = db.collection('Dogs').doc(article);
+      const docRef = db.collection('dogs').doc(article);
 
       try {
         const doc = await docRef.get();
         const data = await doc.data();
         data.images.forEach(async ({ name }) => {
-          const fileRef = await storage.ref(`images/${article}/${name}`);
-          fileRef.delete();
+          const sizes = ['small', 'medium', 'big'];
+          sizes.forEach(async (size) => {
+            try {
+              const fileRef = await storage.ref(`images/${article}/${name}/${size}-${name}`);
+              console.log(`images/${article}/${name}/${size}-${name}`);
+              fileRef.delete();
+            } catch (err) {
+              console.log('nie udało się usunąć pliku');
+            }
+          });
         });
       } catch (err) {
         throw new Error(err);
       }
 
       try {
-        await db.collection('Dogs').doc(article).delete();
+        await db.collection('dogs').doc(article).delete();
         setArticlesToDelete((prev) => {
           return prev.filter((doc) => doc !== article);
         });
@@ -54,9 +62,9 @@ const Admin = () => {
     articlesToDelete.forEach((article) => remove(article));
   };
 
-  useEffect(() => {
-    if (!articlesToDelete[0] && isDelAlertVisible) window.location.reload();
-  }, [articlesToDelete, isDelAlertVisible]);
+  // useEffect(() => {
+  //   if (!articlesToDelete[0] && isDelAlertVisible) window.location.reload();
+  // }, [articlesToDelete, isDelAlertVisible]);
 
   const isArticleToggle = (id) => {
     if (articlesToDelete.find((articleId) => articleId === id)) return true;

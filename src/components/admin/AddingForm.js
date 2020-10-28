@@ -9,6 +9,7 @@ import {
   faTrash,
   faTimes,
 } from '@fortawesome/free-solid-svg-icons';
+import Resizer from 'react-image-file-resizer';
 import firebase, { storage } from '../../server/firebase';
 import { WrapperHover } from './styles/StyledPopupConfirm';
 import {
@@ -37,6 +38,14 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
   const [mainPictureName, setMainPictureName] = useState(null);
   const [documentId, setDocumentId] = useState('');
 
+  const resizeFile = (file, width, height) => new Promise((resolve) => {
+    Resizer.imageFileResizer(file, width, height, 'JPEG', 100, 0,
+      (uri) => {
+        resolve(uri);
+      },
+      'base64');
+  });
+
   const handleCloseForm = (e) => {
     if (e.target !== e.currentTarget) return;
     setIsAddingFormVisible(false);
@@ -60,43 +69,82 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
     });
   };
 
-  const handleImageSelect = (e) => {
+  const handleImageSelect = async (e) => {
     if (e.target.files[0]) {
       if (tempImages.find(({ name }) => name === e.target.files[0].name)) {
         return alert('Zdjęcie o tej samej nazwie jest już dodane');
       }
-      const url = URL.createObjectURL(e.target.files[0]);
-      const { name } = e.target.files[0];
+      const file = e.target.files[0];
+      const { name } = file;
+
+      const url = URL.createObjectURL(file);
+      const urlBig = await resizeFile(file, 1920, 1080);
+      const urlMedium = await resizeFile(file, 720, 480);
+      const urlSmall = await resizeFile(file, 420, 360);
+
       let isMain = false;
       if (!tempImages.length) {
         isMain = true;
         setMainPictureName(name);
       }
-      setTempImages((prev) => [...prev, { isMain, url, name }]);
+      setTempImages((prev) => [...prev, { isMain, name, url, urlSmall, urlMedium, urlBig }]);
     }
   };
 
   // Upload file to firebase storage and add info about this file to state
-  const handleFileUpload = async (file) => {
-    const blob = await fetch(file.url).then((r) => r.blob());
-    const uploadTask = storage.ref(`images/${documentId}/${file.name}`).put(blob);
-    uploadTask.on(
-      'state_changed',
-      () => {},
-      (err) => {
-        throw new Error(err);
+  const handleFileUpload = async (file, index) => {
+    const upload = (blob, size, isMain, name) => {
+      const imageName = `${size}-${name}`;
+      const uploadTask = storage.ref(`images/${documentId}/${name}/${imageName}`).put(blob);
+      uploadTask.on(
+        'state_changed',
+        () => {},
+        (err) => {
+          throw new Error(err);
+        },
+        () => {
+          storage
+            .ref(`images/${documentId}/${name}`)
+            .child(imageName)
+            .getDownloadURL()
+            .then((url) => {
+              setImages((prev) => {
+                const temp = prev;
+                temp[index] = {
+                  ...prev[index],
+                  isMain,
+                  name,
+                  [size]: url,
+                };
+                return [...temp];
+              });
+            });
+        },
+      );
+    };
+
+    const { isMain, name } = file;
+
+    const blobSmall = await fetch(file.urlSmall).then((r) => r.blob());
+    const blobMedium = await fetch(file.urlMedium).then((r) => r.blob());
+    const blobBig = await fetch(file.urlBig).then((r) => r.blob());
+
+    const imagesToUpload = [
+      {
+        blob: blobSmall,
+        size: 'small',
       },
-      () => {
-        storage
-          .ref(`images/${documentId}`)
-          .child(file.name)
-          .getDownloadURL()
-          .then((url) => {
-            const { isMain, name } = file;
-            setImages((prev) => [...prev, { isMain, url, name }]);
-          });
+      {
+        blob: blobMedium,
+        size: 'medium',
       },
-    );
+      {
+        blob: blobBig,
+        size: 'big',
+      },
+    ];
+
+    imagesToUpload.forEach(({ blob, size }) => upload(blob, size, isMain, name));
   };
 
   const handleAddToDatabase = async () => {
@@ -111,9 +159,9 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
 
     try {
       if (documentId) {
-        await db.collection('Dogs').doc(documentId).set(data);
+        await db.collection('dogs').doc(documentId).set(data);
       } else {
-        const doc = await db.collection('Dogs').add(data);
+        const doc = await db.collection('dogs').add(data);
         setDocumentId(doc.id);
       }
       if (images.length === tempImages.length) {
@@ -133,12 +181,17 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
 
   // when document id is known we can send images to the proper folder is firebase storage
   useEffect(() => {
-    if (documentId) tempImages.forEach((file) => handleFileUpload(file));
+    if (documentId) tempImages.forEach((file, index) => handleFileUpload(file, index));
   }, [documentId]);
+
+  const isDataReadyToUpload = () => {
+    if (images.find((image) => Object.keys(image).length !== 5)) return false;
+    return true;
+  };
 
   // When new image is uploaded, add info about this image to database
   useEffect(() => {
-    if (images[0]) handleAddToDatabase();
+    if (images[0] && isDataReadyToUpload()) handleAddToDatabase();
   }, [images]);
 
   const handleSetAsMain = (e, name) => {

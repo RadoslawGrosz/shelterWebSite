@@ -14,9 +14,9 @@ const useFetchData = (setData) => {
       const db = firebase.firestore();
       let colRef = null;
       if (!lastDocumentSnapshot) {
-        colRef = db.collection('Dogs').limit(fetchDocLimit);
+        colRef = db.collection('dogs').limit(fetchDocLimit);
       } else {
-        colRef = db.collection('Dogs').startAfter(lastDocumentSnapshot).limit(fetchDocLimit);
+        colRef = db.collection('dogs').startAfter(lastDocumentSnapshot).limit(fetchDocLimit);
       }
 
       try {
@@ -34,7 +34,7 @@ const useFetchData = (setData) => {
           querySnapshot.docs[querySnapshot.docs.length - 1],
         );
         const lastDocument = querySnapshot.docs[querySnapshot.docs.length - 1];
-        const next = db.collection('Dogs').startAfter(lastDocument).limit(fetchDocLimit);
+        const next = db.collection('dogs').startAfter(lastDocument).limit(fetchDocLimit);
         const nextQuerySnapshot = await next.get();
         if (nextQuerySnapshot.empty) setIsAllDataLoaded(true);
         setIsDataRequest(false);

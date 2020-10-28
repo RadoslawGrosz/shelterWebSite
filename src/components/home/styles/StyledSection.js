@@ -120,11 +120,15 @@ export const ImageHover = styled.div`
 
 export const ImageContainer = styled.div`
 	position: relative;
-	flex-basis: 100%;
+
+	width: 100%;
+	max-height: 50vh;
+	max-width: 100%;
 	height: 40vh;
 
+
 	overflow: hidden;
-	background: ${(props) => `url(${props.src}) no-repeat center center`};
+	/* background: ${(props) => `url(${props.src}) no-repeat center center`}; */
 	background-size: cover;
 
 	cursor: pointer;
@@ -143,6 +147,17 @@ export const ImageContainer = styled.div`
 			transform: scale(1.2);
 		}
 	}
+
+	background: ${({ src }) => `url(${src.small}) no-repeat center center`};
+
+	@media (${({ theme }) => theme.l}) {
+		background: ${({ src }) => `url(${src.medium}) no-repeat center center`};
+	}
+
+	@media (${({ theme }) => theme.xl}) {
+		background: ${({ src }) => `url(${src.big}) no-repeat center center`};
+	}
+
 `;
 
 export const StyledH2 = styled.h2`
