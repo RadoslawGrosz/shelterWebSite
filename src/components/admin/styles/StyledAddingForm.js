@@ -196,7 +196,7 @@ export const ImageContainer = styled.div`
 
 export const DelButton = styled.button`
   position: absolute;
-  right: 2vmin;
+  right: 7vmin;
   top: 2vmin;
 
   display: flex;

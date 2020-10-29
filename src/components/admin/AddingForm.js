@@ -233,7 +233,7 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="dodaj opis..."
-              maxLength="500"
+              maxLength="1200"
               required
             />
           </InfoSection>

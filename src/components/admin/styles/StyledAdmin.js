@@ -62,8 +62,9 @@ export const ButtonWrapper = styled.div`
   bottom: 2vh;
 
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: space-around;
 
   width: 100vw;
   align-self: flex-end;
@@ -82,8 +83,9 @@ export const ButtonAdd = styled.p`
   max-width: 300px;
   height: 15vmin;
   max-height: 80px;
+  margin-top: 4vmin;
   
-  font-size: 8vmin;
+  font-size: 5vmin;
   line-height: 7vmin;
   text-align: center;
   text-transform: uppercase;
@@ -102,8 +104,12 @@ export const ButtonAdd = styled.p`
     color: #fff;
   }
 
+  @media (orientation: landscape) {
+    margin-right: 5vmin;
+  }
+
   @media (${({ theme }) => theme.m}) {
-    font-size: 3rem;
+    font-size: 2rem;
     border-radius: 5%;
   }
 `;

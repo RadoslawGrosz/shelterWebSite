@@ -30,7 +30,7 @@ const Section = ({ wrapperRef, ButtonPanel }) => {
     const createImageList = () => {
       const mainImg = data[currentGallery].images.find((image) => image.isMain);
       const tempList = data[currentGallery].images.filter(
-        ({ url }) => url !== mainImg.url,
+        ({ big }) => big !== mainImg.big,
       );
       tempList.unshift(mainImg);
       setImageList(tempList);
@@ -53,7 +53,7 @@ const Section = ({ wrapperRef, ButtonPanel }) => {
           key={id}
           id={id}
           index={index}
-          images={images}
+          image={images[0] ? images.find((img) => img.isMain) : {}}
           name={name}
           description={description}
           handleGallery={handleGallery}
@@ -62,7 +62,7 @@ const Section = ({ wrapperRef, ButtonPanel }) => {
       ))}
       {isGalleryOpen && (
         <ImageGallery
-          imageList={imageList.map(({ url }) => url)}
+          imageList={imageList.map(({ big }) => big)}
           setIsGalleryOpen={setIsGalleryOpen}
         />
       )}

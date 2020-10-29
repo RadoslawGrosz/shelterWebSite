@@ -49,17 +49,36 @@ export const StyledArticle = styled.article`
 	justify-content: center;
 	align-items: flex-start;
 	width: 100%;
+	min-height: 40vh;
 
-	padding: 1vw 3vw 3vw 3vw;
+	padding: 2vmin, 2vmin, 2vmin, 2vmin;
+	background-color: #4296F0;
+
+	overflow: hidden;
 
 	@media (orientation: landscape) {
 		width: 50%;
 		min-height: 80vh;
+		max-height: 80vh;
 	}
 
 	@media (${({ theme }) => theme.l}) and (orientation: landscape) {
   	min-height: 50vh;
+		/* padding: 1rem 0 3rem 3rem; */
   }
+`;
+
+export const StyledArticleScroll = styled.article`
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: -6.5vmin;
+
+	padding: 0vmin 5vmin 5vmin 5vmin;
+	padding-right: 10vmin;
+
+	overflow-y: scroll;
 `;
 
 export const Wrapper = styled.main`
@@ -73,7 +92,6 @@ export const Wrapper = styled.main`
 	overflow: hidden;
 	
 	color: white;
-	background-color: #4296F0;
 
 	&:nth-of-type(even) {
 		background-color: #f05f40;
@@ -86,6 +104,8 @@ export const Wrapper = styled.main`
 `;
 
 export const ImageWrapper = styled.div`
+	position: relative;
+
 	display: flex;
 	overflow: hidden;
 	flex-basis: 100%;
@@ -94,6 +114,31 @@ export const ImageWrapper = styled.div`
 	@media (orientation: landscape) {
 		flex-basis: 50%;
 		height: auto;
+	}
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		filter: blur(8px);
+		background: ${({ src }) => `url(${src.small}) no-repeat center`};
+		background-size: cover;
+		background-clip: border-box;
+
+		@media (${({ theme }) => theme.m}) {
+			background: ${({ src }) => `url(${src.medium}) no-repeat center`};
+			background-size: cover;
+			background-clip: border-box;
+		}
+
+		@media (${({ theme }) => theme.l}) {
+			background: ${({ src }) => `url(${src.big}) no-repeat center`};
+			background-size: cover;
+			background-clip: border-box;
+		}
 	}
 `;
 
@@ -108,6 +153,7 @@ export const ImageHover = styled.div`
 
   color: white;
   background-color: rgba(0, 0, 0, 0.4);
+	filter: blur(0);
 
 	opacity: 0;
   transition: .5s;
@@ -122,21 +168,24 @@ export const ImageContainer = styled.div`
 	position: relative;
 
 	width: 100%;
-	max-height: 50vh;
-	max-width: 100%;
 	height: 40vh;
-
+	max-width: 100%;
+	max-height: 50vh;
 
 	overflow: hidden;
-	/* background: ${(props) => `url(${props.src}) no-repeat center center`}; */
-	background-size: cover;
 
 	cursor: pointer;
 	transition: .5s;
 
 	@media (orientation: landscape) {
-		height: auto;
+		min-height: 80vh;
+		max-height: 80vh;
 	}
+
+	@media (${({ theme }) => theme.l}) and (orientation: landscape) {
+  	min-height: 50vh;
+		/* padding: none; */
+  }
 
 	@media (hover: hover) {
 		&:hover ${ImageHover}{
@@ -149,13 +198,17 @@ export const ImageContainer = styled.div`
 	}
 
 	background: ${({ src }) => `url(${src.small}) no-repeat center center`};
+	background-size: cover;
+	box-shadow: 0 0 10vmin rgba(0,0,0,0.8) inset;
 
-	@media (${({ theme }) => theme.l}) {
+	@media (${({ theme }) => theme.m}) {
 		background: ${({ src }) => `url(${src.medium}) no-repeat center center`};
+		background-size: cover;
 	}
 
-	@media (${({ theme }) => theme.xl}) {
+	@media (${({ theme }) => theme.l}) {
 		background: ${({ src }) => `url(${src.big}) no-repeat center center`};
+		background-size: cover;
 	}
 
 `;
@@ -164,12 +217,12 @@ export const StyledH2 = styled.h2`
 	flex-basis: 100%;
 
 	font-size: 4vmin;
-	line-height: 12vmin;
+	line-height: 10vmin;
 	text-align: center;
-	letter-spacing: .2vh;
+	letter-spacing: .3vmin;
 
 	@media (${({ theme }) => theme.m}) {
-  	font-size: 2.2rem;
+  	font-size: 2rem;
   }
 `;
 
@@ -178,6 +231,7 @@ export const StyledP = styled.p`
 	text-align: justify;
 	letter-spacing: .2vh;
 	word-wrap: break-word;
+	text-overflow: ellipsis;
 
 	@media (${({ theme }) => theme.m}) and (orientation: portrait){
     font-size: 2rem;

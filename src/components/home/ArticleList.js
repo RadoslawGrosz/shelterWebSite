@@ -6,6 +6,7 @@ import {
   ImageContainer,
   ImageHover,
   StyledArticle,
+  StyledArticleScroll,
   StyledH2,
   StyledP,
 } from './styles/StyledSection';
@@ -13,36 +14,26 @@ import {
 const ArticleList = ({
   id,
   index,
-  images,
+  image,
   name,
   description,
   handleGallery,
   ButtonPanel,
 }) => (
   <Wrapper>
-    <ImageWrapper>
-      <ImageContainer
-        src={
-          images[images.findIndex((image) => image.isMain)]
-            ? images[images.findIndex((image) => image.isMain)]
-            : 'https://limanowa.in/app/default/assets/addons/default/anomaly/client-theme/resources/img/5f1e62b3ffc6aa692da8dc8cfb8a8ea2.jpg?v=1536035116'
-        }
-      >
-        {/* <source
-          srcSet={images[images.findIndex((image) => image.isMain)]
-            && images[images.findIndex((image) => image.isMain)].big}
-          media="(min-width: 800px)"
-        />
-        <img src="/media/cc0-images/painted-hand-298-332.jpg" alt="" /> */}
+    <ImageWrapper src={image}>
+      <ImageContainer src={image}>
         <ImageHover onClick={() => handleGallery(index)}>
           <StyledH2>{name}</StyledH2>
         </ImageHover>
       </ImageContainer>
     </ImageWrapper>
     <StyledArticle>
-      {ButtonPanel(id)}
-      <StyledH2>{name}</StyledH2>
-      <StyledP>{description}</StyledP>
+      <StyledArticleScroll>
+        {ButtonPanel(id)}
+        <StyledH2>{name}</StyledH2>
+        <StyledP>{description}</StyledP>
+      </StyledArticleScroll>
     </StyledArticle>
   </Wrapper>
 );
@@ -50,7 +41,13 @@ const ArticleList = ({
 ArticleList.propTypes = {
   id: PropTypes.string,
   index: PropTypes.number,
-  images: PropTypes.arrayOf(PropTypes.object),
+  image: PropTypes.shape({
+    isMain: PropTypes.bool,
+    name: PropTypes.string,
+    small: PropTypes.string,
+    medium: PropTypes.string,
+    big: PropTypes.string,
+  }),
   name: PropTypes.string,
   description: PropTypes.string,
   handleGallery: PropTypes.func,
@@ -60,7 +57,7 @@ ArticleList.propTypes = {
 ArticleList.defaultProps = {
   id: '',
   index: -1,
-  images: [{}],
+  image: {},
   name: '',
   description: '',
   handleGallery: () => {},

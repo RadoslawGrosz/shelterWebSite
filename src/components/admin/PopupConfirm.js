@@ -29,7 +29,7 @@ const PopupConfirm = ({ hideAlert, removeArticle, count }) => {
       );
     }
     setTimeout(() => {
-      // window.location.reload();
+      window.location.reload();
     }, 3000);
     return (
       <>

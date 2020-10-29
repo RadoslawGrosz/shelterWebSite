@@ -16,4 +16,6 @@ export default styled.header`
     background-image: url(${backgroundDog});
     background-size: cover;
   }
+
+  box-shadow: 0 0 10vmin rgba(0,0,0,0.8) inset;
 `;

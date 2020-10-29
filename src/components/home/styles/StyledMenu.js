@@ -29,7 +29,6 @@ export const StyledUl = styled.ul`
 export const StyledLi = styled.li`
   opacity: 0;
   padding: 2%;
-  cursor: pointer;
 
   &:nth-child(odd) {
     text-align: left;
@@ -67,6 +66,7 @@ export const StyledA = styled.a`
   line-height: 4vmax;
   font-weight: bold;
   text-align: center;
+  cursor: pointer;
 
   transition: 0.3s;
 
