@@ -64,7 +64,6 @@ export const StyledArticle = styled.article`
 
 	@media (${({ theme }) => theme.l}) and (orientation: landscape) {
   	min-height: 50vh;
-		/* padding: 1rem 0 3rem 3rem; */
   }
 `;
 

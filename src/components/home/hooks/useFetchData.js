@@ -2,27 +2,32 @@
 import { useState, useEffect } from 'react';
 import firebase from '../../../server/firebase';
 
-const useFetchData = (setData) => {
+const useFetchData = (setData, sectionRef) => {
   const [lastDocumentSnapshot, setLastDocumentSnapshot] = useState(null);
   const [isAllDataLoaded, setIsAllDataLoaded] = useState(false);
   const [isDataRequest, setIsDataRequest] = useState(true);
+  const [scrollFlag, setScrollFlag] = useState(false);
   const fetchDocLimit = 2;
 
   useEffect(() => {
     const getData = async () => {
       if (isAllDataLoaded) return;
-      window.scrollTo(0, window.scrollY + window.innerHeight - 100);
+      if (scrollFlag && sectionRef) {
+        const elements = sectionRef.current.children;
+        const lastElement = elements[elements.length - 1];
+        window.scrollTo(0, lastElement.offsetTop + lastElement.offsetHeight / 2);
+      }
+      setScrollFlag(true);
       const db = firebase.firestore();
       let colRef = null;
       if (!lastDocumentSnapshot) {
-        colRef = db.collection('dogs').limit(fetchDocLimit);
+        colRef = db.collection('dogs').orderBy('timestamp', 'desc').limit(fetchDocLimit);
       } else {
-        colRef = db.collection('dogs').startAfter(lastDocumentSnapshot).limit(fetchDocLimit);
+        colRef = db.collection('dogs').orderBy('timestamp', 'desc').startAfter(lastDocumentSnapshot).limit(fetchDocLimit);
       }
 
       try {
         const querySnapshot = await colRef.get();
-        console.log('getting snapshot');
         if (querySnapshot.empty) {
           setIsAllDataLoaded(true);
           return;
@@ -38,7 +43,6 @@ const useFetchData = (setData) => {
         const lastDocument = querySnapshot.docs[querySnapshot.docs.length - 1];
         const next = db.collection('dogs').startAfter(lastDocument).limit(fetchDocLimit);
         const nextQuerySnapshot = await next.get();
-        console.log('getting next snapshot');
         if (nextQuerySnapshot.empty) setIsAllDataLoaded(true);
         setIsDataRequest(false);
       } catch (err) {

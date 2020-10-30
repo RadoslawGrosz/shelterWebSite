@@ -155,6 +155,7 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
       name: dogName,
       description,
       images,
+      timestamp: firebase.firestore.Timestamp.now(),
     };
 
     try {

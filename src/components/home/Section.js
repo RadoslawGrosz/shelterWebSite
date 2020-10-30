@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import useFetchData from './hooks/useFetchData';
 import useTriggerFetchData from './hooks/useTriggerFetchData';
@@ -12,12 +12,13 @@ import {
 } from './styles/StyledSection';
 
 const Section = ({ wrapperRef, ButtonPanel }) => {
+  const sectionRef = useRef(null);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [currentGallery, setCurrentGallery] = useState(null);
   const [data, setData] = useState([]);
   const [imageList, setImageList] = useState([]);
   const [isDataRequest, setIsDataRequest, isAllDataLoaded] = useFetchData(
-    setData,
+    setData, sectionRef,
   );
   useTriggerFetchData(wrapperRef, setIsDataRequest);
 
@@ -39,7 +40,7 @@ const Section = ({ wrapperRef, ButtonPanel }) => {
   }, [data, currentGallery]);
 
   return (
-    <StyledSection id="section">
+    <StyledSection id="section" ref={sectionRef}>
       <StyledH1>Psy do adopcji</StyledH1>
       {!isDataRequest || isAllDataLoaded ? null : (
         <SpinnerContainer>

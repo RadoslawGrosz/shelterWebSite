@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
 
   if (pending) {
     return (
-      <WrapperHover>
+      <WrapperHover bgc="#000">
         <SpinnerContainer>
           <Spinner />
         </SpinnerContainer>
