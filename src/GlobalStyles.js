@@ -13,5 +13,6 @@ export default createGlobalStyle`
         font-family: Roboto, Arial, Helvetica, sans-serif;
         font-size: 10px;
         scroll-behavior: smooth;
+        cursor: default;
     }
 `;

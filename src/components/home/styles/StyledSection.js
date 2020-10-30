@@ -52,9 +52,9 @@ export const StyledArticle = styled.article`
 	min-height: 40vh;
 
 	padding: 2vmin, 2vmin, 2vmin, 2vmin;
-	background-color: #4296F0;
 
 	overflow: hidden;
+	cursor: default;
 
 	@media (orientation: landscape) {
 		width: 50%;
@@ -92,6 +92,7 @@ export const Wrapper = styled.main`
 	overflow: hidden;
 	
 	color: white;
+	background-color: #4296F0;
 
 	&:nth-of-type(even) {
 		background-color: #f05f40;
@@ -110,6 +111,8 @@ export const ImageWrapper = styled.div`
 	overflow: hidden;
 	flex-basis: 100%;
 	height: 40vh;
+
+	cursor: pointer;
 
 	@media (orientation: landscape) {
 		flex-basis: 50%;

@@ -8,7 +8,7 @@ const useTriggerFetchData = (triggerRef, isTriggered) => {
     const footer = current.children.namedItem('footer');
     if (
       window.scrollY + window.innerHeight
-      >= footer.offsetTop
+      >= footer.offsetTop + footer.offsetHeight / 2
     ) {
       isTriggered(true);
     }
@@ -27,9 +27,7 @@ const useTriggerFetchData = (triggerRef, isTriggered) => {
 
 useTriggerFetchData.PropTypes = {
   triggerRef: PropTypes.oneOfType([
-    // Either a function
     PropTypes.func,
-    // Or the instance of a DOM native element (see the note about SSR)
     PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
   ]),
 };

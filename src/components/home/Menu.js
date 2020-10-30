@@ -14,6 +14,7 @@ import useChangeMenuOnTrigger from './hooks/useChangeMenuOnTrigger';
 
 const Menu = () => {
   const navRef = useRef(null);
+  const ulRef = useRef(null);
   const [isLandscape, setIsLandscape] = useState(
     window.matchMedia('(orientation: landscape)').matches,
   );
@@ -21,7 +22,7 @@ const Menu = () => {
   useChangeMenuOnTrigger(navRef, isMenuTriggered, isLandscape);
 
   useEffect(() => {
-    const [logo, buttonDogs, buttonAdopt] = navRef.current.children;
+    const [logo, buttonDogs, buttonAdopt] = ulRef.current.children;
 
     const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
     tl.to(logo, { autoAlpha: 1, duration: 0.8 })
@@ -81,8 +82,8 @@ const Menu = () => {
   });
 
   return (
-    <StyledNav>
-      <StyledUl ref={navRef}>
+    <StyledNav ref={navRef}>
+      <StyledUl ref={ulRef}>
         <StyledLi>
           <StyledA onClick={() => window.scrollTo(0, 0)}>
             <LogoContainer>

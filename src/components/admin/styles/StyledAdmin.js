@@ -84,7 +84,9 @@ export const ButtonAdd = styled.p`
   height: 15vmin;
   max-height: 80px;
   margin-top: 4vmin;
-  
+  margin-right: 5vmin;
+  margin-left: 5vmin;
+
   font-size: 5vmin;
   line-height: 7vmin;
   text-align: center;
@@ -102,10 +104,6 @@ export const ButtonAdd = styled.p`
   &:hover {
     background-color: ${({ bgcHover }) => bgcHover};
     color: #fff;
-  }
-
-  @media (orientation: landscape) {
-    margin-right: 5vmin;
   }
 
   @media (${({ theme }) => theme.m}) {

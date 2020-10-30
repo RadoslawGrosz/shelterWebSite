@@ -11,6 +11,7 @@ const useFetchData = (setData) => {
   useEffect(() => {
     const getData = async () => {
       if (isAllDataLoaded) return;
+      window.scrollTo(0, window.scrollY + window.innerHeight - 100);
       const db = firebase.firestore();
       let colRef = null;
       if (!lastDocumentSnapshot) {
@@ -21,6 +22,7 @@ const useFetchData = (setData) => {
 
       try {
         const querySnapshot = await colRef.get();
+        console.log('getting snapshot');
         if (querySnapshot.empty) {
           setIsAllDataLoaded(true);
           return;
@@ -36,6 +38,7 @@ const useFetchData = (setData) => {
         const lastDocument = querySnapshot.docs[querySnapshot.docs.length - 1];
         const next = db.collection('dogs').startAfter(lastDocument).limit(fetchDocLimit);
         const nextQuerySnapshot = await next.get();
+        console.log('getting next snapshot');
         if (nextQuerySnapshot.empty) setIsAllDataLoaded(true);
         setIsDataRequest(false);
       } catch (err) {
