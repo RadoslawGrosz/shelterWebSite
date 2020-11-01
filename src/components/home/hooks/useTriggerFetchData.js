@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const useTriggerFetchData = (triggerRef, isTriggered) => {
+const useTriggerFetchData = (triggerRef, setIsTriggered, setCurrentOffset) => {
   const handleScroll = () => {
     if (!triggerRef.current) return;
     const { current } = triggerRef;
@@ -10,7 +10,8 @@ const useTriggerFetchData = (triggerRef, isTriggered) => {
       window.scrollY + window.innerHeight
       >= footer.offsetTop + footer.offsetHeight / 2
     ) {
-      isTriggered(true);
+      setIsTriggered(true);
+      setCurrentOffset(window.pageYOffset);
     }
   };
 

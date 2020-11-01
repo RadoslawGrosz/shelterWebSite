@@ -7,6 +7,9 @@ export default createGlobalStyle`
         box-sizing: border-box;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        &:focus {
+            outline: none;
+        }
     }
 
     html {

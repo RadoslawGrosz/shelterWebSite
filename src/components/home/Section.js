@@ -17,10 +17,11 @@ const Section = ({ wrapperRef, ButtonPanel }) => {
   const [currentGallery, setCurrentGallery] = useState(null);
   const [data, setData] = useState([]);
   const [imageList, setImageList] = useState([]);
+  const [currentOffset, setCurrentOffset] = useState(null);
   const [isDataRequest, setIsDataRequest, isAllDataLoaded] = useFetchData(
     setData, sectionRef,
   );
-  useTriggerFetchData(wrapperRef, setIsDataRequest);
+  useTriggerFetchData(wrapperRef, setIsDataRequest, setCurrentOffset);
 
   const handleGallery = (index) => {
     setCurrentGallery(index);
@@ -38,6 +39,10 @@ const Section = ({ wrapperRef, ButtonPanel }) => {
     };
     if (data[currentGallery]) createImageList();
   }, [data, currentGallery]);
+
+  // useEffect(() => {
+  //   window.scrollTo(0, currentOffset);
+  // }, [data]);
 
   return (
     <StyledSection id="section" ref={sectionRef}>

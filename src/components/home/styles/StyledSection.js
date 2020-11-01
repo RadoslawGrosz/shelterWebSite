@@ -19,6 +19,8 @@ export const StyledSection = styled.section`
 	align-items: flex-start;
 	width: 100vw;
 	flex-grow: 1;
+	padding-bottom: 10vmin;
+	transition: height 0.66s ease-out;
 
 	min-height: 40vh;
   z-index: 1;

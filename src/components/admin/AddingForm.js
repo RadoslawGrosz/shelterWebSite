@@ -79,8 +79,8 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
 
       const url = URL.createObjectURL(file);
       const urlBig = await resizeFile(file, 1920, 1080);
-      const urlMedium = await resizeFile(file, 720, 480);
-      const urlSmall = await resizeFile(file, 420, 360);
+      const urlMedium = await resizeFile(file, 1200, 800);
+      const urlSmall = await resizeFile(file, 800, 600);
 
       let isMain = false;
       if (!tempImages.length) {

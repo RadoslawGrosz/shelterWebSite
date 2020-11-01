@@ -2,22 +2,15 @@
 import { useState, useEffect } from 'react';
 import firebase from '../../../server/firebase';
 
-const useFetchData = (setData, sectionRef) => {
+const useFetchData = (setData) => {
   const [lastDocumentSnapshot, setLastDocumentSnapshot] = useState(null);
   const [isAllDataLoaded, setIsAllDataLoaded] = useState(false);
-  const [isDataRequest, setIsDataRequest] = useState(true);
-  const [scrollFlag, setScrollFlag] = useState(false);
+  const [isDataRequest, setIsDataRequest] = useState(false);
   const fetchDocLimit = 2;
 
   useEffect(() => {
     const getData = async () => {
       if (isAllDataLoaded) return;
-      if (scrollFlag && sectionRef) {
-        const elements = sectionRef.current.children;
-        const lastElement = elements[elements.length - 1];
-        window.scrollTo(0, lastElement.offsetTop + lastElement.offsetHeight / 2);
-      }
-      setScrollFlag(true);
       const db = firebase.firestore();
       let colRef = null;
       if (!lastDocumentSnapshot) {
