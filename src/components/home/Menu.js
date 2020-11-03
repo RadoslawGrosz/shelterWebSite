@@ -25,12 +25,13 @@ const Menu = () => {
     const [logo, buttonDogs, buttonAdopt] = ulRef.current.children;
 
     const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
-    tl.to(logo, { autoAlpha: 1, duration: 1.2 })
+    tl.to(logo, { autoAlpha: 1, x: 0, duration: 1, delay: 0.6 })
       .to(buttonDogs, {
         autoAlpha: 1,
+        x: 0,
         duration: 0.8,
       })
-      .to(buttonAdopt, { autoAlpha: 1, duration: 0.8 });
+      .to(buttonAdopt, { autoAlpha: 1, duration: 0.6 });
   }, []);
 
   const handleOrientationChange = () => {

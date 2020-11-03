@@ -1,18 +1,25 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { StyledHeader, HeaderHover } from './styles/StyledHeader';
+import { StyledHeader, ImageContainer, HeaderHover } from './styles/StyledHeader';
 
 const Header = () => {
   const headerRef = useRef(null);
+  const ImageContainerRef = useRef(null);
 
   useEffect(() => {
     const header = headerRef.current;
+    const image = ImageContainerRef.current;
 
-    gsap.to(header, { autoAlpha: 0, duration: 5, ease: 'power4.out' });
+    const tl = gsap.timeline({ defaults: { ease: 'power0.out' } });
+
+    tl
+      .to(header, { autoAlpha: 0.05, duration: 1 })
+      .to(image, { autoAlpha: 1, y: 0, duration: 3, ease: 'power3.out', delay: 2 });
   });
 
   return (
     <StyledHeader>
+      <ImageContainer ref={ImageContainerRef} />
       <HeaderHover ref={headerRef} />
     </StyledHeader>
   );

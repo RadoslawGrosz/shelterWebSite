@@ -5,7 +5,7 @@ import firebase from '../../../server/firebase';
 const useFetchData = (setData) => {
   const [lastDocumentSnapshot, setLastDocumentSnapshot] = useState(null);
   const [isAllDataLoaded, setIsAllDataLoaded] = useState(false);
-  const [isDataRequest, setIsDataRequest] = useState(false);
+  const [isDataRequest, setIsDataRequest] = useState(true);
   const fetchDocLimit = 2;
 
   useEffect(() => {

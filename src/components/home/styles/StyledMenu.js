@@ -43,10 +43,12 @@ export const StyledLi = styled.li`
     &:nth-child(1){
       margin-right: auto;
       border: none;
+      transform: translateX(-1vmin);
     }
 
     &:nth-child(2){
       border: none;
+      transform: translateX(1vmin);
     }
 
     &:nth-last-child(1){

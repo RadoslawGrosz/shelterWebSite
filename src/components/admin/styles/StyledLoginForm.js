@@ -18,7 +18,6 @@ export const FormWrapper = styled.div`
 
   width: 100vw;
   max-width: 600px;
-  /* padding-bottom: 10vmin; */
 
   background-color: #191919;
 `;
