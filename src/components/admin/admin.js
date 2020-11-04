@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
 import firebase, { storage } from '../../server/firebase';
@@ -15,6 +15,7 @@ const Admin = () => {
   const [articlesToDelete, setArticlesToDelete] = useState([]);
   const wrapperRef = useRef(null);
 
+  // alert to prevent missclick
   const hideAlert = (e) => {
     if (e.target !== e.currentTarget) return;
     setIsDelAlertVisible(false);
@@ -38,10 +39,9 @@ const Admin = () => {
           sizes.forEach(async (size) => {
             try {
               const fileRef = await storage.ref(`images/${article}/${name}/${size}-${name}`);
-              console.log(`images/${article}/${name}/${size}-${name}`);
               fileRef.delete();
             } catch (err) {
-              console.log('nie udało się usunąć pliku');
+              throw new Error(err);
             }
           });
         });
@@ -51,9 +51,7 @@ const Admin = () => {
 
       try {
         await db.collection('dogs').doc(article).delete();
-        setArticlesToDelete((prev) => {
-          return prev.filter((doc) => doc !== article);
-        });
+        setArticlesToDelete((prev) => (prev.filter((doc) => doc !== article)));
       } catch (err) {
         throw new Error(err);
       }
@@ -61,10 +59,6 @@ const Admin = () => {
 
     articlesToDelete.forEach((article) => remove(article));
   };
-
-  // useEffect(() => {
-  //   if (!articlesToDelete[0] && isDelAlertVisible) window.location.reload();
-  // }, [articlesToDelete, isDelAlertVisible]);
 
   const isArticleToggle = (id) => {
     if (articlesToDelete.find((articleId) => articleId === id)) return true;
@@ -74,9 +68,7 @@ const Admin = () => {
   const handleToggleArticle = (id) => {
     const index = articlesToDelete.findIndex((articleId) => articleId === id);
     if (index !== -1) {
-      setArticlesToDelete((prev) => {
-        return prev.filter((doc) => doc !== id);
-      });
+      setArticlesToDelete((prev) => (prev.filter((doc) => doc !== id)));
     } else {
       setArticlesToDelete((prev) => [...prev, id]);
     }

@@ -2,7 +2,9 @@ import styled from 'styled-components';
 
 export const StyledNav = styled.nav`
   position: fixed;
+  
   width: 100%;
+
   z-index: 2;
   
   @media (orientation: landscape) {
@@ -16,6 +18,7 @@ export const StyledUl = styled.ul`
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-end;
+
   width: 100%;
   padding: .5vmin;
 

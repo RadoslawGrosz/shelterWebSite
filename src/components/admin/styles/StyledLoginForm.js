@@ -48,7 +48,6 @@ export const StyledForm = styled.form`
   flex-direction: column;
   flex-wrap: wrap;
 
-  /* min-height: 50vh; */
   width: 100%;
 
 `;
@@ -71,6 +70,7 @@ export const StyledInput = styled.input`
   transition: 0.8s;
 
   &:-webkit-autofill {
+    box-shadow: 0 0 0 50px #191919 inset;
     -webkit-box-shadow: 0 0 0 50px #191919 inset;
     -webkit-text-fill-color: #fff;
     &::first-line {

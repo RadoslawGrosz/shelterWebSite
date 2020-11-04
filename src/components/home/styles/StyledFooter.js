@@ -2,8 +2,10 @@ import styled from 'styled-components';
 
 export const StyledFooter = styled.footer`
   display: flex;
+
   min-height: 15vmin;
   padding-left: 10%;
+  
   z-index: 1;
   background-color: #020100;
 `;

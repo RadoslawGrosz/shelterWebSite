@@ -17,14 +17,14 @@ export const StyledSection = styled.section`
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: flex-start;
-	width: 100vw;
 	flex-grow: 1;
-	padding-bottom: 10vmin;
-	transition: height 0.66s ease-out;
 
+	width: 100vw;
 	min-height: 40vh;
-  z-index: 1;
+	padding-bottom: 10vmin;
 
+	transition: height 0.66s ease-out;
+	z-index: 1;
 	background-color: rgba(0, 0, 0, 0.6);
 `;
 
@@ -50,6 +50,7 @@ export const StyledArticle = styled.article`
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: flex-start;
+	
 	width: 100%;
 	min-height: 40vh;
 

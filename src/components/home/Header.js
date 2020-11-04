@@ -14,7 +14,9 @@ const Header = () => {
 
     tl
       .to(header, { autoAlpha: 0.05, duration: 1 })
-      .to(image, { autoAlpha: 1, y: 0, duration: 3, ease: 'power3.out', delay: 2 });
+      .to(image, {
+        autoAlpha: 1, y: 0, duration: 3, ease: 'power3.out', delay: 2,
+      });
   });
 
   return (

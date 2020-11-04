@@ -87,13 +87,17 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
         isMain = true;
         setMainPictureName(name);
       }
-      setTempImages((prev) => [...prev, { isMain, name, url, urlSmall, urlMedium, urlBig }]);
+      setTempImages((prev) => [...prev, {
+        isMain, name, url, urlSmall, urlMedium, urlBig,
+      }]);
     }
   };
 
   // Upload file to firebase storage and add info about this file to state
   const handleFileUpload = async (file, index) => {
-    const upload = (blob, size, isMain, name) => {
+    const { isMain, name } = file;
+
+    const upload = (blob, size) => {
       const imageName = `${size}-${name}`;
       const uploadTask = storage.ref(`images/${documentId}/${name}/${imageName}`).put(blob);
       uploadTask.on(
@@ -123,8 +127,7 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
       );
     };
 
-    const { isMain, name } = file;
-
+    // 3 diferent sizes of picture
     const blobSmall = await fetch(file.urlSmall).then((r) => r.blob());
     const blobMedium = await fetch(file.urlMedium).then((r) => r.blob());
     const blobBig = await fetch(file.urlBig).then((r) => r.blob());
@@ -144,7 +147,7 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
       },
     ];
 
-    imagesToUpload.forEach(({ blob, size }) => upload(blob, size, isMain, name));
+    imagesToUpload.forEach(({ blob, size }) => upload(blob, size));
   };
 
   const handleAddToDatabase = async () => {
@@ -180,17 +183,18 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
     handleAddToDatabase();
   };
 
-  // when document id is known we can send images to the proper folder is firebase storage
+  // when document id is known we can send images to the proper folder in firebase storage
   useEffect(() => {
     if (documentId) tempImages.forEach((file, index) => handleFileUpload(file, index));
   }, [documentId]);
 
+  // check if all needed images are in state
   const isDataReadyToUpload = () => {
     if (images.find((image) => Object.keys(image).length !== 5)) return false;
     return true;
   };
 
-  // When new image is uploaded, add info about this image to database
+  // When new image is uploaded to storage, add info about this image to database
   useEffect(() => {
     if (images[0] && isDataReadyToUpload()) handleAddToDatabase();
   }, [images]);
@@ -200,6 +204,7 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
     setMainPictureName(name);
   };
 
+  // mark image as main
   useEffect(() => {
     if (!mainPictureName) return;
     setTempImages((prev) => {

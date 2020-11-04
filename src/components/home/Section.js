@@ -40,9 +40,9 @@ const Section = ({ wrapperRef, ButtonPanel }) => {
     if (data[currentGallery]) createImageList();
   }, [data, currentGallery]);
 
-  // useEffect(() => {
-  //   window.scrollTo(0, currentOffset);
-  // }, [data]);
+  useEffect(() => {
+    window.scrollTo(0, currentOffset);
+  }, [data]);
 
   return (
     <StyledSection id="section" ref={sectionRef}>

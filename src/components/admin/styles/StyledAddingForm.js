@@ -12,15 +12,9 @@ export const FormWrapper = styled.div`
   max-height: 90vh;
   width: 100vw;
   max-width: 800px;
-  /* padding: 4vmin 0; */
 
   background-color: #e0c08c;
-  /* overflow-y: auto; */
   z-index: 4;
-
-  @media (${({ theme }) => theme.m}) {
-    /* padding: 3rem 0; */
-  }
 `;
 
 export const StyledForm = styled.form`
