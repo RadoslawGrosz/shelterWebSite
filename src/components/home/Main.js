@@ -58,12 +58,8 @@ const Main = () => {
   articleElements.forEach(({ title, text, logo }) => {
     articleList.push(
       <StyledArticle key={title}>
-        <StyledH2>
-          {title}
-        </StyledH2>
-        <StyledP>
-          {text}
-        </StyledP>
+        <StyledH2>{title}</StyledH2>
+        <StyledP>{text}</StyledP>
         <StyledIconContainer blue>
           <FontAwesomeIcon icon={logo} />
         </StyledIconContainer>
@@ -74,9 +70,7 @@ const Main = () => {
   return (
     <StyledMain ref={mainRef} id="main">
       <StyledH1>Adopcja w trzech krokach</StyledH1>
-      <ArticlesWrapper>
-        {articleList}
-      </ArticlesWrapper>
+      <ArticlesWrapper>{articleList}</ArticlesWrapper>
     </StyledMain>
   );
 };
