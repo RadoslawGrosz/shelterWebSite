@@ -12,9 +12,10 @@ export const StyledMain = styled.main`
   padding-bottom: 10vh;
   z-index: 1;
 
-  background-color: #f05f40;
+  /* background-color: #f05f40; */
+  background-color: #232220;
   box-shadow: 0px 5px 20px;
-  color: #FDFFFC;
+  color: #fdfffc;
 `;
 
 export const StyledH1 = styled.h1`
@@ -24,7 +25,7 @@ export const StyledH1 = styled.h1`
 
   text-transform: uppercase;
   font-size: 2.5vmax;
-  letter-spacing: .3vmin;
+  letter-spacing: 0.3vmin;
 
   @media (${({ theme }) => theme.m}) and (orientation: portrait) {
     font-size: 2.2rem;
@@ -57,7 +58,7 @@ export const StyledArticle = styled.article`
   width: 60vw;
   margin-top: 10vh;
   padding: 2% 5%;
-  
+
   font-family: Rowdies;
 
   @media (orientation: landscape) {
@@ -73,7 +74,7 @@ export const StyledH2 = styled.h2`
   text-transform: uppercase;
   text-align: center;
   font-size: 2vmax;
-  letter-spacing: .2vmin;
+  letter-spacing: 0.2vmin;
 
   @media (${({ theme }) => theme.m}) and (orientation: portrait) {
     font-size: 2.5rem;
@@ -91,7 +92,7 @@ export const StyledP = styled.p`
 
   text-align: center;
   font-size: 2vmax;
-  letter-spacing: .2vh;
+  letter-spacing: 0.2vh;
 
   opacity: 0;
   transform: translateY(50px);
@@ -109,7 +110,7 @@ export const StyledIconContainer = styled(StyledP)`
   margin-top: 10%;
   font-size: 3.5vmax;
 
-  transition: .5s;
+  transition: 0.5s;
 
   @media (${({ theme }) => theme.m}) and (orientation: portrait) {
     font-size: 3rem;
