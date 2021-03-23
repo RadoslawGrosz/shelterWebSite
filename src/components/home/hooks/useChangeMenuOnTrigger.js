@@ -19,7 +19,7 @@ const useChangeMenuOnTrigger = (menuRef, isMenuTriggered, isLandscape) => {
       if (isMenuTriggered) {
         tl.to(menu, {
           y: 0,
-          backgroundColor: '#001f3f',
+          backgroundColor: '#353A47',
           borderColor: 'white',
           color: 'white',
           z: 4,
