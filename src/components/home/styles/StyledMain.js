@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const StyledMain = styled.main`
+  position: relative;
+
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -9,12 +11,10 @@ export const StyledMain = styled.main`
   width: 100vw;
   margin-top: 100vh;
   padding-top: 10vh;
-  padding-bottom: 10vh;
-  z-index: 1;
+  padding-bottom: 40vh;
+  z-index: 10;
 
-  /* background-color: #f05f40; */
   background-color: #232220;
-  box-shadow: 0px 5px 20px;
   color: #fdfffc;
 `;
 
@@ -50,12 +50,17 @@ export const ArticlesWrapper = styled.div`
   @media (orientation: landscape) {
     flex-direction: row;
     justify-content: center;
+    align-items: stretch;
   }
 `;
 
 // Container for h2 and p
 export const StyledArticle = styled.article`
-  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+
+  width: 80vw;
   margin-top: 10vh;
   padding: 2% 5%;
 
@@ -107,7 +112,12 @@ export const StyledP = styled.p`
 `;
 
 export const StyledIconContainer = styled(StyledP)`
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
   margin-top: 10%;
+
   font-size: 3.5vmax;
 
   transition: 0.5s;
@@ -124,5 +134,57 @@ export const StyledIconContainer = styled(StyledP)`
     &:hover {
       color: ${({ blue }) => (blue ? '#3b5998' : 'white')};
     }
+  }
+`;
+
+export const DivAbout = styled.div`
+  position: absolute;
+  bottom: 0;
+  transform: translateY(50%);
+
+  width: 90%;
+  padding: 5vmin;
+  background-color: #fff;
+  /* transform: translateY(50%); */
+  z-index: 10;
+  background-color: #885a5a;
+
+  @media (${({ theme }) => theme.l}) {
+    width: 60%;
+    padding: 6rem;
+  }
+
+  @media (${({ theme }) => theme.xl}) {
+    width: 50%;
+    padding: 7rem;
+  }
+`;
+
+export const H1About = styled(StyledH1)`
+  @media (${({ theme }) => theme.m}) and (orientation: portrait) {
+    font-size: 2.5rem;
+  }
+
+  @media (${({ theme }) => theme.l}) {
+    font-size: 2.5rem;
+  }
+`;
+
+export const PAbout = styled(StyledP)`
+  opacity: 1;
+  transform: none;
+  line-height: 4.2vmin;
+
+  @media (${({ theme }) => theme.m}) and (orientation: portrait) {
+    font-size: 2.2rem;
+  }
+
+  @media (${({ theme }) => theme.l}) {
+    font-size: 1.5rem;
+  }
+
+  @media (${({ theme }) => theme.xl}) {
+    font-size: 1.7rem;
+    line-height: 3rem;
   }
 `;
