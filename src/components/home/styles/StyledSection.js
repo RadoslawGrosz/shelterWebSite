@@ -21,6 +21,7 @@ export const StyledSection = styled.section`
 
   width: 100vw;
   min-height: 40vh;
+  padding-top: 20vmax;
   padding-bottom: 10vmin;
 
   transition: height 0.66s ease-out;

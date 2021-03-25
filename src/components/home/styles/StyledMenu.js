@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 
+export const menuLinkColor = '#3a3b3c';
+export const menuLinkColorActive = '#fff';
+export const menuBackgroundColor = 'transparent';
+export const menuBackgroundColorActive = '#353A47';
+
 export const StyledNav = styled.nav`
   position: fixed;
 
   width: 100%;
 
-  z-index: 2;
+  z-index: 20;
 
   @media (orientation: landscape) {
     flex-direction: row;
@@ -91,7 +96,7 @@ export const StyledA = styled.a`
 
   @media (hover: hover) {
     &:hover {
-      color: #f05f40;
+      color: #dc136c;
     }
   }
 `;
