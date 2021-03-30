@@ -1,4 +1,9 @@
 import styled from 'styled-components';
+import {
+  mainColorLight,
+  mainColorDark,
+  mainColorBlack,
+} from '../../../theme/Theme';
 
 export const StyledMain = styled.main`
   position: relative;
@@ -14,8 +19,8 @@ export const StyledMain = styled.main`
   padding-bottom: 40vh;
   z-index: 10;
 
-  background-color: #232220;
-  color: #fdfffc;
+  background-color: ${mainColorBlack};
+  color: #fff;
 `;
 
 export const StyledH1 = styled.h1`
@@ -27,12 +32,24 @@ export const StyledH1 = styled.h1`
   font-size: 2.5vmax;
   letter-spacing: 0.3vmin;
 
-  @media (${({ theme }) => theme.m}) and (orientation: portrait) {
-    font-size: 2.2rem;
+  @media (orientation: landscape) {
+    font-size: 4vmax;
+    line-height: 15vmax;
   }
 
-  @media (${({ theme }) => theme.l}) {
-    font-size: 2rem;
+  @media (${({ theme }) => theme.m}) and (orientation: portrait) {
+    font-size: 4rem;
+    line-height: 15rem;
+  }
+
+  @media (${({ theme }) => theme.l}) and (orientation: portrait) {
+    font-size: 4.5rem;
+    line-height: 15rem;
+  }
+
+  @media (${({ theme }) => theme.xl}) {
+    font-size: 5rem;
+    line-height: 15rem;
   }
 `;
 
@@ -62,12 +79,15 @@ export const StyledArticle = styled.article`
 
   width: 80vw;
   margin-top: 10vh;
-  padding: 2% 5%;
+  padding: 2% 2%;
 
   font-family: Rowdies;
 
+  @media (${({ theme }) => theme.l}) and (orientation: portrait) {
+    width: 50vw;
+  }
+
   @media (orientation: landscape) {
-    width: 30vw;
     margin-top: 0;
   }
 `;
@@ -85,12 +105,20 @@ export const StyledH2 = styled.h2`
     font-size: 2.5rem;
   }
 
-  @media (${({ theme }) => theme.l}) {
-    font-size: 2rem;
+  @media (${({ theme }) => theme.l}) and (orientation: portrait) {
+    font-size: 3rem;
+  }
+
+  @media (${({ theme }) => theme.xl}) {
+    font-size: 2.5rem;
   }
 `;
 
 export const StyledP = styled.p`
+  display: flex;
+  justify-content: center;
+  align-items: space-between;
+
   flex-basis: 100%;
 
   margin-top: 5%;
@@ -104,87 +132,123 @@ export const StyledP = styled.p`
 
   @media (${({ theme }) => theme.m}) and (orientation: portrait) {
     font-size: 2.2rem;
+    line-height: 3rem;
   }
 
   @media (${({ theme }) => theme.l}) {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    line-height: 3rem;
+  }
+
+  @media (${({ theme }) => theme.xl}) {
+    font-size: 2rem;
+    line-height: 3.5rem;
   }
 `;
 
 export const StyledIconContainer = styled(StyledP)`
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  flex: 0;
 
   margin-top: 10%;
 
   font-size: 3.5vmax;
 
   transition: 0.5s;
+  color: ${mainColorLight};
 
-  @media (${({ theme }) => theme.m}) and (orientation: portrait) {
-    font-size: 3rem;
+  @media (${({ theme }) => theme.m}) {
+    font-size: 4rem;
   }
 
   @media (${({ theme }) => theme.l}) {
-    font-size: 3rem;
+    font-size: 5rem;
   }
 
   @media (hover: hover) {
     &:hover {
-      color: ${({ blue }) => (blue ? '#3b5998' : 'white')};
+      /* color: ${({ blue }) => (blue ? '#3b5998' : '#d29f68')}; */
     }
   }
 `;
 
 export const DivAbout = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
   position: absolute;
   bottom: 0;
   transform: translateY(50%);
 
   width: 90%;
-  padding: 5vmin;
-  background-color: #fff;
-  /* transform: translateY(50%); */
+  padding: 5vmin 5vmin 12vmin;
+
   z-index: 10;
-  background-color: #885a5a;
+  background-color: #d29f68;
 
   @media (${({ theme }) => theme.l}) {
-    width: 60%;
+    width: 70%;
     padding: 6rem;
   }
 
   @media (${({ theme }) => theme.xl}) {
-    width: 50%;
-    padding: 7rem;
+    width: 60%;
+    padding-bottom: 9rem;
   }
 `;
 
-export const H1About = styled(StyledH1)`
+export const H1About = styled.h1`
+  flex-basis: 100%;
+
+  text-align: center;
+  font-size: 4vmax;
+  line-height: 10vmax;
+
   @media (${({ theme }) => theme.m}) and (orientation: portrait) {
-    font-size: 2.5rem;
+    font-size: 4rem;
+    line-height: 10rem;
   }
 
   @media (${({ theme }) => theme.l}) {
-    font-size: 2.5rem;
+    font-size: 4.5rem;
+    line-height: 10rem;
+  }
+
+  @media (${({ theme }) => theme.l}) and (orientation: portrait) {
+    font-size: 4.5rem;
+    line-height: 10rem;
+  }
+
+  @media (${({ theme }) => theme.xl}) {
+    font-size: 5rem;
+    line-height: 10rem;
   }
 `;
 
-export const PAbout = styled(StyledP)`
-  opacity: 1;
-  transform: none;
-  line-height: 4.2vmin;
+export const PAbout = styled.p`
+  text-align: center;
+  font-size: 2vmax;
+  letter-spacing: 0.2vh;
 
   @media (${({ theme }) => theme.m}) and (orientation: portrait) {
     font-size: 2.2rem;
   }
 
+  @media (${({ theme }) => theme.m}) and (orientation: portrait) {
+    font-size: 2.2rem;
+    line-height: 3rem;
+  }
+
   @media (${({ theme }) => theme.l}) {
-    font-size: 1.5rem;
+    width: 85%;
+    font-size: 1.6rem;
+    line-height: 3rem;
   }
 
   @media (${({ theme }) => theme.xl}) {
-    font-size: 1.7rem;
-    line-height: 3rem;
+    width: 80%;
+    font-size: 2rem;
+    line-height: 4rem;
   }
 `;

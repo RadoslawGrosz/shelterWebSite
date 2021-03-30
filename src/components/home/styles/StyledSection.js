@@ -235,7 +235,7 @@ export const StyledH2 = styled.h2`
 
 export const StyledP = styled.p`
   font-size: 3vmin;
-  text-align: justify;
+  /* text-align: justify; */
   letter-spacing: 0.2vh;
   word-wrap: break-word;
   text-overflow: ellipsis;

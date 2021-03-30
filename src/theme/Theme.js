@@ -6,3 +6,7 @@ export default {
   xl: 'min-width: 1025px',
   xxl: 'min-width: 1441px',
 };
+
+export const mainColorLight = '#d29f68';
+export const mainColorDark = '#d17e36';
+export const mainColorBlack = '#232220';

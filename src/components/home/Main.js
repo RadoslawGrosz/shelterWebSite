@@ -42,7 +42,7 @@ const Main = () => {
     {
       title: 'Krok 1',
       text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet turpis et odio fermentum pharetra nec at lorem. Vestibulum bibendum sapien nec luctus sollicitudin.',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet turpis et odio fermentum pharetra nec at lorem.',
       logo: faFacebook,
     },
     {
@@ -54,7 +54,7 @@ const Main = () => {
     {
       title: 'Krok 3',
       text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer interdum, nulla a mattis euismod, elit velit laoreet augue, a mattis lacus mauris ultricies arcu.',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer interdum, nulla a mattis euismod, elit velit laoreet augue.',
       logo: faPaw,
     },
   ];
@@ -85,9 +85,7 @@ const Main = () => {
           eu lobortis leo. Praesent placerat tortor non fermentum tempus. Proin
           imperdiet orci vel imperdiet congue. Morbi quis varius lacus, sit amet
           aliquet ligula. Phasellus ornare eros vel aliquam pellentesque.
-          Quisque nec semper velit. Morbi iaculis egestas tempor. Vestibulum
-          vitae elit nunc. Vestibulum non neque leo. Phasellus in nibh sed quam
-          varius tincidunt.
+          Quisque nec semper velit.
         </PAbout>
       </DivAbout>
     </StyledMain>
