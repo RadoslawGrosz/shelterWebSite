@@ -13,7 +13,7 @@ import {
   Spinner,
   SpinnerContainer,
   InfoWrapper,
-} from './styles/StyledSection';
+} from './styles/StyledMainSection';
 
 const MainSection = ({ wrapperRef, ButtonPanel }) => {
   const sectionRef = useRef(null);

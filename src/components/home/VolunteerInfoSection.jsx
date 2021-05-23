@@ -1,5 +1,5 @@
 import React from 'react';
-import { HelpInfoWrapper, H1About, PAbout } from './styles/StyledSection';
+import { HelpInfoWrapper, H1About, PAbout } from './styles/StyledMainSection';
 
 const VolunteerInfoSection = () => {
   return (

@@ -9,7 +9,7 @@ import {
   TextWrapper,
   EventName,
   EventDescription,
-} from './styles/StyledSection';
+} from './styles/StyledMainSection';
 
 const EventsSection = () => {
   return (
