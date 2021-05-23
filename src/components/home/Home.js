@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import Header from './Header';
 import Menu from './Menu';
-import Main from './Main';
-import Section from './Section';
+import AdoptInfoSection from './AdoptInfoSection';
+import MainSection from './MainSection';
 import Footer from './Footer';
 import StyledWrapper from './styles/StyledHome';
 
@@ -13,8 +13,8 @@ function Home() {
     <StyledWrapper ref={wrapperRef}>
       <Menu />
       <Header wrapperRef={wrapperRef} />
-      <Main />
-      <Section wrapperRef={wrapperRef} />
+      <AdoptInfoSection />
+      <MainSection wrapperRef={wrapperRef} />
       <Footer />
     </StyledWrapper>
   );

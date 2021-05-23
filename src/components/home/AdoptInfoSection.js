@@ -12,14 +12,14 @@ import {
   StyledH2,
   StyledP,
   StyledIconContainer,
-  DivAbout,
-  H1About,
-  PAbout,
+  // DivAbout,
+  // H1About,
+  // PAbout,
 } from './styles/StyledMain';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Main = () => {
+const AdoptInfoSection = () => {
   const mainRef = useRef(null);
 
   useEffect(() => {
@@ -77,19 +77,8 @@ const Main = () => {
     <StyledMain ref={mainRef} id="main">
       <StyledH1>Adopcja w trzech krokach</StyledH1>
       <ArticlesWrapper>{articleList}</ArticlesWrapper>
-      <DivAbout>
-        <H1About>O nas</H1About>
-        <PAbout>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-          lectus nisl, dictum vel sodales eget, euismod sodales neque. Vivamus
-          eu lobortis leo. Praesent placerat tortor non fermentum tempus. Proin
-          imperdiet orci vel imperdiet congue. Morbi quis varius lacus, sit amet
-          aliquet ligula. Phasellus ornare eros vel aliquam pellentesque.
-          Quisque nec semper velit.
-        </PAbout>
-      </DivAbout>
     </StyledMain>
   );
 };
 
-export default Main;
+export default AdoptInfoSection;

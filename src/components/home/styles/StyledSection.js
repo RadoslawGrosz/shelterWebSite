@@ -21,12 +21,13 @@ export const StyledSection = styled.section`
 
   width: 100vw;
   min-height: 40vh;
-  padding-top: 20vmax;
+  /* padding-top: 20vmax; */
   padding-bottom: 10vmin;
 
   transition: height 0.66s ease-out;
-  z-index: 1;
-  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 11;
+  /* background-color: rgba(0, 0, 0, 0.6); */
+  background-color: #fff;
 `;
 
 export const StyledH1 = styled.h1`
@@ -37,7 +38,7 @@ export const StyledH1 = styled.h1`
   letter-spacing: 0.8vmin;
   text-align: center;
   text-transform: uppercase;
-  color: white;
+  /* color: white; */
 
   @media (${({ theme }) => theme.l}) {
     font-size: 4.5rem;
@@ -89,6 +90,7 @@ export const Wrapper = styled.main`
   display: flex;
   flex-wrap: wrap;
   flex-basis: 100%;
+  /* flex-basis: 20%; */
 
   max-width: 1600px;
   margin-bottom: 3vh;
@@ -279,4 +281,158 @@ export const SpinnerContainer = styled.div`
   @media (orientation: landscape) {
     height: 80vh;
   }
+`;
+
+export const DivAbout = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  transform: translateY(-50%);
+
+  width: 90%;
+  padding: 5vmin 5vmin 12vmin;
+  /* margin-bottom: 10vmax; */
+  border-radius: 1rem;
+
+  z-index: 10;
+  background-color: #d29f68;
+  color: white;
+
+  @media (${({ theme }) => theme.l}) {
+    width: 80%;
+    padding: 6rem;
+  }
+
+  @media (${({ theme }) => theme.xl}) {
+    width: 70%;
+    padding-bottom: 9rem;
+  }
+
+  @media (${({ theme }) => theme.xxl}) {
+    width: 60%;
+    padding-bottom: 9rem;
+  }
+`;
+
+export const H1About = styled.h1`
+  flex-basis: 100%;
+
+  text-align: center;
+  font-size: 4vmax;
+  line-height: 10vmax;
+
+  @media (${({ theme }) => theme.m}) and (orientation: portrait) {
+    font-size: 4rem;
+    line-height: 10rem;
+  }
+
+  @media (${({ theme }) => theme.l}) {
+    font-size: 4.5rem;
+    line-height: 10rem;
+  }
+
+  @media (${({ theme }) => theme.l}) and (orientation: portrait) {
+    font-size: 4.5rem;
+    line-height: 10rem;
+  }
+
+  @media (${({ theme }) => theme.xl}) {
+    font-size: 5rem;
+    line-height: 10rem;
+  }
+`;
+
+export const PAbout = styled.p`
+  text-align: center;
+  font-size: 2vmax;
+  letter-spacing: 0.2vh;
+  line-height: 5vmin;
+
+  @media (${({ theme }) => theme.m}) and (orientation: portrait) {
+    font-size: 2.2rem;
+  }
+
+  @media (${({ theme }) => theme.m}) and (orientation: portrait) {
+    font-size: 2.2rem;
+    line-height: 3rem;
+  }
+
+  @media (${({ theme }) => theme.l}) {
+    width: 85%;
+    font-size: 1.6rem;
+    line-height: 3rem;
+  }
+
+  @media (${({ theme }) => theme.xl}) {
+    width: 80%;
+    font-size: 2rem;
+    line-height: 4rem;
+  }
+`;
+
+export const InfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: -35vmin;
+
+  @media (orientation: landscape) {
+    flex-direction: row-reverse;
+    align-items: stretch;
+    padding: 5vw;
+    margin-top: -25vmin;
+  }
+
+  @media (${({ theme }) => theme.xxl}) {
+    width: 60%;
+    padding: 0;
+    /* padding-bottom: 9rem; */
+  }
+`;
+
+export const EventsWrapper = styled(DivAbout)`
+  align-items: flex-start;
+
+  background-color: transparent;
+  color: black;
+  transform: none;
+`;
+
+export const EventWrapper = styled.div`
+  display: flex;
+
+  width: 100%;
+  margin-bottom: 2vmin;
+`;
+
+export const EventWrapperTitle = styled(H1About)`
+  /* line-height: 7vmax; */
+  letter-spacing: 0.5vmax;
+  /* text-align: left; */
+`;
+
+export const IconWrapper = styled.div`
+  font-size: 6vmin;
+  padding-right: 5%;
+  color: #d29f68;
+`;
+
+export const TextWrapper = styled.div``;
+
+export const EventName = styled(PAbout)`
+  text-align: left;
+  font-size: 4vmin;
+  margin-bottom: 2vmin;
+`;
+
+export const EventDescription = styled(EventName)`
+  font-size: 3.5vmin;
+`;
+
+export const HelpInfoWrapper = styled(EventsWrapper)`
+  background-color: #c18039;
+  color: #fff;
 `;

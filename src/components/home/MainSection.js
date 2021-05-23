@@ -4,14 +4,18 @@ import useFetchData from './hooks/useFetchData';
 import useTriggerFetchData from './hooks/useTriggerFetchData';
 import ArticleList from './ArticleList';
 import ImageGallery from './ImageGallery';
+import AboutSection from './AboutSection';
+import EventsSection from './EventsSection';
+import VolunteerInfoSection from './VolunteerInfoSection';
 import {
   StyledH1,
   StyledSection,
   Spinner,
   SpinnerContainer,
+  InfoWrapper,
 } from './styles/StyledSection';
 
-const Section = ({ wrapperRef, ButtonPanel }) => {
+const MainSection = ({ wrapperRef, ButtonPanel }) => {
   const sectionRef = useRef(null);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [currentGallery, setCurrentGallery] = useState(null);
@@ -19,7 +23,8 @@ const Section = ({ wrapperRef, ButtonPanel }) => {
   const [imageList, setImageList] = useState([]);
   const [currentOffset, setCurrentOffset] = useState(null);
   const [isDataRequest, setIsDataRequest, isAllDataLoaded] = useFetchData(
-    setData, sectionRef,
+    setData,
+    sectionRef,
   );
   useTriggerFetchData(wrapperRef, setIsDataRequest, setCurrentOffset);
 
@@ -46,15 +51,19 @@ const Section = ({ wrapperRef, ButtonPanel }) => {
 
   return (
     <StyledSection id="section" ref={sectionRef}>
-      <StyledH1>Psy do adopcji</StyledH1>
+      <AboutSection />
+      <InfoWrapper>
+        <EventsSection />
+        <VolunteerInfoSection />
+      </InfoWrapper>
+
+      <StyledH1>Zwierzaki do adopcji</StyledH1>
       {!isDataRequest || isAllDataLoaded ? null : (
         <SpinnerContainer>
           <Spinner />
         </SpinnerContainer>
       )}
-      {data.map(({
-        id, images, name, description,
-      }, index) => (
+      {data.map(({ id, images, name, description }, index) => (
         <ArticleList
           key={id}
           id={id}
@@ -76,7 +85,7 @@ const Section = ({ wrapperRef, ButtonPanel }) => {
   );
 };
 
-Section.propTypes = {
+MainSection.propTypes = {
   wrapperRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.object }),
@@ -84,9 +93,9 @@ Section.propTypes = {
   ButtonPanel: PropTypes.func,
 };
 
-Section.defaultProps = {
+MainSection.defaultProps = {
   wrapperRef: null,
   ButtonPanel: () => {},
 };
 
-export default Section;
+export default MainSection;
