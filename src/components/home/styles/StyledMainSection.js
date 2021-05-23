@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { mainColorLight } from '../../../theme/Theme';
 
 const rotateSpinner = keyframes`
 	0% {
@@ -296,18 +297,31 @@ export const DivAbout = styled.div`
   /* margin-bottom: 10vmax; */
   border-radius: 1rem;
 
+  font-size: 2vmax;
+  letter-spacing: 0.2vh;
+  line-height: 5vmin;
+
   z-index: 10;
   background-color: #d29f68;
   color: white;
 
+  @media (${({ theme }) => theme.m}) and (orientation: portrait) {
+    font-size: 2.2rem;
+    line-height: 3rem;
+  }
+
   @media (${({ theme }) => theme.l}) {
     width: 80%;
     padding: 6rem;
+    font-size: 1.6rem;
+    line-height: 3rem;
   }
 
   @media (${({ theme }) => theme.xl}) {
     width: 70%;
     padding-bottom: 9rem;
+    font-size: 2rem;
+    line-height: 4rem;
   }
 
   @media (${({ theme }) => theme.xxl}) {
@@ -352,23 +366,19 @@ export const PAbout = styled.p`
 
   @media (${({ theme }) => theme.m}) and (orientation: portrait) {
     font-size: 2.2rem;
-  }
-
-  @media (${({ theme }) => theme.m}) and (orientation: portrait) {
-    font-size: 2.2rem;
     line-height: 3rem;
   }
 
   @media (${({ theme }) => theme.l}) {
-    width: 85%;
+    /* width: 85%; */
     font-size: 1.6rem;
-    line-height: 3rem;
+    line-height: 2.6rem;
   }
 
   @media (${({ theme }) => theme.xl}) {
-    width: 80%;
+    /* width: 80%; */
     font-size: 2rem;
-    line-height: 4rem;
+    line-height: 3rem;
   }
 `;
 
@@ -381,9 +391,21 @@ export const InfoWrapper = styled.div`
 
   @media (orientation: landscape) {
     flex-direction: row-reverse;
-    align-items: stretch;
+    align-items: flex-start;
     padding: 5vw;
     margin-top: -25vmin;
+  }
+
+  @media (${({ theme }) => theme.m}) {
+    margin-top: -20vmin;
+  }
+
+  @media (${({ theme }) => theme.l}) {
+    margin-top: -15vmin;
+  }
+
+  @media (${({ theme }) => theme.xl}) {
+    margin-top: 3rem;
   }
 
   @media (${({ theme }) => theme.xxl}) {
@@ -396,9 +418,16 @@ export const InfoWrapper = styled.div`
 export const EventsWrapper = styled(DivAbout)`
   align-items: flex-start;
 
+  padding: 0 5vmin 10vmin;
+
   background-color: transparent;
   color: black;
   transform: none;
+
+  @media (${({ theme }) => theme.l}) and (orientation: landscape) {
+    padding: 0 1rem 4rem;
+    line-height: 1.5rem;
+  }
 `;
 
 export const EventWrapper = styled.div`
@@ -412,12 +441,20 @@ export const EventWrapperTitle = styled(H1About)`
   /* line-height: 7vmax; */
   letter-spacing: 0.5vmax;
   /* text-align: left; */
+  @media (${({ theme }) => theme.l}) and (orientation: landscape) {
+    font-size: 3rem;
+    line-height: 7rem;
+  }
 `;
 
 export const IconWrapper = styled.div`
   font-size: 6vmin;
   padding-right: 5%;
   color: #d29f68;
+
+  @media (${({ theme }) => theme.l}) and (orientation: landscape) {
+    font-size: 3.5rem;
+  }
 `;
 
 export const TextWrapper = styled.div``;
@@ -433,6 +470,42 @@ export const EventDescription = styled(EventName)`
 `;
 
 export const HelpInfoWrapper = styled(EventsWrapper)`
+  align-items: flex-start;
   background-color: #c18039;
   color: #fff;
+
+  @media (${({ theme }) => theme.m}) and (orientation: portrait) {
+    padding-top: 1.5rem;
+  }
+`;
+
+export const EventsButton = styled.button`
+  background-color: ${mainColorLight};
+  letter-spacing: 0.08em;
+  color: white;
+  line-height: 7vmin;
+  text-transform: uppercase;
+  border: none;
+  /* font-size: 1em; */
+  padding: 2.5vmin 5vmin;
+  border-radius: 2rem;
+
+  @media (${({ theme }) => theme.m}) {
+    font-size: 2rem;
+  }
+
+  @media (${({ theme }) => theme.l}) and (orientation: landscape) {
+    padding: 2rem 7rem;
+    line-height: 2rem;
+  }
+`;
+
+export const VolunteerInfoSectionButton = styled(EventsButton)`
+  margin-top: 10%;
+`;
+
+export const VolunteerInfoTitle = styled(H1About)`
+  @media (${({ theme }) => theme.l}) and (orientation: landscape) {
+    font-size: 3rem;
+  }
 `;
