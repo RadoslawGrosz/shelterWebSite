@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Firebase from './firebase';
-import { SpinnerContainer, Spinner } from '../components/home/styles/StyledSection';
+import {
+  SpinnerContainer,
+  Spinner,
+} from '../components/home/styles/StyledMainSection';
 import { WrapperHover } from '../components/admin/styles/StyledPopupConfirm';
 
 export const AuthContext = React.createContext();
