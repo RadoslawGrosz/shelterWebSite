@@ -9,6 +9,7 @@ import {
   TextWrapper,
   EventName,
   EventDescription,
+  EventsButton,
 } from './styles/StyledMainSection';
 
 const EventsSection = () => {
@@ -45,6 +46,7 @@ const EventsSection = () => {
           </EventDescription>
         </TextWrapper>
       </EventWrapper>
+      <EventsButton>Pokaż więcej</EventsButton>
     </EventsWrapper>
   );
 };
