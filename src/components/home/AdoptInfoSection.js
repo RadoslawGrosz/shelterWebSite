@@ -12,15 +12,18 @@ import {
   StyledH2,
   StyledP,
   StyledIconContainer,
+  // DivAbout,
+  // H1About,
+  // PAbout,
 } from './styles/StyledMain';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Main = () => {
+const AdoptInfoSection = () => {
   const mainRef = useRef(null);
 
   useEffect(() => {
-    const textElements = mainRef.current.querySelectorAll('p');
+    const textElements = mainRef.current.querySelectorAll('.animated');
 
     textElements.forEach((el) => {
       gsap.to(el, {
@@ -38,17 +41,20 @@ const Main = () => {
   const articleElements = [
     {
       title: 'Krok 1',
-      text: 'skontaktuj sie z nami',
+      text:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet turpis et odio fermentum pharetra nec at lorem.',
       logo: faFacebook,
     },
     {
       title: 'Krok 2',
-      text: 'Podpisz dokumenty',
+      text:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam consequat nunc elit, et aliquet elit rhoncus non. Suspendisse potenti.',
       logo: faFileSignature,
     },
     {
       title: 'Krok 3',
-      text: 'Zabierz psa do domu',
+      text:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer interdum, nulla a mattis euismod, elit velit laoreet augue.',
       logo: faPaw,
     },
   ];
@@ -58,13 +64,9 @@ const Main = () => {
   articleElements.forEach(({ title, text, logo }) => {
     articleList.push(
       <StyledArticle key={title}>
-        <StyledH2>
-          {title}
-        </StyledH2>
-        <StyledP>
-          {text}
-        </StyledP>
-        <StyledIconContainer blue>
+        <StyledH2>{title}</StyledH2>
+        <StyledP className="animated">{text}</StyledP>
+        <StyledIconContainer blue className="animated">
           <FontAwesomeIcon icon={logo} />
         </StyledIconContainer>
       </StyledArticle>,
@@ -74,11 +76,9 @@ const Main = () => {
   return (
     <StyledMain ref={mainRef} id="main">
       <StyledH1>Adopcja w trzech krokach</StyledH1>
-      <ArticlesWrapper>
-        {articleList}
-      </ArticlesWrapper>
+      <ArticlesWrapper>{articleList}</ArticlesWrapper>
     </StyledMain>
   );
 };
 
-export default Main;
+export default AdoptInfoSection;

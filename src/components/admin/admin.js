@@ -4,7 +4,7 @@ import { faSignOutAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
 import firebase, { storage } from '../../server/firebase';
 import PopupConfirm from './PopupConfirm';
 import AddingForm from './AddingForm';
-import Section from '../home/Section';
+import MainSection from '../home/MainSection';
 import { ButtonWrapper, ButtonAdd, LogoutButton } from './styles/StyledAdmin';
 import StyledWrapper from '../home/styles/StyledHome';
 import { DelButton } from './styles/StyledAddingForm';
@@ -23,7 +23,7 @@ const Admin = () => {
 
   const handleShowRemoveAlert = () => {
     if (articlesToDelete[0]) return setIsDelAlertVisible(true);
-    return alert('Wybierz co chcesz usunąć.')
+    return alert('Wybierz co chcesz usunąć.');
   };
 
   const removeArticle = () => {
@@ -38,7 +38,9 @@ const Admin = () => {
           const sizes = ['small', 'medium', 'big'];
           sizes.forEach(async (size) => {
             try {
-              const fileRef = await storage.ref(`images/${article}/${name}/${size}-${name}`);
+              const fileRef = await storage.ref(
+                `images/${article}/${name}/${size}-${name}`,
+              );
               fileRef.delete();
             } catch (err) {
               throw new Error(err);
@@ -51,7 +53,7 @@ const Admin = () => {
 
       try {
         await db.collection('dogs').doc(article).delete();
-        setArticlesToDelete((prev) => (prev.filter((doc) => doc !== article)));
+        setArticlesToDelete((prev) => prev.filter((doc) => doc !== article));
       } catch (err) {
         throw new Error(err);
       }
@@ -68,7 +70,7 @@ const Admin = () => {
   const handleToggleArticle = (id) => {
     const index = articlesToDelete.findIndex((articleId) => articleId === id);
     if (index !== -1) {
-      setArticlesToDelete((prev) => (prev.filter((doc) => doc !== id)));
+      setArticlesToDelete((prev) => prev.filter((doc) => doc !== id));
     } else {
       setArticlesToDelete((prev) => [...prev, id]);
     }
@@ -76,9 +78,7 @@ const Admin = () => {
 
   const ButtonPanel = (id) => (
     <DelButton onClick={() => handleToggleArticle(id)}>
-      {isArticleToggle(id) && (
-        <FontAwesomeIcon icon={faCheck} />
-      )}
+      {isArticleToggle(id) && <FontAwesomeIcon icon={faCheck} />}
     </DelButton>
   );
 
@@ -87,9 +87,12 @@ const Admin = () => {
       <LogoutButton onClick={() => firebase.auth().signOut()}>
         <FontAwesomeIcon icon={faSignOutAlt} />
       </LogoutButton>
-      <Section wrapperRef={wrapperRef} ButtonPanel={ButtonPanel} />
+      <MainSection wrapperRef={wrapperRef} ButtonPanel={ButtonPanel} />
       <ButtonWrapper>
-        <ButtonAdd onClick={() => setIsAddingFormVisible(true)} bgcHover="#3aa832">
+        <ButtonAdd
+          onClick={() => setIsAddingFormVisible(true)}
+          bgcHover="#3aa832"
+        >
           Dodaj
         </ButtonAdd>
         <ButtonAdd onClick={handleShowRemoveAlert} bgcHover="#a83232">

@@ -1,5 +1,11 @@
 import { useEffect } from 'react';
 import gsap from 'gsap';
+import {
+  menuLinkColor,
+  menuLinkColorActive,
+  menuBackgroundColor,
+  menuBackgroundColorActive,
+} from '../styles/StyledMenu';
 
 const useChangeMenuOnTrigger = (menuRef, isMenuTriggered, isLandscape) => {
   useEffect(() => {
@@ -9,9 +15,9 @@ const useChangeMenuOnTrigger = (menuRef, isMenuTriggered, isLandscape) => {
 
     tl.to(menu, {
       y: 0,
-      backgroundColor: 'transparent',
-      borderColor: 'black',
-      color: 'black',
+      // backgroundColor: 'transparent',
+      // borderColor: 'black',
+      // color: 'black',
       duration: 0,
     });
 
@@ -19,18 +25,18 @@ const useChangeMenuOnTrigger = (menuRef, isMenuTriggered, isLandscape) => {
       if (isMenuTriggered) {
         tl.to(menu, {
           y: 0,
-          backgroundColor: '#001f3f',
+          backgroundColor: menuBackgroundColorActive,
           borderColor: 'white',
-          color: 'white',
+          color: menuLinkColorActive,
           z: 4,
           duration: 0.3,
         });
       } else {
         tl.to(menu, {
           y: 0,
-          backgroundColor: 'transparent',
+          backgroundColor: menuBackgroundColor,
           borderColor: 'black',
-          color: 'black',
+          color: menuLinkColor,
           duration: 0.3,
         });
       }

@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 
+export const menuLinkColor = '#3a3b3c';
+export const menuLinkColorActive = '#fff';
+export const menuBackgroundColor = 'transparent';
+export const menuBackgroundColorActive = '#353A47';
+
 export const StyledNav = styled.nav`
   position: fixed;
-  
+
   width: 100%;
 
-  z-index: 2;
-  
+  z-index: 20;
+
   @media (orientation: landscape) {
     flex-direction: row;
     align-items: flex-start;
@@ -20,10 +25,10 @@ export const StyledUl = styled.ul`
   justify-content: flex-end;
 
   width: 100%;
-  padding: .5vmin;
+  padding: 0.5vmin;
 
   list-style: none;
-  
+
   @media (orientation: landscape) {
     flex-direction: row;
   }
@@ -43,18 +48,18 @@ export const StyledLi = styled.li`
     padding: 0;
     border-left: 0.2vmin solid black;
 
-    &:nth-child(1){
+    &:nth-child(1) {
       margin-right: auto;
       border: none;
       transform: translateX(-1vmin);
     }
 
-    &:nth-child(2){
+    &:nth-child(2) {
       border: none;
       transform: translateX(1vmin);
     }
 
-    &:nth-last-child(1){
+    &:nth-last-child(1) {
       text-align: right;
     }
   }
@@ -80,23 +85,23 @@ export const StyledA = styled.a`
     padding: 0 1.5vmax 0 1.5vmax;
   }
 
-  @media (${({ theme }) => theme.l}) and (orientation: landscape){
+  @media (${({ theme }) => theme.l}) and (orientation: landscape) {
     font-size: 1.8rem;
     line-height: 4rem;
   }
 
-  @media (${({ theme }) => theme.m}) and (orientation: portrait){
+  @media (${({ theme }) => theme.m}) and (orientation: portrait) {
     font-size: 2.5rem;
   }
 
   @media (hover: hover) {
     &:hover {
-      color: #f05f40;
+      color: #dc136c;
     }
   }
 `;
 
 export const LogoContainer = styled.b`
   margin-right: 2vmin;
-  color: #4296F0;
+  color: #dc136c;
 `;
