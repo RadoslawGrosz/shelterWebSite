@@ -7,6 +7,7 @@ import ImageGallery from './ImageGallery';
 import AboutSection from './AboutSection';
 import EventsSection from './EventsSection';
 import VolunteerInfoSection from './VolunteerInfoSection';
+import PetsSection from './PetsSection';
 import {
   StyledH1,
   StyledSection,
@@ -16,41 +17,41 @@ import {
 } from './styles/StyledMainSection';
 
 const MainSection = ({ wrapperRef, ButtonPanel }) => {
-  const sectionRef = useRef(null);
-  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
-  const [currentGallery, setCurrentGallery] = useState(null);
-  const [data, setData] = useState([]);
-  const [imageList, setImageList] = useState([]);
-  const [currentOffset, setCurrentOffset] = useState(null);
-  const [isDataRequest, setIsDataRequest, isAllDataLoaded] = useFetchData(
-    setData,
-    sectionRef,
-  );
-  useTriggerFetchData(wrapperRef, setIsDataRequest, setCurrentOffset);
+  // const sectionRef = useRef(null);
+  // const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  // const [currentGallery, setCurrentGallery] = useState(null);
+  // const [data, setData] = useState([]);
+  // const [imageList, setImageList] = useState([]);
+  // const [currentOffset, setCurrentOffset] = useState(null);
+  // const [isDataRequest, setIsDataRequest, isAllDataLoaded] = useFetchData(
+  //   setData,
+  //   sectionRef,
+  // );
+  // useTriggerFetchData(wrapperRef, setIsDataRequest, setCurrentOffset);
 
-  const handleGallery = (index) => {
-    setCurrentGallery(index);
-    setIsGalleryOpen(true);
-  };
+  // const handleGallery = (index) => {
+  //   setCurrentGallery(index);
+  //   setIsGalleryOpen(true);
+  // };
 
-  useEffect(() => {
-    const createImageList = () => {
-      const mainImg = data[currentGallery].images.find((image) => image.isMain);
-      const tempList = data[currentGallery].images.filter(
-        ({ big }) => big !== mainImg.big,
-      );
-      tempList.unshift(mainImg);
-      setImageList(tempList);
-    };
-    if (data[currentGallery]) createImageList();
-  }, [data, currentGallery]);
+  // useEffect(() => {
+  //   const createImageList = () => {
+  //     const mainImg = data[currentGallery].images.find((image) => image.isMain);
+  //     const tempList = data[currentGallery].images.filter(
+  //       ({ big }) => big !== mainImg.big,
+  //     );
+  //     tempList.unshift(mainImg);
+  //     setImageList(tempList);
+  //   };
+  //   if (data[currentGallery]) createImageList();
+  // }, [data, currentGallery]);
 
   // useEffect(() => {
   //   window.scrollTo(0, currentOffset);
   // }, [data]);
 
   return (
-    <StyledSection id="section" ref={sectionRef}>
+    <StyledSection id="section">
       <AboutSection />
       <InfoWrapper>
         <EventsSection />
@@ -58,7 +59,8 @@ const MainSection = ({ wrapperRef, ButtonPanel }) => {
       </InfoWrapper>
 
       <StyledH1>Zwierzaki do adopcji</StyledH1>
-      {!isDataRequest || isAllDataLoaded ? null : (
+      <PetsSection wrapperRef={wrapperRef} />
+      {/* {!isDataRequest || isAllDataLoaded ? null : (
         <SpinnerContainer>
           <Spinner />
         </SpinnerContainer>
@@ -80,7 +82,7 @@ const MainSection = ({ wrapperRef, ButtonPanel }) => {
           imageList={imageList.map(({ big }) => big)}
           setIsGalleryOpen={setIsGalleryOpen}
         />
-      )}
+      )} */}
     </StyledSection>
   );
 };

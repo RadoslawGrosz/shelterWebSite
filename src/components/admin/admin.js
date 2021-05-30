@@ -5,6 +5,7 @@ import firebase, { storage } from '../../server/firebase';
 import PopupConfirm from './PopupConfirm';
 import AddingForm from './AddingForm';
 import MainSection from '../home/MainSection';
+import PetsSection from '../home/PetsSection';
 import { ButtonWrapper, ButtonAdd, LogoutButton } from './styles/StyledAdmin';
 import StyledWrapper from '../home/styles/StyledHome';
 import { DelButton } from './styles/StyledAddingForm';
@@ -87,7 +88,7 @@ const Admin = () => {
       <LogoutButton onClick={() => firebase.auth().signOut()}>
         <FontAwesomeIcon icon={faSignOutAlt} />
       </LogoutButton>
-      <MainSection wrapperRef={wrapperRef} ButtonPanel={ButtonPanel} />
+      <PetsSection wrapperRef={wrapperRef} ButtonPanel={ButtonPanel} />
       <ButtonWrapper>
         <ButtonAdd
           onClick={() => setIsAddingFormVisible(true)}
@@ -99,7 +100,7 @@ const Admin = () => {
           Usuń wybrane
         </ButtonAdd>
       </ButtonWrapper>
-      <footer id="footer" />
+      <footer id="footer" style={{ minHeight: '5rem' }} />
       {isDelAlertVisible && (
         <PopupConfirm
           hideAlert={hideAlert}

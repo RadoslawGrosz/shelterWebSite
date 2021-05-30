@@ -14,7 +14,7 @@ export const FormWrapper = styled.div`
   max-width: 800px;
 
   background-color: #e0c08c;
-  z-index: 4;
+  z-index: 99;
 `;
 
 export const StyledForm = styled.form`
@@ -86,6 +86,10 @@ export const FileUploadButton = styled(StyledLabel)`
       color: #fff;
     }
   }
+
+  @media (${({ theme }) => theme.m}) {
+    width: 50rem;
+  }
 `;
 
 export const StyledInput = styled.input`
@@ -99,6 +103,7 @@ export const StyledInput = styled.input`
 
   @media (${({ theme }) => theme.m}) {
     font-size: 2rem;
+    width: 50rem;
   }
 `;
 
@@ -111,8 +116,8 @@ export const StyledSubmit = styled(StyledInput)`
   border: 0.5vmin solid black;
   align-self: flex-end;
 
-  color: white;
-  background-color: black;
+  color: black;
+  background-color: white;
 
   font-size: 5vmin;
   letter-spacing: 0.2vmin;
@@ -122,8 +127,8 @@ export const StyledSubmit = styled(StyledInput)`
 
   @media (hover: hover) {
     &:hover {
-      background-color: white;
-      color: black;
+      background-color: black;
+      color: white;
     }
   }
 
@@ -238,7 +243,7 @@ export const CloseButton = styled(DelButton)`
     height: 3.2rem;
 
     top: 1rem;
-    right: 1rem;
+    left: 1rem;
 
     font-size: 2rem;
   }

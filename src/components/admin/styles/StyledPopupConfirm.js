@@ -11,8 +11,8 @@ export const WrapperHover = styled.div`
   left: 0;
   right: 0;
 
-  background-color: ${({ bgc }) => (bgc || 'rgba(0, 0, 0, 0.6)')};
-  z-index: 3; 
+  background-color: ${({ bgc }) => bgc || 'rgba(0, 0, 0, 0.6)'};
+  z-index: 99;
 `;
 
 export const Alert = styled.div`
@@ -27,7 +27,7 @@ export const Alert = styled.div`
 
   background-color: #000;
   color: white;
-  
+
   @media (orientation: landscape) {
     width: 50vw;
     height: 50vh;
@@ -37,7 +37,7 @@ export const Alert = styled.div`
 export const StyledH2 = styled.h2`
   text-align: center;
   font-size: 3.5vmin;
-  letter-spacing: .2vmin;
+  letter-spacing: 0.2vmin;
 `;
 
 export const StyledP = styled.p`
@@ -45,16 +45,16 @@ export const StyledP = styled.p`
   text-align: center;
 
   font-size: 3vmin;
-  letter-spacing: .1vmin;
+  letter-spacing: 0.1vmin;
 `;
 
 export const StyledButton = styled.button`
   align-self: flex-end;
   flex-basis: 30%;
-  border: .5vmin solid ;
+  border: 0.5vmin solid;
 
   font-size: 5vmin;
-  letter-spacing: .2vmin;
+  letter-spacing: 0.2vmin;
 
   text-transform: uppercase;
   cursor: pointer;

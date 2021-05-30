@@ -18,7 +18,7 @@ const VolunteerInfoSection = () => {
         aliquet ligula. Phasellus ornare eros vel aliquam. Morbi quis varius
         lacus, sit amet aliquet ligula. Phasellus ornare eros vel aliquam
       </PAbout>
-      <VolunteerInfoSectionButton>
+      <VolunteerInfoSectionButton variant="contained">
         dowiedz się więcej
       </VolunteerInfoSectionButton>
     </HelpInfoWrapper>

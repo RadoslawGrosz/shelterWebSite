@@ -3,18 +3,18 @@ import { DelButton } from './StyledAddingForm';
 
 export const StyledWrapper = styled.div`
   display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
 
-	min-height: 40vh;
+  min-height: 40vh;
 
-	background-color: #fff;
+  background-color: #fff;
   z-index: 4;
 
-	@media (orientation: landscape) {
-		padding: 10vh 0 10vh;
-	}
+  @media (orientation: landscape) {
+    padding: 10vh 0 10vh;
+  }
 `;
 
 export const StyledArticleHover = styled.div`
@@ -23,18 +23,18 @@ export const StyledArticleHover = styled.div`
   align-items: center;
 
   position: absolute;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 
   color: white;
   background-color: rgba(0, 0, 0, 0.7);
 
   opacity: 0;
-  transition: .5s;
+  transition: 0.5s;
 
-  &:hover{
+  &:hover {
     opacity: 1;
   }
 `;
@@ -71,7 +71,7 @@ export const ButtonWrapper = styled.div`
 
   padding: 2vmin 0;
 
-  z-index: 2;
+  z-index: 99;
 `;
 
 export const ButtonAdd = styled.p`
@@ -95,7 +95,7 @@ export const ButtonAdd = styled.p`
   font-weight: bold;
 
   background-color: white;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
   cursor: pointer;
   z-index: 2;
 
@@ -114,7 +114,7 @@ export const ButtonAdd = styled.p`
 
 export const LogoutButton = styled(DelButton)`
   position: fixed;
-  z-index: 2;
+  z-index: 99;
 
   left: 2vmin;
   right: auto;
