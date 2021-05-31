@@ -1,21 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react';
-import PropTypes from 'prop-types';
-import useFetchData from './hooks/useFetchData';
-import useTriggerFetchData from './hooks/useTriggerFetchData';
-import ArticleList from './ArticleList';
-import ImageGallery from './ImageGallery';
-import AboutSection from './AboutSection';
-import EventsSection from './EventsSection';
-import VolunteerInfoSection from './VolunteerInfoSection';
+import useFetchData from '../../hooks/useFetchData';
+import useTriggerFetchData from '../../hooks/useTriggerFetchData';
+import ArticleList from '../ArticleList';
+import ImageGallery from '../ImageGallery';
 import {
   StyledH1,
   StyledSection,
   Spinner,
   SpinnerContainer,
   InfoWrapper,
-} from './styles/StyledSection';
+} from '../../styles/StyledMainSection';
 
-const MainSection = ({ wrapperRef, ButtonPanel }) => {
+const PetsSection = ({ wrapperRef, ButtonPanel }) => {
   const sectionRef = useRef(null);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [currentGallery, setCurrentGallery] = useState(null);
@@ -45,18 +41,8 @@ const MainSection = ({ wrapperRef, ButtonPanel }) => {
     if (data[currentGallery]) createImageList();
   }, [data, currentGallery]);
 
-  // useEffect(() => {
-  //   window.scrollTo(0, currentOffset);
-  // }, [data]);
-
   return (
-    <StyledSection id="section" ref={sectionRef}>
-      <AboutSection />
-      <InfoWrapper>
-        <EventsSection />
-        <VolunteerInfoSection />
-      </InfoWrapper>
-
+    <StyledSection style={{ backgroundColor: 'transparent' }}>
       <StyledH1>Zwierzaki do adopcji</StyledH1>
       {!isDataRequest || isAllDataLoaded ? null : (
         <SpinnerContainer>
@@ -85,17 +71,4 @@ const MainSection = ({ wrapperRef, ButtonPanel }) => {
   );
 };
 
-MainSection.propTypes = {
-  wrapperRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.object }),
-  ]),
-  ButtonPanel: PropTypes.func,
-};
-
-MainSection.defaultProps = {
-  wrapperRef: null,
-  ButtonPanel: () => {},
-};
-
-export default MainSection;
+export default PetsSection;

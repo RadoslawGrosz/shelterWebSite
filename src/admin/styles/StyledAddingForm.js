@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { WrapperHover } from './StyledPopupConfirm';
-import { StyledH2 } from '../../home/styles/StyledSection';
+import { StyledH2 } from '../../home/styles/StyledMainSection';
 
 export const FormWrapper = styled.div`
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;  
+  align-items: center;
 
   min-height: 60vh;
   max-height: 90vh;
@@ -14,14 +14,14 @@ export const FormWrapper = styled.div`
   max-width: 800px;
 
   background-color: #e0c08c;
-  z-index: 4;
+  z-index: 99;
 `;
 
 export const StyledForm = styled.form`
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;  
+  align-items: center;
 
   min-height: 60vh;
   max-height: 90vh;
@@ -72,9 +72,9 @@ export const StyledLabel = styled.label`
 `;
 
 export const FileUploadButton = styled(StyledLabel)`
-  border: .5vmin solid black;
+  border: 0.5vmin solid black;
   cursor: pointer;
-  transition: .3s;
+  transition: 0.3s;
 
   & strong {
     margin-left: 2vmin;
@@ -85,6 +85,10 @@ export const FileUploadButton = styled(StyledLabel)`
       background-color: #000;
       color: #fff;
     }
+  }
+
+  @media (${({ theme }) => theme.m}) {
+    width: 50rem;
   }
 `;
 
@@ -99,6 +103,7 @@ export const StyledInput = styled.input`
 
   @media (${({ theme }) => theme.m}) {
     font-size: 2rem;
+    width: 50rem;
   }
 `;
 
@@ -106,24 +111,24 @@ export const StyledSubmit = styled(StyledInput)`
   width: auto;
   bottom: 1vmin;
   margin-bottom: 0;
-  margin-top: 8vmin; 
+  margin-top: 8vmin;
   padding: 2vmin 10vmin;
-  border: .5vmin solid black;
+  border: 0.5vmin solid black;
   align-self: flex-end;
 
-  color: white;
-  background-color: black;
+  color: black;
+  background-color: white;
 
   font-size: 5vmin;
   letter-spacing: 0.2vmin;
   text-transform: uppercase;
   cursor: pointer;
-  transition: .3s;
+  transition: 0.3s;
 
   @media (hover: hover) {
     &:hover {
-      background-color: white;
-      color: black;
+      background-color: black;
+      color: white;
     }
   }
 
@@ -180,7 +185,8 @@ export const ImageContainer = styled.div`
   background-size: cover;
   border: 0.1vmin solid black;
 
-  border: ${({ isMain }) => (isMain ? '0.5vmin solid #cc23b0' : 'border: 0.1vmin solid black')};
+  border: ${({ isMain }) =>
+    isMain ? '0.5vmin solid #cc23b0' : 'border: 0.1vmin solid black'};
 
   @media (${({ theme }) => theme.m}) {
     width: 20rem;
@@ -202,13 +208,14 @@ export const DelButton = styled.button`
   height: 12vmin;
   max-height: 50px;
   padding: none;
-  margin: .5vmin;
+  margin: 0.5vmin;
   border: 0.1vmin solid black;
 
   border-radius: 20%;
   background-color: #fff;
-  background-color: ${({ isVisible }) => (isVisible === true ? 'black' : 'white')};
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  background-color: ${({ isVisible }) =>
+    isVisible === true ? 'black' : 'white'};
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
 
   font-size: 5vmin;
   text-align: center;
@@ -236,7 +243,7 @@ export const CloseButton = styled(DelButton)`
     height: 3.2rem;
 
     top: 1rem;
-    right: 1rem;
+    left: 1rem;
 
     font-size: 2rem;
   }

@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 
 const ImageGallery = ({ setIsGalleryOpen, imageList }) => {
   const [photoIndex, setPhotoIndex] = useState(0);
-  const placeHolderImg = 'https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101027/112815900-stock-vector-no-image-available-icon-flat-vector.jpg?ver=6';
+  const placeHolderImg =
+    'https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101027/112815900-stock-vector-no-image-available-icon-flat-vector.jpg?ver=6';
 
   return (
     <div>

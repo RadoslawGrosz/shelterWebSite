@@ -15,7 +15,7 @@ import {
   // DivAbout,
   // H1About,
   // PAbout,
-} from './styles/StyledMain';
+} from '../../styles/StyledAdoptInfoSection';
 
 gsap.registerPlugin(ScrollTrigger);
 

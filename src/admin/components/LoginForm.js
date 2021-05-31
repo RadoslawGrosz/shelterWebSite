@@ -7,7 +7,7 @@ import {
   StyledForm,
   StyledInput,
   StyledButton,
-} from './styles/StyledLoginForm';
+} from '../styles/StyledLoginForm';
 
 const LoginForm = ({ handleLogin }) => (
   <Wrapper>

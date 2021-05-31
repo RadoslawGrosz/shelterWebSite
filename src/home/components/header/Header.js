@@ -1,6 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { StyledHeader, ImageContainer, HeaderHover } from './styles/StyledHeader';
+import {
+  StyledHeader,
+  ImageContainer,
+  HeaderHover,
+} from '../../styles/StyledHeader';
 
 const Header = () => {
   const headerRef = useRef(null);
@@ -12,11 +16,13 @@ const Header = () => {
 
     const tl = gsap.timeline({ defaults: { ease: 'power0.out' } });
 
-    tl
-      .to(header, { autoAlpha: 0.05, duration: 1 })
-      .to(image, {
-        autoAlpha: 1, y: 0, duration: 3, ease: 'power3.out', delay: 2,
-      });
+    tl.to(header, { autoAlpha: 0.05, duration: 1 }).to(image, {
+      autoAlpha: 1,
+      y: 0,
+      duration: 3,
+      ease: 'power3.out',
+      delay: 2,
+    });
   });
 
   return (

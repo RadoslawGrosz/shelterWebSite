@@ -2,7 +2,7 @@ import React, { useCallback, useContext } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
 import Firebase from './firebase';
 import { AuthContext } from './Auth';
-import LoginForm from '../components/admin/LoginForm';
+import LoginForm from '../admin/components/LoginForm';
 
 const Login = ({ history }) => {
   const handleLogin = useCallback(
@@ -10,9 +10,10 @@ const Login = ({ history }) => {
       event.preventDefault();
       const { email, password } = event.target.elements;
       try {
-        await Firebase
-          .auth()
-          .signInWithEmailAndPassword(email.value, password.value);
+        await Firebase.auth().signInWithEmailAndPassword(
+          email.value,
+          password.value,
+        );
         history.push('/');
       } catch (err) {
         alert(err);
@@ -27,9 +28,7 @@ const Login = ({ history }) => {
     return <Redirect to="/admin" />;
   }
 
-  return (
-    <LoginForm handleLogin={handleLogin} />
-  );
+  return <LoginForm handleLogin={handleLogin} />;
 };
 
 export default withRouter(Login);

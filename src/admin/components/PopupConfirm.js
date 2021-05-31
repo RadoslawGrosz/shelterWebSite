@@ -6,7 +6,7 @@ import {
   StyledH2,
   StyledP,
   StyledButton,
-} from './styles/StyledPopupConfirm';
+} from '../styles/StyledPopupConfirm';
 
 const PopupConfirm = ({ hideAlert, removeArticle, count }) => {
   const [isDeleting, setIsDeleting] = useState(false);
@@ -18,38 +18,20 @@ const PopupConfirm = ({ hideAlert, removeArticle, count }) => {
 
   const message = () => {
     if (count) {
-      return (
-        <>
-          Usunięte zostaną
-          {' '}
-          {count}
-          {' '}
-          psy z bazy danych!
-        </>
-      );
+      return <>Usunięte zostaną {count} psy z bazy danych!</>;
     }
     setTimeout(() => {
       window.location.reload();
     }, 3000);
-    return (
-      <>
-        Usunięto, strona zostanie odświeżona...
-      </>
-    );
+    return <>Usunięto, strona zostanie odświeżona...</>;
   };
 
   return (
     <WrapperHover onClick={hideAlert}>
       <Alert>
         <StyledH2>Czy na pewno chcesz usunąć?</StyledH2>
-        <StyledP>
-          {message()}
-        </StyledP>
-        {(count && isDeleting) && (
-          <StyledP>
-            Usuwam...
-          </StyledP>
-        )}
+        <StyledP>{message()}</StyledP>
+        {count && isDeleting && <StyledP>Usuwam...</StyledP>}
         <StyledButton onClick={handleConfirm} confirm>
           Tak
         </StyledButton>

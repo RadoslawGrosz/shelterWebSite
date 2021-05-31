@@ -8,9 +8,9 @@ import {
   StyledLi,
   StyledA,
   LogoContainer,
-} from './styles/StyledMenu';
-import useTriggerMenuOnScroll from './hooks/useTriggerMenuOnScroll';
-import useChangeMenuOnTrigger from './hooks/useChangeMenuOnTrigger';
+} from '../../styles/StyledMenu';
+import useTriggerMenuOnScroll from '../../hooks/useTriggerMenuOnScroll';
+import useChangeMenuOnTrigger from '../../hooks/useChangeMenuOnTrigger';
 
 const Menu = () => {
   const navRef = useRef(null);
@@ -25,13 +25,12 @@ const Menu = () => {
     const [logo, buttonDogs, buttonAdopt] = ulRef.current.children;
 
     const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
-    tl
-      .to(logo, {
-        autoAlpha: 1,
-        x: 0,
-        duration: 1,
-        delay: 0.6,
-      })
+    tl.to(logo, {
+      autoAlpha: 1,
+      x: 0,
+      duration: 1,
+      delay: 0.6,
+    })
       .to(buttonDogs, {
         autoAlpha: 1,
         x: 0,
