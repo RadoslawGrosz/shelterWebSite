@@ -3,7 +3,7 @@ import {
   mainColorLight,
   mainColorDark,
   mainColorBlack,
-} from '../../../theme/Theme';
+} from '../../theme/Theme';
 
 export const StyledMain = styled.main`
   position: relative;

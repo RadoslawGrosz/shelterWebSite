@@ -4,11 +4,11 @@ import { faSignOutAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
 import firebase, { storage } from '../../server/firebase';
 import PopupConfirm from './PopupConfirm';
 import AddingForm from './AddingForm';
-import MainSection from '../home/MainSection';
-import PetsSection from '../home/PetsSection';
-import { ButtonWrapper, ButtonAdd, LogoutButton } from './styles/StyledAdmin';
-import StyledWrapper from '../home/styles/StyledHome';
-import { DelButton } from './styles/StyledAddingForm';
+import MainSection from '../../home/components/mainSection/MainSection';
+import PetsSection from '../../home/components/mainSection/PetsSection';
+import { ButtonWrapper, ButtonAdd, LogoutButton } from '../styles/StyledAdmin';
+import StyledWrapper from '../../home/styles/StyledHome';
+import { DelButton } from '../styles/StyledAddingForm';
 
 const Admin = () => {
   const [isDelAlertVisible, setIsDelAlertVisible] = useState(false);

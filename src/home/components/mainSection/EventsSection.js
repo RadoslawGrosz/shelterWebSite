@@ -10,7 +10,7 @@ import {
   EventName,
   EventDescription,
   EventsButton,
-} from './styles/StyledMainSection';
+} from '../../styles/StyledMainSection';
 
 const EventsSection = () => {
   return (

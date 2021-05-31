@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import backgroundDog from '../../../img/backgroundDog.jpg';
-import smallBackgroundDog from '../../../img/smallBackgroundDog.jpg';
-import mediumBackgroundDog from '../../../img/mediumBackgroundDog.jpg';
-import bigBackgroundDog from '../../../img/bigBackgroundDog.jpg';
-import backgroundPortrait from '../../../img/backgroundPortrait.jpg';
-import smallBackgroundPortrait from '../../../img/smallBackgroundPortrait.jpg';
-import mediumBackgroundPortrait from '../../../img/mediumBackgroundPortrait.jpg';
-import bigBackgroundPortrait from '../../../img/bigBackgroundPortrait.jpg';
+import backgroundDog from '../../img/backgroundDog.jpg';
+import smallBackgroundDog from '../../img/smallBackgroundDog.jpg';
+import mediumBackgroundDog from '../../img/mediumBackgroundDog.jpg';
+import bigBackgroundDog from '../../img/bigBackgroundDog.jpg';
+import backgroundPortrait from '../../img/backgroundPortrait.jpg';
+import smallBackgroundPortrait from '../../img/smallBackgroundPortrait.jpg';
+import mediumBackgroundPortrait from '../../img/mediumBackgroundPortrait.jpg';
+import bigBackgroundPortrait from '../../img/bigBackgroundPortrait.jpg';
 
 export const StyledHeader = styled.header`
   position: fixed;
@@ -18,7 +18,7 @@ export const StyledHeader = styled.header`
   height: 100vh;
   width: 100vw;
 
-  box-shadow: 0 0 10vmin rgba(0,0,0,0.4) inset;
+  box-shadow: 0 0 10vmin rgba(0, 0, 0, 0.4) inset;
 `;
 
 export const HeaderHover = styled.div`
@@ -63,7 +63,7 @@ export const ImageContainer = styled.div`
 
   @media (orientation: landscape) {
     background-image: url(${smallBackgroundDog});
-    
+
     @media (${({ theme }) => theme.m}) {
       background-image: url(${mediumBackgroundDog});
     }
@@ -77,5 +77,5 @@ export const ImageContainer = styled.div`
     }
   }
 
-  box-shadow: 0 10vmin 10vmin rgba(0,0,0,0.4) inset;
+  box-shadow: 0 10vmin 10vmin rgba(0, 0, 0, 0.4) inset;
 `;

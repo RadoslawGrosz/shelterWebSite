@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { Button } from '@material-ui/core';
-import { mainColorLight } from '../../../theme/Theme';
+import { mainColorLight } from '../../theme/Theme';
 
 const rotateSpinner = keyframes`
 	0% {

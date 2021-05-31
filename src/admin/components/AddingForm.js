@@ -11,7 +11,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Resizer from 'react-image-file-resizer';
 import firebase, { storage } from '../../server/firebase';
-import { WrapperHover } from './styles/StyledPopupConfirm';
+import { WrapperHover } from '../styles/StyledPopupConfirm';
 import {
   StyledForm,
   InfoSection,
@@ -27,7 +27,7 @@ import {
   FormWrapper,
   UploadingMessage,
   Info,
-} from './styles/StyledAddingForm';
+} from '../styles/StyledAddingForm';
 
 const AddingForm = ({ setIsAddingFormVisible }) => {
   const [dogName, setDogName] = useState('');
@@ -38,13 +38,21 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
   const [mainPictureName, setMainPictureName] = useState(null);
   const [documentId, setDocumentId] = useState('');
 
-  const resizeFile = (file, width, height) => new Promise((resolve) => {
-    Resizer.imageFileResizer(file, width, height, 'JPEG', 100, 0,
-      (uri) => {
-        resolve(uri);
-      },
-      'base64');
-  });
+  const resizeFile = (file, width, height) =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        width,
+        height,
+        'JPEG',
+        100,
+        0,
+        (uri) => {
+          resolve(uri);
+        },
+        'base64',
+      );
+    });
 
   const handleCloseForm = (e) => {
     if (e.target !== e.currentTarget) return;
@@ -87,9 +95,17 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
         isMain = true;
         setMainPictureName(name);
       }
-      setTempImages((prev) => [...prev, {
-        isMain, name, url, urlSmall, urlMedium, urlBig,
-      }]);
+      setTempImages((prev) => [
+        ...prev,
+        {
+          isMain,
+          name,
+          url,
+          urlSmall,
+          urlMedium,
+          urlBig,
+        },
+      ]);
     }
   };
 
@@ -99,7 +115,9 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
 
     const upload = (blob, size) => {
       const imageName = `${size}-${name}`;
-      const uploadTask = storage.ref(`images/${documentId}/${name}/${imageName}`).put(blob);
+      const uploadTask = storage
+        .ref(`images/${documentId}/${name}/${imageName}`)
+        .put(blob);
       uploadTask.on(
         'state_changed',
         () => {},
@@ -185,7 +203,8 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
 
   // when document id is known we can send images to the proper folder in firebase storage
   useEffect(() => {
-    if (documentId) tempImages.forEach((file, index) => handleFileUpload(file, index));
+    if (documentId)
+      tempImages.forEach((file, index) => handleFileUpload(file, index));
   }, [documentId]);
 
   // check if all needed images are in state
@@ -209,7 +228,9 @@ const AddingForm = ({ setIsAddingFormVisible }) => {
     if (!mainPictureName) return;
     setTempImages((prev) => {
       const temp = prev.map((image) => ({ ...image, isMain: false }));
-      temp[prev.findIndex((image) => image.name === mainPictureName)].isMain = true;
+      temp[
+        prev.findIndex((image) => image.name === mainPictureName)
+      ].isMain = true;
       return temp;
     });
   }, [mainPictureName]);

@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react';
-import useFetchData from './hooks/useFetchData';
-import useTriggerFetchData from './hooks/useTriggerFetchData';
-import ArticleList from './ArticleList';
-import ImageGallery from './ImageGallery';
+import useFetchData from '../../hooks/useFetchData';
+import useTriggerFetchData from '../../hooks/useTriggerFetchData';
+import ArticleList from '../ArticleList';
+import ImageGallery from '../ImageGallery';
 import {
   StyledH1,
   StyledSection,
   Spinner,
   SpinnerContainer,
   InfoWrapper,
-} from './styles/StyledMainSection';
+} from '../../styles/StyledMainSection';
 
 const PetsSection = ({ wrapperRef, ButtonPanel }) => {
   const sectionRef = useRef(null);
@@ -43,6 +43,7 @@ const PetsSection = ({ wrapperRef, ButtonPanel }) => {
 
   return (
     <StyledSection style={{ backgroundColor: 'transparent' }}>
+      <StyledH1>Zwierzaki do adopcji</StyledH1>
       {!isDataRequest || isAllDataLoaded ? null : (
         <SpinnerContainer>
           <Spinner />

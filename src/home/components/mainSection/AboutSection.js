@@ -1,5 +1,5 @@
 import React from 'react';
-import { DivAbout, H1About, PAbout } from './styles/StyledMainSection';
+import { DivAbout, H1About, PAbout } from '../../styles/StyledMainSection';
 
 const AboutSection = () => {
   return (

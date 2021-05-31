@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { StyledFooter, StyledLink } from './styles/StyledFooter';
+import { StyledFooter, StyledLink } from '../styles/StyledFooter';
 
 const Footer = () => (
   <StyledFooter id="footer">

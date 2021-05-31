@@ -1,10 +1,10 @@
 import React, { useRef } from 'react';
-import Header from './Header';
-import Menu from './Menu';
-import AdoptInfoSection from './AdoptInfoSection';
-import MainSection from './MainSection';
+import Header from './header/Header';
+import Menu from './header/Menu';
+import AdoptInfoSection from './adoptInfoSection/AdoptInfoSection';
+import MainSection from './mainSection/MainSection';
 import Footer from './Footer';
-import StyledWrapper from './styles/StyledHome';
+import StyledWrapper from '../styles/StyledHome';
 
 function Home() {
   const wrapperRef = useRef(null);

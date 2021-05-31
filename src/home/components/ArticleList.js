@@ -9,7 +9,7 @@ import {
   StyledArticleScroll,
   StyledH2,
   StyledP,
-} from './styles/StyledMainSection';
+} from '../styles/StyledMainSection';
 
 const ArticleList = ({
   id,

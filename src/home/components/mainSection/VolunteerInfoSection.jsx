@@ -4,7 +4,7 @@ import {
   VolunteerInfoTitle,
   PAbout,
   VolunteerInfoSectionButton,
-} from './styles/StyledMainSection';
+} from '../../styles/StyledMainSection';
 
 const VolunteerInfoSection = () => {
   return (

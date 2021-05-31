@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
-import firebase from '../../../server/firebase';
+import firebase from '../../server/firebase';
 
 const useFetchData = (setData) => {
   const [lastDocumentSnapshot, setLastDocumentSnapshot] = useState(null);
@@ -14,9 +14,16 @@ const useFetchData = (setData) => {
       const db = firebase.firestore();
       let colRef = null;
       if (!lastDocumentSnapshot) {
-        colRef = db.collection('dogs').orderBy('timestamp', 'desc').limit(fetchDocLimit);
+        colRef = db
+          .collection('dogs')
+          .orderBy('timestamp', 'desc')
+          .limit(fetchDocLimit);
       } else {
-        colRef = db.collection('dogs').orderBy('timestamp', 'desc').startAfter(lastDocumentSnapshot).limit(fetchDocLimit);
+        colRef = db
+          .collection('dogs')
+          .orderBy('timestamp', 'desc')
+          .startAfter(lastDocumentSnapshot)
+          .limit(fetchDocLimit);
       }
 
       try {
@@ -34,7 +41,10 @@ const useFetchData = (setData) => {
           querySnapshot.docs[querySnapshot.docs.length - 1],
         );
         const lastDocument = querySnapshot.docs[querySnapshot.docs.length - 1];
-        const next = db.collection('dogs').startAfter(lastDocument).limit(fetchDocLimit);
+        const next = db
+          .collection('dogs')
+          .startAfter(lastDocument)
+          .limit(fetchDocLimit);
         const nextQuerySnapshot = await next.get();
         if (nextQuerySnapshot.empty) setIsAllDataLoaded(true);
         setIsDataRequest(false);
