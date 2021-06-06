@@ -6,7 +6,7 @@ import {
   VolunteerInfoSectionButton,
 } from '../../styles/StyledMainSection';
 
-const VolunteerInfoSection = () => {
+const VolunteerInfoSection = ({ slideWideWrapper }) => {
   return (
     <HelpInfoWrapper>
       <VolunteerInfoTitle>Jak pomóc</VolunteerInfoTitle>
@@ -18,7 +18,10 @@ const VolunteerInfoSection = () => {
         aliquet ligula. Phasellus ornare eros vel aliquam. Morbi quis varius
         lacus, sit amet aliquet ligula. Phasellus ornare eros vel aliquam
       </PAbout>
-      <VolunteerInfoSectionButton variant="contained">
+      <VolunteerInfoSectionButton
+        variant="contained"
+        onClick={() => slideWideWrapper()}
+      >
         dowiedz się więcej
       </VolunteerInfoSectionButton>
     </HelpInfoWrapper>

@@ -11,7 +11,9 @@ const AboutSection = () => {
         lobortis leo. Praesent placerat tortor non fermentum tempus. Proin
         imperdiet orci vel imperdiet congue. Morbi quis varius lacus, sit amet
         aliquet ligula. Phasellus ornare eros vel aliquam pellentesque. Quisque
-        nec semper velit.
+        nec semper velit. imperdiet orci vel imperdiet congue. Morbi quis varius
+        lacus, sit amet aliquet ligula. Phasellus ornare eros vel aliquam
+        pellentesque. Quisque nec semper velit.
       </PAbout>
     </DivAbout>
   );

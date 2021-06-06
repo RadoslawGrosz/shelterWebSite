@@ -12,7 +12,7 @@ import {
   EventsButton,
 } from '../../styles/StyledMainSection';
 
-const EventsSection = () => {
+const EventsSection = ({ slideWideWrapper }) => {
   return (
     <EventsWrapper>
       <EventWrapperTitle>Wydarzenia</EventWrapperTitle>
@@ -46,7 +46,9 @@ const EventsSection = () => {
           </EventDescription>
         </TextWrapper>
       </EventWrapper>
-      <EventsButton>Pokaż więcej</EventsButton>
+      <EventsButton onClick={() => slideWideWrapper(true)}>
+        Pokaż więcej
+      </EventsButton>
     </EventsWrapper>
   );
 };

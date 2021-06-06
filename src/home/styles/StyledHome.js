@@ -6,7 +6,7 @@ export default styled.div`
   flex-direction: column;
   align-content: center;
   justify-content: space-between;
-  
+
   position: relative;
 
   overflow: hidden;
