@@ -1,23 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AboutSection from './AboutSection';
-import EventsSection from './EventsSection';
-import VolunteerInfoSection from './VolunteerInfoSection';
+import InfoSection from './InfoSection';
 import PetsSection from './PetsSection';
-import {
-  StyledH1,
-  StyledSection,
-  InfoWrapper,
-} from '../../styles/StyledMainSection';
+import { StyledSection } from '../../styles/StyledMainSection';
 
 const MainSection = ({ wrapperRef }) => {
   return (
     <StyledSection id="section">
       <AboutSection />
-      <InfoWrapper>
-        <EventsSection />
-        <VolunteerInfoSection />
-      </InfoWrapper>
+      <InfoSection />
       <PetsSection wrapperRef={wrapperRef} />
     </StyledSection>
   );

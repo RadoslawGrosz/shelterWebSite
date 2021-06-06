@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mainColorDark } from '../../theme/Theme';
 
 export const menuLinkColor = '#3a3b3c';
 export const menuLinkColorActive = '#fff';
@@ -96,12 +97,12 @@ export const StyledA = styled.a`
 
   @media (hover: hover) {
     &:hover {
-      color: #dc136c;
+      color: ${mainColorDark};
     }
   }
 `;
 
 export const LogoContainer = styled.b`
   margin-right: 2vmin;
-  color: #dc136c;
+  /* color: ${mainColorDark}; */
 `;

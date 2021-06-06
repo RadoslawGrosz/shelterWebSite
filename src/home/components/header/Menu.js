@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaw } from '@fortawesome/free-solid-svg-icons';
@@ -11,13 +11,12 @@ import {
 } from '../../styles/StyledMenu';
 import useTriggerMenuOnScroll from '../../hooks/useTriggerMenuOnScroll';
 import useChangeMenuOnTrigger from '../../hooks/useChangeMenuOnTrigger';
+import useScreenOrientation from '../../hooks/useScreenOrientation';
 
 const Menu = () => {
   const navRef = useRef(null);
   const ulRef = useRef(null);
-  const [isLandscape, setIsLandscape] = useState(
-    window.matchMedia('(orientation: landscape)').matches,
-  );
+  const isLandscape = useScreenOrientation();
   const [isMenuTriggered] = useTriggerMenuOnScroll(navRef);
   useChangeMenuOnTrigger(navRef, isMenuTriggered, isLandscape);
 
@@ -38,23 +37,6 @@ const Menu = () => {
       })
       .to(buttonAdopt, { autoAlpha: 1, duration: 0.6 });
   }, []);
-
-  const handleOrientationChange = () => {
-    setIsLandscape(window.matchMedia('(orientation: landscape)').matches);
-  };
-
-  useEffect(() => {
-    const listener = window.addEventListener(
-      'orientationchange',
-      handleOrientationChange,
-    );
-    return () => window.removeEventListener('orientationchange', listener);
-  });
-
-  useEffect(() => {
-    const listener = window.addEventListener('resize', handleOrientationChange);
-    return () => window.removeEventListener('resize', listener);
-  });
 
   const handleScroll = (name) => {
     const navBarHeight = navRef.current.offsetHeight;
