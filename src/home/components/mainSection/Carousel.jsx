@@ -1,18 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import EventsSection from './EventsSection';
-import VolunteerInfoSection from './VolunteerInfoSection';
-import AllEventsSection from './AllEventsSection';
+import Events from './Events';
+import ShortInfo from './ShortInfo';
 import {
   WideWrapper,
-  InfoWrapper,
-  VolunteerInfoWrapperMore,
   ButtonSlideLeft,
   ButtonSlideRight,
   ButtonSlideLeftEventDetails,
-} from '../../styles/StyledMainSection';
+} from '../../styles/mainSection/Carousel';
 import useScreenOrientation from '../../hooks/useScreenOrientation';
 import EventDetails from './EventDetails';
 
@@ -20,7 +17,7 @@ const Carousel = () => {
   const wideWrapperRef = useRef(null);
   const isLandscape = useScreenOrientation();
 
-  const slideWideWrapper = (
+  const slideCarousel = (
     isMovingLeft = false,
     distance = window.innerWidth,
   ) => {
@@ -60,33 +57,23 @@ const Carousel = () => {
 
   return (
     <WideWrapper ref={wideWrapperRef}>
-      <VolunteerInfoWrapperMore>
-        <EventsSection />
-        <VolunteerInfoSection />
-      </VolunteerInfoWrapperMore>
-      <InfoWrapper>
-        <EventsSection slideWideWrapper={slideWideWrapper} />
-        <VolunteerInfoSection slideWideWrapper={slideWideWrapper} />
-      </InfoWrapper>
-      <AllEventsSection slideWideWrapper={slideWideWrapper} />
+      <ShortInfo slideCarousel={slideCarousel} />
+      <Events slideCarousel={slideCarousel} />
       <EventDetails />
-      <ButtonSlideLeft left onClick={() => slideWideWrapper(true)}>
+      <ButtonSlideLeft left onClick={() => slideCarousel(true)}>
         <FontAwesomeIcon icon={faArrowLeft} />
       </ButtonSlideLeft>
-      <ButtonSlideRight left onClick={() => slideWideWrapper()}>
+      <ButtonSlideRight left onClick={() => slideCarousel()}>
         <FontAwesomeIcon icon={faArrowRight} />
       </ButtonSlideRight>
-      <ButtonSlideLeft onClick={() => slideWideWrapper(true)}>
+      <ButtonSlideLeft onClick={() => slideCarousel(true)}>
         <FontAwesomeIcon icon={faArrowLeft} />
       </ButtonSlideLeft>
-      <ButtonSlideRight onClick={() => slideWideWrapper()}>
+      <ButtonSlideRight onClick={() => slideCarousel()}>
         <FontAwesomeIcon icon={faArrowRight} />
       </ButtonSlideRight>
       <ButtonSlideLeftEventDetails>
-        <FontAwesomeIcon
-          onClick={() => slideWideWrapper()}
-          icon={faArrowRight}
-        />
+        <FontAwesomeIcon onClick={() => slideCarousel()} icon={faArrowRight} />
       </ButtonSlideLeftEventDetails>
     </WideWrapper>
   );

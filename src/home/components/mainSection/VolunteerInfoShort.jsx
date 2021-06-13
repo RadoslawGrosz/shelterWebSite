@@ -1,31 +1,31 @@
 import React from 'react';
 import {
-  HelpInfoWrapper,
+  WrapperVolunteer,
   VolunteerInfoTitle,
-  PAbout,
+  DescriptionVolunteer,
   VolunteerInfoSectionButton,
-} from '../../styles/StyledMainSection';
+} from '../../styles/mainSection/Volunteer';
 
-const VolunteerInfoSection = ({ slideWideWrapper }) => {
+const VolunteerInfoShort = ({ slideCarousel }) => {
   return (
-    <HelpInfoWrapper>
+    <WrapperVolunteer>
       <VolunteerInfoTitle>Jak pomóc</VolunteerInfoTitle>
-      <PAbout>
+      <DescriptionVolunteer>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lectus
         nisl, dictum vel sodales eget, euismod sodales neque. Vivamus eu
         lobortis leo. Praesent placerat tortor non fermentum tempus. Proin
         imperdiet orci vel imperdiet congue. Morbi quis varius lacus, sit amet
         aliquet ligula. Phasellus ornare eros vel aliquam. Morbi quis varius
         lacus, sit amet aliquet ligula. Phasellus ornare eros vel aliquam
-      </PAbout>
+      </DescriptionVolunteer>
       <VolunteerInfoSectionButton
         variant="contained"
-        onClick={() => slideWideWrapper()}
+        onClick={() => slideCarousel()}
       >
         dowiedz się więcej
       </VolunteerInfoSectionButton>
-    </HelpInfoWrapper>
+    </WrapperVolunteer>
   );
 };
 
-export default VolunteerInfoSection;
+export default VolunteerInfoShort;

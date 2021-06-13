@@ -5,18 +5,18 @@ export const StyledFooter = styled.footer`
 
   min-height: 15vmin;
   padding-left: 10%;
-  
+
   z-index: 1;
-  background-color: #020100;
+  background-color: ${({ theme }) => theme.mainColorBlack};
 `;
 
 export const StyledLink = styled.a`
   display: flex;
   align-items: center;
-  
+
   font-size: 5vmin;
   line-height: 12vmin;
-  
+
   color: white;
   & p {
     margin-left: 1vw;

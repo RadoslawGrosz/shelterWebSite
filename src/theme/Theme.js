@@ -7,6 +7,9 @@ export default {
   l: 'min-width: 861px',
   xl: 'min-width: 1025px',
   xxl: 'min-width: 1441px',
+  mainColorLight: '#d29f68',
+  mainColorDark: '#d17e36',
+  mainColorBlack: '#232220',
 };
 
 export const mainColorLight = '#d29f68';

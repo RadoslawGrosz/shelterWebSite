@@ -9,7 +9,7 @@ import {
   Spinner,
   SpinnerContainer,
   InfoWrapper,
-} from '../../styles/StyledMainSection';
+} from '../../styles/mainSection/StyledMainSection';
 
 const PetsSection = ({ wrapperRef, ButtonPanel }) => {
   const sectionRef = useRef(null);

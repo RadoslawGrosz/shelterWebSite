@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { WrapperHover } from './StyledPopupConfirm';
-import { StyledH2 } from '../../home/styles/StyledMainSection';
+import { StyledH2 } from '../../home/styles/mainSection/StyledMainSection';
 
 export const FormWrapper = styled.div`
   position: relative;

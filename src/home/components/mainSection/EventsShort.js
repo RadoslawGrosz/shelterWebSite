@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import {
-  EventsWrapper,
+  WrapperEvents,
   EventWrapperTitle,
   EventWrapper,
   IconWrapper,
@@ -10,11 +10,11 @@ import {
   EventName,
   EventDescription,
   EventsButton,
-} from '../../styles/StyledMainSection';
+} from '../../styles/mainSection/Events';
 
-const EventsSection = ({ slideWideWrapper }) => {
+const EventsShort = ({ slideCarousel }) => {
   return (
-    <EventsWrapper>
+    <WrapperEvents>
       <EventWrapperTitle>Wydarzenia</EventWrapperTitle>
       <EventWrapper>
         <IconWrapper>
@@ -46,11 +46,11 @@ const EventsSection = ({ slideWideWrapper }) => {
           </EventDescription>
         </TextWrapper>
       </EventWrapper>
-      <EventsButton onClick={() => slideWideWrapper(true)}>
+      <EventsButton onClick={() => slideCarousel(true)}>
         Pokaż więcej
       </EventsButton>
-    </EventsWrapper>
+    </WrapperEvents>
   );
 };
 
-export default EventsSection;
+export default EventsShort;

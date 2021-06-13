@@ -1,9 +1,4 @@
 import styled from 'styled-components';
-import {
-  mainColorLight,
-  mainColorDark,
-  mainColorBlack,
-} from '../../theme/Theme';
 
 export const StyledMain = styled.main`
   position: relative;
@@ -19,7 +14,7 @@ export const StyledMain = styled.main`
   padding-bottom: 30vmax;
   z-index: 10;
 
-  background-color: ${mainColorBlack};
+  background-color: ${({ theme }) => theme.mainColorBlack};
   color: #fff;
 
   @media (${({ theme }) => theme.xxl}) {
@@ -75,7 +70,6 @@ export const ArticlesWrapper = styled.div`
   }
 `;
 
-// Container for h2 and p
 export const StyledArticle = styled.article`
   display: flex;
   flex-direction: column;
@@ -158,7 +152,7 @@ export const StyledIconContainer = styled(StyledP)`
   font-size: 3.5vmax;
 
   transition: 0.5s;
-  color: ${mainColorLight};
+  color: ${({ theme }) => theme.mainColorLight};
 
   @media (${({ theme }) => theme.m}) {
     font-size: 4rem;
@@ -167,93 +161,4 @@ export const StyledIconContainer = styled(StyledP)`
   @media (${({ theme }) => theme.l}) {
     font-size: 5rem;
   }
-
-  @media (hover: hover) {
-    &:hover {
-      /* color: ${({ blue }) => (blue ? '#3b5998' : '#d29f68')}; */
-    }
-  }
 `;
-
-// export const DivAbout = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   flex-wrap: wrap;
-
-//   position: absolute;
-//   bottom: 0;
-//   transform: translateY(50%);
-
-//   width: 90%;
-//   padding: 5vmin 5vmin 12vmin;
-//   border-radius: 1rem;
-
-//   z-index: 10;
-//   background-color: #d29f68;
-
-//   @media (${({ theme }) => theme.l}) {
-//     width: 70%;
-//     padding: 6rem;
-//   }
-
-//   @media (${({ theme }) => theme.xl}) {
-//     width: 60%;
-//     padding-bottom: 9rem;
-//   }
-// `;
-
-// export const H1About = styled.h1`
-//   flex-basis: 100%;
-
-//   text-align: center;
-//   font-size: 4vmax;
-//   line-height: 10vmax;
-
-//   @media (${({ theme }) => theme.m}) and (orientation: portrait) {
-//     font-size: 4rem;
-//     line-height: 10rem;
-//   }
-
-//   @media (${({ theme }) => theme.l}) {
-//     font-size: 4.5rem;
-//     line-height: 10rem;
-//   }
-
-//   @media (${({ theme }) => theme.l}) and (orientation: portrait) {
-//     font-size: 4.5rem;
-//     line-height: 10rem;
-//   }
-
-//   @media (${({ theme }) => theme.xl}) {
-//     font-size: 5rem;
-//     line-height: 10rem;
-//   }
-// `;
-
-// export const PAbout = styled.p`
-//   text-align: center;
-//   font-size: 2vmax;
-//   letter-spacing: 0.2vh;
-
-//   @media (${({ theme }) => theme.m}) and (orientation: portrait) {
-//     font-size: 2.2rem;
-//   }
-
-//   @media (${({ theme }) => theme.m}) and (orientation: portrait) {
-//     font-size: 2.2rem;
-//     line-height: 3rem;
-//   }
-
-//   @media (${({ theme }) => theme.l}) {
-//     width: 85%;
-//     font-size: 1.6rem;
-//     line-height: 3rem;
-//   }
-
-//   @media (${({ theme }) => theme.xl}) {
-//     width: 80%;
-//     font-size: 2rem;
-//     line-height: 4rem;
-//   }
-// `;

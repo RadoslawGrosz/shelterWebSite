@@ -2,21 +2,19 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import {
-  EventsWrapper,
-  EventWrapperTitle,
+  WrapperEvents,
   EventWrapper,
   IconWrapper,
   TextWrapper,
   EventName,
   EventDescription,
-  EventsButton,
   AllEventsWrapper,
-} from '../../styles/StyledMainSection';
+} from '../../styles/mainSection/Events';
 
-const AllEventsSection = ({ slideWideWrapper }) => {
+const Events = ({ slideWideWrapper }) => {
   return (
     <AllEventsWrapper>
-      <EventsWrapper>
+      <WrapperEvents>
         <EventWrapper allView onClick={slideWideWrapper}>
           <IconWrapper>
             <FontAwesomeIcon icon={faCalendarAlt} />
@@ -62,8 +60,8 @@ const AllEventsSection = ({ slideWideWrapper }) => {
             </EventDescription>
           </TextWrapper>
         </EventWrapper>
-      </EventsWrapper>
-      <EventsWrapper>
+      </WrapperEvents>
+      <WrapperEvents>
         <EventWrapper>
           <IconWrapper>
             <FontAwesomeIcon icon={faCalendarAlt} />
@@ -139,9 +137,9 @@ const AllEventsSection = ({ slideWideWrapper }) => {
             </EventDescription>
           </TextWrapper>
         </EventWrapper> */}
-      </EventsWrapper>
+      </WrapperEvents>
     </AllEventsWrapper>
   );
 };
 
-export default AllEventsSection;
+export default Events;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import AboutSection from './AboutSection';
 import Carousel from './Carousel';
 import PetsSection from './PetsSection';
-import { StyledSection } from '../../styles/StyledMainSection';
+import { StyledSection } from '../../styles/mainSection/StyledMainSection';
 
 const MainSection = ({ wrapperRef }) => {
   return (

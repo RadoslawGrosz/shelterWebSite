@@ -2,21 +2,19 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import {
-  EventsWrapper,
-  EventWrapperTitle,
+  WrapperEvents,
   EventWrapper,
   IconWrapper,
   TextWrapper,
   EventName,
   EventDescription,
-  EventsButton,
   EventDetailsWrapper,
-} from '../../styles/StyledMainSection';
+} from '../../styles/mainSection/Events';
 
 const EventDetails = () => {
   return (
     <EventDetailsWrapper>
-      <EventsWrapper>
+      <WrapperEvents>
         <EventWrapper>
           <IconWrapper>
             <FontAwesomeIcon icon={faCalendarAlt} />
@@ -32,7 +30,7 @@ const EventDetails = () => {
             </EventDescription>
           </TextWrapper>
         </EventWrapper>
-      </EventsWrapper>
+      </WrapperEvents>
     </EventDetailsWrapper>
   );
 };
