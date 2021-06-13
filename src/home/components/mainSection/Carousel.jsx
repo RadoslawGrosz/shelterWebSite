@@ -16,7 +16,7 @@ import {
 import useScreenOrientation from '../../hooks/useScreenOrientation';
 import EventDetails from './EventDetails';
 
-const InfoSection = () => {
+const Carousel = () => {
   const wideWrapperRef = useRef(null);
   const isLandscape = useScreenOrientation();
 
@@ -92,4 +92,4 @@ const InfoSection = () => {
   );
 };
 
-export default InfoSection;
+export default Carousel;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AboutSection from './AboutSection';
-import InfoSection from './InfoSection';
+import Carousel from './Carousel';
 import PetsSection from './PetsSection';
 import { StyledSection } from '../../styles/StyledMainSection';
 
@@ -9,7 +9,7 @@ const MainSection = ({ wrapperRef }) => {
   return (
     <StyledSection id="section">
       <AboutSection />
-      <InfoSection />
+      <Carousel />
       <PetsSection wrapperRef={wrapperRef} />
     </StyledSection>
   );
