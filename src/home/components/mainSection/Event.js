@@ -2,22 +2,18 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import {
-  EventsWrapper,
-  EventWrapperTitle,
   EventWrapper,
   IconWrapper,
   TextWrapper,
   EventName,
   EventDescription,
-  EventsButton,
-  AllEventsWrapper,
-} from '../../styles/mainSection/StyledMainSection';
+} from '../../styles/mainSection/Events';
 
-const Event = ({ event }) => {
+const Event = ({ event, slideCarousel }) => {
   const { name, description } = event;
 
   return (
-    <EventWrapper allView onClick={slideWideWrapper}>
+    <EventWrapper allView onClick={slideCarousel}>
       <IconWrapper>
         <FontAwesomeIcon icon={faCalendarAlt} />
       </IconWrapper>

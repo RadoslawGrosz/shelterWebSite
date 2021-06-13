@@ -11,11 +11,11 @@ import {
   AllEventsWrapper,
 } from '../../styles/mainSection/Events';
 
-const Events = ({ slideWideWrapper }) => {
+const Events = ({ slideCarousel }) => {
   return (
     <AllEventsWrapper>
       <WrapperEvents>
-        <EventWrapper allView onClick={slideWideWrapper}>
+        <EventWrapper allView onClick={slideCarousel}>
           <IconWrapper>
             <FontAwesomeIcon icon={faCalendarAlt} />
           </IconWrapper>

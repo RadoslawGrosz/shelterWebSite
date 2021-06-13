@@ -38,10 +38,6 @@ export const IconWrapper = styled.div`
 export const EventWrapperTitle = styled(Title)`
   letter-spacing: 0.1em;
 
-  @media (orientation: landscape) {
-    /* margin: 0; */
-  }
-
   @media (${({ theme }) => theme.l}) and (orientation: landscape) {
     font-size: 3rem;
     line-height: 7rem;
