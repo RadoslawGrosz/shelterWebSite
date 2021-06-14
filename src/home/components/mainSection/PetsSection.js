@@ -10,16 +10,16 @@ import {
   SpinnerContainer,
   InfoWrapper,
 } from '../../styles/mainSection/StyledMainSection';
+import { useAppSelector } from '../../../store/store';
 
 const PetsSection = ({ wrapperRef, ButtonPanel }) => {
   const sectionRef = useRef(null);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [currentGallery, setCurrentGallery] = useState(null);
-  const [data, setData] = useState([]);
+  const pets = useAppSelector((state) => state.pets.pets);
   const [imageList, setImageList] = useState([]);
   const [currentOffset, setCurrentOffset] = useState(null);
   const [isDataRequest, setIsDataRequest, isAllDataLoaded] = useFetchData(
-    setData,
     sectionRef,
   );
   useTriggerFetchData(wrapperRef, setIsDataRequest, setCurrentOffset);
@@ -31,15 +31,15 @@ const PetsSection = ({ wrapperRef, ButtonPanel }) => {
 
   useEffect(() => {
     const createImageList = () => {
-      const mainImg = data[currentGallery].images.find((image) => image.isMain);
-      const tempList = data[currentGallery].images.filter(
+      const mainImg = pets[currentGallery].images.find((image) => image.isMain);
+      const tempList = pets[currentGallery].images.filter(
         ({ big }) => big !== mainImg.big,
       );
       tempList.unshift(mainImg);
       setImageList(tempList);
     };
-    if (data[currentGallery]) createImageList();
-  }, [data, currentGallery]);
+    if (pets[currentGallery]) createImageList();
+  }, [pets, currentGallery]);
 
   return (
     <StyledSection style={{ backgroundColor: 'transparent' }}>
@@ -49,7 +49,7 @@ const PetsSection = ({ wrapperRef, ButtonPanel }) => {
           <Spinner />
         </SpinnerContainer>
       )}
-      {data.map(({ id, images, name, description }, index) => (
+      {pets.map(({ id, images, name, description }, index) => (
         <ArticleList
           key={id}
           id={id}

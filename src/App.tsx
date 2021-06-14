@@ -11,7 +11,7 @@ import theme, { materialTheme } from './theme/Theme';
 import { AuthProvider } from './server/Auth';
 import PrivateRoute from './server/PrivateRoute';
 
-function App() {
+const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <StylesProvider injectFirst>
@@ -28,6 +28,6 @@ function App() {
       </StylesProvider>
     </ThemeProvider>
   );
-}
+};
 
 export default App;

@@ -1,12 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import firebase from '../../server/firebase';
+import { addPet } from '../../store/petsSlice.ts';
+import { useAppDispatch } from '../../store/store';
 
-const useFetchData = (setData) => {
+const useFetchData = () => {
   const [lastDocumentSnapshot, setLastDocumentSnapshot] = useState(null);
   const [isAllDataLoaded, setIsAllDataLoaded] = useState(false);
   const [isDataRequest, setIsDataRequest] = useState(true);
   const fetchDocLimit = 2;
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const getData = async () => {
@@ -35,7 +38,8 @@ const useFetchData = (setData) => {
         querySnapshot.forEach(async (doc) => {
           const data = await doc.data();
           data.id = doc.id;
-          setData((prev) => [...prev, data]);
+          data.timestamp = data.timestamp.toMillis();
+          dispatch(addPet(data));
         });
         setLastDocumentSnapshot(
           querySnapshot.docs[querySnapshot.docs.length - 1],

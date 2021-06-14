@@ -17,6 +17,7 @@ export const petsSlice = createSlice({
       state.pets = action.payload;
     },
     addPet: (state, action: PayloadAction<Pet>) => {
+      console.log(action.payload);
       state.pets.push(action.payload);
     },
   },

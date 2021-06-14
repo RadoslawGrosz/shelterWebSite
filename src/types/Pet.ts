@@ -11,5 +11,5 @@ export interface Pet {
   name: string;
   description: string;
   images: Image[];
-  timestamp: any;
+  timestamp: number;
 }
