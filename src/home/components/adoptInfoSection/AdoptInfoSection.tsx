@@ -16,7 +16,7 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-const AdoptInfoSection = () => {
+const AdoptInfoSection: React.FC = () => {
   const mainRef = useRef<HTMLElement>(null);
 
   useEffect(() => {

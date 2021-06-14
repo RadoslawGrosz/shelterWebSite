@@ -13,7 +13,7 @@ import useTriggerMenuOnScroll from '../../hooks/useTriggerMenuOnScroll';
 import useChangeMenuOnTrigger from '../../hooks/useChangeMenuOnTrigger';
 import useScreenOrientation from '../../hooks/useScreenOrientation';
 
-const Menu = () => {
+const Menu: React.FC = () => {
   const navRef = useRef<HTMLElement>(null);
   const ulRef = useRef<HTMLUListElement>(null);
   const isLandscape = useScreenOrientation();

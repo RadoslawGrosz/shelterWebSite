@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { StyledHeader, ImageContainer, HeaderHover } from '../../styles/StyledHeader';
 
-const Header = () => {
+const Header: React.FC = () => {
   const headerRef = useRef<HTMLDivElement>(null);
   const ImageContainerRef = useRef<HTMLDivElement>(null);
 
