@@ -12,18 +12,18 @@ import {
   StyledH2,
   StyledP,
   StyledIconContainer,
-  // DivAbout,
-  // H1About,
-  // PAbout,
 } from '../../styles/StyledAdoptInfoSection';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const AdoptInfoSection = () => {
-  const mainRef = useRef(null);
+  const mainRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const textElements = mainRef.current.querySelectorAll('.animated');
+    if (!mainRef.current) return;
+    const textElements: NodeListOf<Element> | null = mainRef.current.querySelectorAll(
+      '.animated',
+    );
 
     textElements.forEach((el) => {
       gsap.to(el, {
@@ -59,14 +59,14 @@ const AdoptInfoSection = () => {
     },
   ];
 
-  const articleList = [];
+  const stepsList: JSX.Element[] = [];
 
   articleElements.forEach(({ title, text, logo }) => {
-    articleList.push(
+    stepsList.push(
       <StyledArticle key={title}>
         <StyledH2>{title}</StyledH2>
         <StyledP className="animated">{text}</StyledP>
-        <StyledIconContainer blue className="animated">
+        <StyledIconContainer className="animated">
           <FontAwesomeIcon icon={logo} />
         </StyledIconContainer>
       </StyledArticle>,
@@ -76,7 +76,7 @@ const AdoptInfoSection = () => {
   return (
     <StyledMain ref={mainRef} id="main">
       <StyledH1>Adopcja w trzech krokach</StyledH1>
-      <ArticlesWrapper>{articleList}</ArticlesWrapper>
+      <ArticlesWrapper>{stepsList}</ArticlesWrapper>
     </StyledMain>
   );
 };

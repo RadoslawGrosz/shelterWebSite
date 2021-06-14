@@ -14,14 +14,15 @@ import useChangeMenuOnTrigger from '../../hooks/useChangeMenuOnTrigger';
 import useScreenOrientation from '../../hooks/useScreenOrientation';
 
 const Menu = () => {
-  const navRef = useRef(null);
-  const ulRef = useRef(null);
+  const navRef = useRef<HTMLElement>(null);
+  const ulRef = useRef<HTMLUListElement>(null);
   const isLandscape = useScreenOrientation();
   const [isMenuTriggered] = useTriggerMenuOnScroll(navRef);
   useChangeMenuOnTrigger(navRef, isMenuTriggered, isLandscape);
 
   useEffect(() => {
-    const [logo, buttonDogs, buttonAdopt] = ulRef.current.children;
+    if (!ulRef.current) return;
+    const [logo, buttonDogs, buttonAdopt]: HTMLCollection = ulRef.current.children;
 
     const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
     tl.to(logo, {
@@ -38,15 +39,13 @@ const Menu = () => {
       .to(buttonAdopt, { autoAlpha: 1, duration: 0.6 });
   }, []);
 
-  const handleScroll = (name) => {
+  const handleScroll = (name: string) => {
+    if (!navRef.current) return;
     const navBarHeight = navRef.current.offsetHeight;
 
     switch (name) {
       case 'Psy do adpocji':
-        window.scrollTo(
-          0,
-          document.querySelector('#section').offsetTop - navBarHeight,
-        );
+        //window.scrollTo(0, document.querySelector('#section').offsetTop - navBarHeight);
         break;
       case 'Jak adoptować':
         window.scrollTo(0, window.innerHeight - navBarHeight);
@@ -59,7 +58,7 @@ const Menu = () => {
     }
   };
 
-  const NavigationButtons = [];
+  const NavigationButtons: JSX.Element[] = [];
 
   ['Psy do adpocji', 'Jak adoptować'].forEach((name) => {
     NavigationButtons.push(
