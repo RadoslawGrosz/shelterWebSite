@@ -36,7 +36,6 @@ export const StyledUl = styled.ul`
 `;
 
 export const StyledLi = styled.li`
-  opacity: 0;
   padding: 2%;
 
   &:nth-child(odd) {

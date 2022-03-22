@@ -40,8 +40,6 @@ export const ImageContainer = styled.div`
 
   transform: translateY(10vh);
 
-  opacity: 0;
-
   background-image: url(${smallBackgroundPortrait});
   background-repeat: no-repeat;
   background-size: cover;
