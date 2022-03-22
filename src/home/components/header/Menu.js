@@ -27,22 +27,22 @@ const Menu = () => {
     tl.to(logo, {
       autoAlpha: 1,
       x: 0,
-      duration: 1,
-      delay: 0.6,
+      duration: 0,
+      // delay: 0.6,
     })
       .to(buttonDogs, {
         autoAlpha: 1,
         x: 0,
-        duration: 0.8,
+        duration: 0,
       })
-      .to(buttonAdopt, { autoAlpha: 1, duration: 0.6 });
+      .to(buttonAdopt, { autoAlpha: 1, duration: 0 });
   }, []);
 
   const handleScroll = (name) => {
     const navBarHeight = navRef.current.offsetHeight;
 
     switch (name) {
-      case 'Psy do adpocji':
+      case 'Zwierzęta do adpocji':
         window.scrollTo(
           0,
           document.querySelector('#section').offsetTop - navBarHeight,
@@ -61,7 +61,7 @@ const Menu = () => {
 
   const NavigationButtons = [];
 
-  ['Psy do adpocji', 'Jak adoptować'].forEach((name) => {
+  ['Zwierzęta do adpocji', 'Jak adoptować'].forEach((name) => {
     NavigationButtons.push(
       <StyledLi key={name}>
         <StyledA onClick={() => handleScroll(name)}>{name}</StyledA>

@@ -16,15 +16,15 @@ export const AuthProvider = ({ children }) => {
     });
   }, []);
 
-  if (pending) {
-    return (
-      <WrapperHover bgc="#000">
-        <SpinnerContainer>
-          <Spinner />
-        </SpinnerContainer>
-      </WrapperHover>
-    );
-  }
+  // if (pending) {
+  //   return (
+  //     <WrapperHover bgc="#000">
+  //       <SpinnerContainer>
+  //         <Spinner />
+  //       </SpinnerContainer>
+  //     </WrapperHover>
+  //   );
+  // }
 
   return (
     <AuthContext.Provider

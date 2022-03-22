@@ -1,9 +1,7 @@
 import styled from 'styled-components';
-import backgroundDog from '../../img/backgroundDog.jpg';
 import smallBackgroundDog from '../../img/smallBackgroundDog.jpg';
 import mediumBackgroundDog from '../../img/mediumBackgroundDog.jpg';
 import bigBackgroundDog from '../../img/bigBackgroundDog.jpg';
-import backgroundPortrait from '../../img/backgroundPortrait.jpg';
 import smallBackgroundPortrait from '../../img/smallBackgroundPortrait.jpg';
 import mediumBackgroundPortrait from '../../img/mediumBackgroundPortrait.jpg';
 import bigBackgroundPortrait from '../../img/bigBackgroundPortrait.jpg';
@@ -57,10 +55,6 @@ export const ImageContainer = styled.div`
     background-image: url(${bigBackgroundPortrait});
   }
 
-  @media (${({ theme }) => theme.xl}) {
-    background-image: url(${backgroundPortrait});
-  }
-
   @media (orientation: landscape) {
     background-image: url(${smallBackgroundDog});
 
@@ -70,10 +64,6 @@ export const ImageContainer = styled.div`
 
     @media (${({ theme }) => theme.xl}) {
       background-image: url(${bigBackgroundDog});
-    }
-
-    @media (${({ theme }) => theme.xxl}) {
-      background-image: url(${backgroundDog});
     }
   }
 
