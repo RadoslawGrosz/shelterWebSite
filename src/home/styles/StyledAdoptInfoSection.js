@@ -85,8 +85,6 @@ export const StyledArticle = styled.article`
   margin-top: 10vh;
   padding: 2% 2%;
 
-  font-family: Rowdies;
-
   @media (${({ theme }) => theme.l}) and (orientation: portrait) {
     width: 50vw;
   }
