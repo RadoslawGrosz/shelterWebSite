@@ -16,10 +16,10 @@ const Header = () => {
 
     const tl = gsap.timeline({ defaults: { ease: 'power0.out' } });
 
-    tl.to(header, { autoAlpha: 0.05, duration: 0.5 }).to(image, {
+    tl.to(header, { autoAlpha: 0.05, duration: 0 }).to(image, {
       autoAlpha: 1,
       y: 0,
-      duration: 1,
+      duration: 0,
       ease: 'power3.out',
       // delay: 2,
     });

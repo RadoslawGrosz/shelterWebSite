@@ -29,7 +29,7 @@ const AdoptInfoSection = () => {
       gsap.to(el, {
         autoAlpha: 1,
         y: '0',
-        duration: 3,
+        duration: 0,
         scrollTrigger: {
           trigger: el,
           start: 'top bottom',

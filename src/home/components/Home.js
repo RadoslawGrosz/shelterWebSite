@@ -1,10 +1,12 @@
-import React, { useRef } from 'react';
+import React, { useRef, Suspense } from 'react';
 import Header from './header/Header';
 import Menu from './header/Menu';
 import AdoptInfoSection from './adoptInfoSection/AdoptInfoSection';
-import MainSection from './mainSection/MainSection';
+// import MainSection from './mainSection/MainSection';
 import Footer from './Footer';
 import StyledWrapper from '../styles/StyledHome';
+
+const MainSection = React.lazy(() => import('./mainSection/MainSection'));
 
 function Home() {
   const wrapperRef = useRef(null);
@@ -14,7 +16,9 @@ function Home() {
       <Menu />
       <Header wrapperRef={wrapperRef} />
       <AdoptInfoSection />
-      <MainSection wrapperRef={wrapperRef} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <MainSection wrapperRef={wrapperRef} />
+      </Suspense>
       <Footer />
     </StyledWrapper>
   );
