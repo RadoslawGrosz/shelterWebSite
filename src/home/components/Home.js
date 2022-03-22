@@ -15,7 +15,9 @@ function Home() {
   return (
     <StyledWrapper ref={wrapperRef}>
       <Menu />
-      <Header wrapperRef={wrapperRef} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Header wrapperRef={wrapperRef} />
+      </Suspense>
       <AdoptInfoSection />
       <Suspense fallback={<div>Loading...</div>}>
         <MainSection wrapperRef={wrapperRef} />
